@@ -10,7 +10,6 @@
 <body>
 	<h1>IVs Don't Matter</h1>
 	<div id="stat-explorer">
-		<h2>Stats???</h2>
 		<div class="inputtydoo">
 			<label>
 				<span>Level: {{level}}</span>
@@ -25,17 +24,17 @@
 		</div>
 		<div>CPM: {{lookupFromMap}}</div>
 		<div>
-			<h3>Pokemon</h3>
+			<h2>Pokemon</h2>
 			<div class="pokemon-list">
 				<div
-					v-for="item in pokemonList"
+					v-for="pokemon in pokemonList"
 					class="pokeyman-graph"
-					:key="item.name"
+					:key="pokemon.name"
 				>
-					<h4>Name: {{item.name}}</h4>
+					<h3>{{pokemon.name}} (CP: {{calculateCP(pokemon, lookupFromMap)}})</h3>
 					<div class="stat-list">
 						<stat-bar
-							v-for="(stat, propertyName, index) in item.stats"
+							v-for="(stat, propertyName, index) in pokemon.stats"
 							:key="propertyName"
 							:label="propertyName"
 							:stat="stat"

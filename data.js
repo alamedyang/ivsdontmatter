@@ -106,17 +106,17 @@ var pokemonList = [
 	{
 		name: 'Mewtwo',
 		stats: {
-			attack: { base: 300, iv: 13 },
-			defense: { base: 182, iv: 10 },
-			stamina: { base: 214, iv: 15 },
+			attack: { base: 300, iv: 15 },
+			defense: { base: 182, iv: 15 },
+			stamina: { base: 214, iv: 13 },
 		}
 	},
 	{
 		name: 'Gengar',
 		stats: {
-			attack: { base: 261, iv: 4 },
-			defense: { base: 149, iv: 6 },
-			stamina: { base: 155, iv: 11 },
+			attack: { base: 261, iv: 15 },
+			defense: { base: 149, iv: 15 },
+			stamina: { base: 155, iv: 15 },
 		}
 	},
 	{

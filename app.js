@@ -27,7 +27,7 @@ Vue.component('stat-bar', {
 var app = new Vue({
 	el: '#stat-explorer',
 	data:{
-		level: 5,
+		level: 20,
 		pokemonList,
 	},
 	computed: {
@@ -36,11 +36,15 @@ var app = new Vue({
 		},
 	},
 	methods: {
-		increaseStatName: function () {
-			this.statName++;
-		},
-		decreaseStatName: function () {
-			this.statName--;
-		},
+		calculateCP: function (pokemon, cpm) {
+			var stats = pokemon.stats;
+			var attack = stats.attack.base + stats.attack.iv;
+			var defense = stats.defense.base + stats.defense.iv;
+			var stamina = stats.stamina.base + stats.stamina.iv;
+			return Math.floor(Math.max(
+				((attack * Math.sqrt(defense) * Math.sqrt(stamina) * Math.pow(cpm, 2))/10),
+				10
+			));
+		}
 	},
 });
