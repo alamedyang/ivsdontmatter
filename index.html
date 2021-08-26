@@ -28,7 +28,7 @@
 			<div class="pokemon-list">
 				<div
 					v-for="pokemon in pokemonList"
-					class="pokeyman-graph"
+					class="pokemon-graph"
 					:key="pokemon.name"
 				>
 					<h3>{{pokemon.name}} (CP: {{calculateCP(pokemon, lookupFromMap)}})</h3>

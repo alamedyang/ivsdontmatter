@@ -15,23 +15,27 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0.5em 0;
 }
 
+h1 {
+	font-weight: 900;
+}
+
 .stat-bar {
 	background-color: #eee;
 	font-size: 0;
-	margin-bottom: 8px;
+	margin-bottom: 6px;
 }
 .stat-bar-progress,
 .stat-bar-progress-iv,
 .stat-bar-progress-iv-max {
 	display: inline-block;
-	height: 20px;
-	background-color: blue;
+	height: 16px;
+	background-color: #47f;
 }
 .stat-bar-progress-iv {
-	background-color: red;
+	background-color: #d00;
 }
 .stat-bar-progress-iv-max {
-	background-color: #fbb;
+	background-color: #fcc;
 }
 
 .inputtydoo span,

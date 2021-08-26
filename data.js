@@ -106,24 +106,24 @@ var pokemonList = [
 	{
 		name: 'Mewtwo',
 		stats: {
-			attack: { base: 300, iv: 15 },
-			defense: { base: 182, iv: 15 },
-			stamina: { base: 214, iv: 13 },
+			attack: { base: 300, iv: 10 },
+			defense: { base: 182, iv: 10 },
+			stamina: { base: 214, iv: 10 },
 		}
 	},
 	{
 		name: 'Gengar',
 		stats: {
-			attack: { base: 261, iv: 15 },
-			defense: { base: 149, iv: 15 },
+			attack: { base: 261, iv: 8 },
+			defense: { base: 149, iv: 11 },
 			stamina: { base: 155, iv: 15 },
 		}
 	},
 	{
 		name: 'Magikarp',
 		stats: {
-			attack: { base: 29, iv: 15 },
-			defense: { base: 85, iv: 14 },
+			attack: { base: 29, iv: 7 },
+			defense: { base: 85, iv: 2 },
 			stamina: { base: 85, iv: 12 },
 		}
 	},
