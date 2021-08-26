@@ -11,7 +11,7 @@ Vue.component('stat-bar', {
 	},
 	computed: {
 		scale: function () {
-			return 500;
+			return 500 * 0.85;
 		},
 	},
 	template: '#stat-bar',
@@ -20,7 +20,7 @@ Vue.component('stat-bar', {
 var app = new Vue({
 	el: '#stat-explorer',
 	data:{
-		statName: 5,
+		level: 5,
 		pokemonList: [
 			{
 				name: 'Mewtwo',
@@ -47,6 +47,11 @@ var app = new Vue({
 				}
 			},
 		],
+	},
+	computed: {
+		lookupFromMap: function () {
+			return levelMap[this.level] || levelMap["1"];
+		},
 	},
 	methods: {
 		increaseStatName: function () {

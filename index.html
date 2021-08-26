@@ -10,13 +10,20 @@
 <body>
 	<h1>IVs Don't Matter</h1>
 	<div id="stat-explorer">
-		<h2>Value: {{statName}}</h2>
-		<button
-			@click="decreaseStatName"
-		>-</button>
-		<button
-			@click="increaseStatName"
-		>+</button>
+		<h2>Stats???</h2>
+		<div class="inputtydoo">
+			<label>
+				<span>Level: {{level}}</span>
+				<input
+					type="range"
+					min="1"
+					max="51"
+					step="0.5"
+					v-model="level"
+				/>
+			</label>
+		</div>
+		<div>CPM: {{lookupFromMap}}</div>
 		<div>
 			<h3>Pokeymans</h3>
 			<div class="pokemon-list">
@@ -64,6 +71,7 @@
 		</div>
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="./data.js"></script>
 	<script src="./app.js"></script>
 </body>
 </html>

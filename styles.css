@@ -7,7 +7,7 @@ body {
 }
 
 .stat-bar {
-	background-color: gray;
+	background-color: #eee;
 	font-size: 0;
 	margin-bottom: 8px;
 }
@@ -22,5 +22,11 @@ body {
 	background-color: red;
 }
 .stat-bar-progress-iv-max {
-	background-color: pink;
+	background-color: #fbb;
+}
+
+.inputtydoo span,
+.inputtydoo input {
+	display: block;
+	width: 100%;
 }
