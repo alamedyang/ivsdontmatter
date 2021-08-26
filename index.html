@@ -5,10 +5,65 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>IVs Don't Matter</title>
+	<link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 	<h1>IVs Don't Matter</h1>
-	<p>coming soon</p>
+	<div id="stat-explorer">
+		<h2>Value: {{statName}}</h2>
+		<button
+			@click="decreaseStatName"
+		>-</button>
+		<button
+			@click="increaseStatName"
+		>+</button>
+		<div>
+			<h3>Pokeymans</h3>
+			<div class="pokemon-list">
+				<div
+					v-for="item in pokemonList"
+					class="pokeyman-graph"
+					:key="item.name"
+				>
+					<h4>Name: {{item.name}}</h4>
+					<div class="stat-list">
+						<stat-bar
+							v-for="(stat, propertyName, index) in item.stats"
+							:key="propertyName"
+							:label="propertyName"
+							:stat="stat"
+						></stat-bar>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/x-template" id="stat-bar">
+		<div
+			class="stat-bar"
+		>
+			<span class="stat-bar-label">{{label}}</span>
+			<span
+				class="stat-bar-progress"
+				:style="{
+					width: ((stat.base / scale) * 100) + '%'
+				}"
+			></span>
+			<span
+				class="stat-bar-progress-iv"
+				:style="{
+					width: ((stat.iv / scale) * 100) + '%'
+				}"
+			></span>
+			<span
+				class="stat-bar-progress-iv-max"
+				:style="{
+					width: (((15 - stat.iv) / scale) * 100) + '%'
+				}"
+			></span>
+		</div>
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 	<script src="./app.js"></script>
 </body>
 </html>

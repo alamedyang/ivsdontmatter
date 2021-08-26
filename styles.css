@@ -1,0 +1,26 @@
+* {
+	font-family: inherit;
+	box-sizing: border-box;
+}
+body {
+	font-family: sans-serif;
+}
+
+.stat-bar {
+	background-color: gray;
+	font-size: 0;
+	margin-bottom: 8px;
+}
+.stat-bar-progress,
+.stat-bar-progress-iv,
+.stat-bar-progress-iv-max {
+	display: inline-block;
+	height: 20px;
+	background-color: blue;
+}
+.stat-bar-progress-iv {
+	background-color: red;
+}
+.stat-bar-progress-iv-max {
+	background-color: pink;
+}
