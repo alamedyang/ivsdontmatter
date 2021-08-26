@@ -100,4 +100,39 @@ var levelMap = {
 	"48.5": 0.83279999,
 	"49.5": 0.83779999,
 	"50.5": 0.84279999
-}
+};
+
+var pokemonList = [
+	{
+		name: 'Mewtwo',
+		stats: {
+			attack: { base: 300, iv: 13 },
+			defense: { base: 182, iv: 10 },
+			stamina: { base: 214, iv: 15 },
+		}
+	},
+	{
+		name: 'Gengar',
+		stats: {
+			attack: { base: 261, iv: 4 },
+			defense: { base: 149, iv: 6 },
+			stamina: { base: 155, iv: 11 },
+		}
+	},
+	{
+		name: 'Magikarp',
+		stats: {
+			attack: { base: 29, iv: 15 },
+			defense: { base: 85, iv: 14 },
+			stamina: { base: 85, iv: 12 },
+		}
+	},
+	{
+		name: 'Blissey',
+		stats: {
+			attack: { base: 129, iv: 10 },
+			defense: { base: 169, iv: 10 },
+			stamina: { base: 496, iv: 10 },
+		}
+	},
+];
