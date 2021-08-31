@@ -16,7 +16,6 @@
 				<div
 					v-for="pokemon in pokemonList"
 					class="pokemon-graph"
-					:key="pokemon.name"
 				>
 					<h3>
 						<span>{{pokemon.name}}</span>
@@ -34,6 +33,21 @@
 						v-if="pokemon.expanded"
 						class="controls"
 					>
+						<div class="inputtydoo">
+							<label>
+								<span>
+									<span>Pokemon:</span>
+								</span>
+								<select
+									v-model="pokemon.name"
+								>
+									<option
+										v-for="(pokemon, pokemonName, index) in pokemonMap"
+										:key="pokemonName"
+									>{{pokemonName}}</option>
+								</select>
+							</label>
+						</div>
 						<div class="inputtydoo">
 							<label>
 								<span>

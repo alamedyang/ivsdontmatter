@@ -44,6 +44,7 @@ var app = new Vue({
 	el: '#stat-explorer',
 	data:{
 		level: 20,
+		pokemonMap,
 		pokemonList: [
 			{
 				name: 'Mewtwo',
