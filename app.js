@@ -29,11 +29,17 @@ var app = new Vue({
 	data:{
 		level: 20,
 		pokemonList,
+		isWeatherBoosted: false,
 	},
 	computed: {
 		lookupFromMap: function () {
 			return levelMap[this.level] || levelMap["1"];
 		},
+		presetLevels: function () {
+			return this.isWeatherBoosted
+				? presetLevelsWB
+				: presetLevels;
+		}
 	},
 	methods: {
 		calculateCP: function (pokemon, cpm) {

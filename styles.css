@@ -38,8 +38,36 @@ h1 {
 	background-color: #fcc;
 }
 
-.inputtydoo span,
-.inputtydoo input {
+.inputtydoo {
+	padding-bottom: 16px;
+}
+
+.inputtydoo label > span,
+.inputtydoo label > input {
 	display: block;
 	width: 100%;
 }
+
+.preset-button {
+	background-color: #9bf;
+	padding: 6px;
+	border-color: #47f;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 8px;
+	margin: 2px;
+	cursor: pointer;
+	width: 45%;
+}
+@media (min-width: 480px) {
+	.preset-button {
+		width: 30%;
+	}
+}
+@media (min-width: 640px) {
+	.preset-button {
+		width: 15%;
+	}
+}
+
+

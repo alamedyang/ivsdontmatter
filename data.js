@@ -136,3 +136,21 @@ var pokemonList = [
 		}
 	},
 ];
+
+var presetLevels = {
+	"Shadow": 8,
+	"Research": 15,
+	"Raid": 20,
+	"Wild Max": 30,
+	"Maxed": 40,
+	"Maxed (XL)": 50,
+}
+
+var presetLevelsWB = {
+	"Shadow (WB)": 13,
+	"Research": 15,
+	"Raid (WB)": 25,
+	"Wild Max (WB)": 35,
+	"Maxed": 40,
+	"Maxed (XL)": 50,
+}

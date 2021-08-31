@@ -12,7 +12,10 @@
 	<div id="stat-explorer">
 		<div class="inputtydoo">
 			<label>
-				<span>Level: {{level}}</span>
+				<span>
+					<span>Level: {{level}}</span>
+					<span>(CPM: {{lookupFromMap}})</span>
+				</span>
 				<input
 					type="range"
 					min="1"
@@ -22,7 +25,21 @@
 				/>
 			</label>
 		</div>
-		<div>CPM: {{lookupFromMap}}</div>
+		<div>
+			<div>
+				<span>Common levels: (Weather Boost)</span>
+				<input
+					type="checkbox"
+					v-model="isWeatherBoosted"
+				/>
+			</div>
+			<button
+				v-for="(value, propertyName, index) in presetLevels"
+				@click="level=value"
+				:key="propertyName"
+				class="preset-button"
+			>{{propertyName}}</button>
+		</div>
 		<div>
 			<h2>Pokemon</h2>
 			<div class="pokemon-list">
