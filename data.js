@@ -102,40 +102,103 @@ var levelMap = {
 	"50.5": 0.84279999
 };
 
-var pokemonList = [
-	{
-		name: 'Mewtwo',
-		stats: {
-			attack: { base: 300, iv: 10 },
-			defense: { base: 182, iv: 10 },
-			stamina: { base: 214, iv: 10 },
-		}
+var pokemonMap = {
+	'Mewtwo': {
+		number: 150,
+		types: [
+			'Psychic'
+		],
+		attack: 300,
+		defense: 182,
+		stamina: 214,
 	},
-	{
-		name: 'Gengar',
-		stats: {
-			attack: { base: 261, iv: 8 },
-			defense: { base: 149, iv: 11 },
-			stamina: { base: 155, iv: 15 },
-		}
+	'Mewtwo (Armored)': {
+		number: 150,
+		types: [
+			'Psychic'
+		],
+		attack: 182,
+		defense: 278,
+		stamina: 214,
 	},
-	{
-		name: 'Magikarp',
-		stats: {
-			attack: { base: 29, iv: 7 },
-			defense: { base: 85, iv: 2 },
-			stamina: { base: 85, iv: 12 },
-		}
+	'Rayquaza': {
+		number: 384,
+		types: [
+			'Dragon',
+			'Flying'
+		],
+		attack: 284,
+		defense: 170,
+		stamina: 213,
 	},
-	{
-		name: 'Blissey',
-		stats: {
-			attack: { base: 129, iv: 10 },
-			defense: { base: 169, iv: 10 },
-			stamina: { base: 496, iv: 10 },
-		}
+	'Garchomp': {
+		number: 445,
+		types: [
+			'Dragon',
+			'Ground'
+		],
+		attack: 261,
+		defense: 193,
+		stamina: 239,
 	},
-];
+	'Snorlax': {
+		number: 143,
+		types: [
+			'Normal'
+		],
+		attack: 190,
+		defense: 169,
+		stamina: 330,
+	},
+	'Magikarp': {
+		number: 129,
+		types: [
+			'Water'
+		],
+		attack: 29,
+		defense: 85,
+		stamina: 85,
+	},
+	'Gengar': {
+		number: 94,
+		types: [
+			'Ghost',
+			'Poison'
+		],
+		attack: 261,
+		defense: 149,
+		stamina: 155,
+	},
+	'Mr. Mime (Galarian)': {
+		number: 122,
+		types: [
+			'Ice',
+			'Psychic'
+		],
+		attack: 183,
+		defense: 169,
+		stamina: 127,
+	},
+	'Mr. Mime': {
+		number: 122,
+		types: [
+			'Psychic',
+			'Fairy'
+		],
+		attack: 192,
+		defense: 205,
+		stamina: 120,
+	},
+	'Blissey': {
+		number: 242,
+		types: [
+			'Normal'
+		],
+		attack: 129,
+		defense: 169,
+		stamina: 496,
+	},
+}
 
 var presetLevels = {
 	"Shadow": 8,
@@ -144,7 +207,7 @@ var presetLevels = {
 	"Wild Max": 30,
 	"Maxed": 40,
 	"Maxed (XL)": 50,
-}
+};
 
 var presetLevelsWB = {
 	"Shadow (WB)": 13,
@@ -153,4 +216,4 @@ var presetLevelsWB = {
 	"Wild Max (WB)": 35,
 	"Maxed": 40,
 	"Maxed (XL)": 50,
-}
+};

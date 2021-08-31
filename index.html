@@ -9,53 +9,71 @@
 </head>
 <body>
 	<h1>IVs Don't Matter</h1>
+	<h2>Pokemon</h2>
 	<div id="stat-explorer">
-		<div class="inputtydoo">
-			<label>
-				<span>
-					<span>Level: {{level}}</span>
-					<span>(CPM: {{lookupFromMap}})</span>
-				</span>
-				<input
-					type="range"
-					min="1"
-					max="51"
-					step="0.5"
-					v-model="level"
-				/>
-			</label>
-		</div>
 		<div>
-			<div>
-				<span>Common levels: (Weather Boost)</span>
-				<input
-					type="checkbox"
-					v-model="isWeatherBoosted"
-				/>
-			</div>
-			<button
-				v-for="(value, propertyName, index) in presetLevels"
-				@click="level=value"
-				:key="propertyName"
-				class="preset-button"
-			>{{propertyName}}</button>
-		</div>
-		<div>
-			<h2>Pokemon</h2>
 			<div class="pokemon-list">
 				<div
 					v-for="pokemon in pokemonList"
 					class="pokemon-graph"
 					:key="pokemon.name"
 				>
-					<h3>{{pokemon.name}} (CP: {{calculateCP(pokemon, lookupFromMap)}})</h3>
+					<h3>
+						<span>{{pokemon.name}}</span>
+						<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
+						<label class="controls-checkbox hint">
+							<span>EXPAND:</span>
+							<input
+								type="checkbox"
+								v-model="pokemon.expanded"
+							/>
+						</label>
+					</h3>
+					
+					<div
+						v-if="pokemon.expanded"
+						class="controls"
+					>
+						<div class="inputtydoo">
+							<label>
+								<span>
+									<span>Level: {{pokemon.level}}</span>
+									<span class="hint">(CPM: {{lookupCPMFromLevel(pokemon.level)}})</span>
+								</span>
+								<input
+									type="range"
+									min="1"
+									max="51"
+									step="0.5"
+									v-model="pokemon.level"
+								/>
+							</label>
+						</div>
+						<div>
+							<div>
+								<span>Common levels</span>
+								<span class="hint"> (weather boost:</span>
+								<input
+									type="checkbox"
+									v-model="isWeatherBoosted"
+								/>
+								<span class="hint">)</span>
+							</div>
+							<button
+								v-for="(value, propertyName, index) in presetLevels"
+								@click="pokemon.level=value"
+								:key="propertyName"
+								class="preset-button"
+							>{{propertyName}}</button>
+						</div>
+					</div>
 					<div class="stat-list">
 						<stat-bar
-							v-for="(stat, propertyName, index) in pokemon.stats"
+							v-for="(stat, propertyName, index) in pokemon.ivs"
 							:key="propertyName"
 							:label="propertyName"
-							:stat="stat"
-							:cpm="lookupFromMap"
+							:stat-name="propertyName"
+							:pokemon="pokemon"
 						></stat-bar>
 					</div>
 				</div>
@@ -70,24 +88,24 @@
 			<span
 				class="stat-bar-progress"
 				:style="{
-					width: (((stat.base * cpm) / scale) * 100) + '%'
+					width: (((baseStat * cpm) / scale) * 100) + '%'
 				}"
 			></span>
 			<span
 				class="stat-bar-progress-iv"
 				:style="{
-					width: (((stat.iv * cpm) / scale) * 100) + '%'
+					width: (((iv * cpm) / scale) * 100) + '%'
 				}"
 			></span>
 			<span
 				class="stat-bar-progress-iv-max"
 				:style="{
-					width: ((((15 - stat.iv) * cpm) / scale) * 100) + '%'
+					width: ((((15 - iv) * cpm) / scale) * 100) + '%'
 				}"
 			></span>
 		</div>
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 	<script src="./data.js"></script>
 	<script src="./app.js"></script>
 </body>

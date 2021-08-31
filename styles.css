@@ -19,6 +19,11 @@ h1 {
 	font-weight: 900;
 }
 
+.hint {
+	color: #999;
+	font-size: 0.8em;
+}
+
 .stat-bar {
 	background-color: #eee;
 	font-size: 0;
@@ -38,8 +43,12 @@ h1 {
 	background-color: #fcc;
 }
 
+.controls {
+	padding-bottom: 8px;
+}
+
 .inputtydoo {
-	padding-bottom: 16px;
+	padding-bottom: 0px;
 }
 
 .inputtydoo label > span,
@@ -48,25 +57,29 @@ h1 {
 	width: 100%;
 }
 
+.controls-checkbox {
+	padding-left: 32px;
+}
+
 .preset-button {
-	background-color: #9bf;
+	background-color: #b9f;
 	padding: 6px;
-	border-color: #47f;
+	border-color: #74f;
 	border-width: 3px;
 	border-style: solid;
 	border-radius: 8px;
 	margin: 2px;
 	cursor: pointer;
-	width: 45%;
+	width: 48%;
 }
 @media (min-width: 480px) {
 	.preset-button {
-		width: 30%;
+		width: 32%;
 	}
 }
 @media (min-width: 640px) {
 	.preset-button {
-		width: 15%;
+		width: 15.75%;
 	}
 }
 
