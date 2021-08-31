@@ -97,6 +97,21 @@ var app = new Vue({
 		}
 	},
 	methods: {
+		addPokemon: function () {
+			this.pokemonList.push({
+				name: 'Blissey',
+				level: 20,
+				ivs: {
+					attack: 12,
+					defense: 10,
+					stamina: 13,
+				},
+				expanded: false,
+			});
+		},
+		removePokemon: function (index) {
+			this.pokemonList.splice(index, 1);
+		},
 		lookupCPMFromLevel,
 		calculateCP: function (pokemon) {
 			var basePokemon = getBasePokemon(pokemon);

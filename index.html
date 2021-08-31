@@ -9,12 +9,21 @@
 </head>
 <body>
 	<h1>IVs Don't Matter</h1>
-	<h2>Pokemon</h2>
 	<div id="stat-explorer">
+		<h2>
+			<span>Pokemon</span>
+			<button
+				class="plus"
+				@click="addPokemon"
+			>
+				+
+			</button>
+		</h2>
 		<div>
 			<div class="pokemon-list">
+				
 				<div
-					v-for="pokemon in pokemonList"
+					v-for="(pokemon, index) in pokemonList"
 					class="pokemon-graph"
 				>
 					<h3>
@@ -27,6 +36,12 @@
 								v-model="pokemon.expanded"
 							/>
 						</label>
+						<button
+							class="minus"
+							@click="removePokemon(index)"
+						>
+							x
+						</button>
 					</h3>
 					
 					<div
@@ -65,7 +80,7 @@
 						</div>
 						<div>
 							<div>
-								<span>Common levels</span>
+								<span>Common levels:</span>
 								<span class="hint"> (weather boost:</span>
 								<input
 									type="checkbox"
