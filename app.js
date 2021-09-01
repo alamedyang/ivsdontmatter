@@ -120,6 +120,13 @@ var app = new Vue({
 			var attack = basePokemon.attack + ivs.attack;
 			var defense = basePokemon.defense + ivs.defense;
 			var stamina = basePokemon.stamina + ivs.stamina;
+			console.log({
+				basePokemon,
+				cpm,
+				attack,
+				defense,
+				stamina
+			});
 			return Math.floor(Math.max(
 				((attack * Math.sqrt(defense) * Math.sqrt(stamina) * Math.pow(cpm, 2))/10),
 				10

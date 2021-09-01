@@ -24,10 +24,14 @@ h1 {
 	font-size: 0.8em;
 }
 
+.iv-label {
+	width: 40%;
+}
+
 .stat-bar {
 	background-color: #eee;
 	font-size: 0;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 }
 .stat-bar-progress,
 .stat-bar-progress-iv,
@@ -58,7 +62,7 @@ h1 {
 }
 
 .controls-checkbox {
-	padding-left: 32px;
+	padding-left: 8px;
 }
 
 .plus,
@@ -92,7 +96,7 @@ h1 {
 	background-color: #b9f;
 	padding: 6px;
 	border-color: #74f;
-	border-width: 3px;
+	border-width: 1px;
 	border-style: solid;
 	border-radius: 8px;
 	margin: 2px;

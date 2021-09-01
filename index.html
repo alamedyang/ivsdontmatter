@@ -95,6 +95,42 @@
 								class="preset-button"
 							>{{propertyName}}</button>
 						</div>
+						<div>
+							<input
+								type="range"
+								min="1"
+								max="15"
+								step="1"
+								v-model.number="pokemon.ivs.attack"
+							/>
+							<span class="iv-label">
+								<span>Attack IV: {{pokemon.ivs.attack}}</span>
+							</span>
+						</div>
+						<div>
+							<input
+								type="range"
+								min="1"
+								max="15"
+								step="1"
+								v-model.number="pokemon.ivs.defense"
+							/>
+							<span class="iv-label">
+								<span>Defense IV: {{pokemon.ivs.defense}}</span>
+							</span>
+						</div>
+						<div>
+							<input
+								type="range"
+								min="1"
+								max="15"
+								step="1"
+								v-model.number="pokemon.ivs.stamina"
+							/>
+							<span class="iv-label">
+								<span>Stamina IV: {{pokemon.ivs.stamina}}</span>
+							</span>
+						</div>
 					</div>
 					<div class="stat-list">
 						<stat-bar
