@@ -18,6 +18,14 @@
 			>
 				+
 			</button>
+			<label class="controls-checkbox hint">
+				<span>[Stat Grid:</span>
+				<input
+					type="checkbox"
+					v-model="statBarGridOn"
+				/>
+				<span>]</span>
+			</label>
 		</h2>
 		<div>
 			<div class="pokemon-list">
@@ -29,11 +37,12 @@
 						<span>{{pokemon.name}}</span>
 						<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
 						<label class="controls-checkbox hint">
-							<span>EXPAND:</span>
+							<span>[Expand:</span>
 							<input
 								type="checkbox"
 								v-model="pokemon.expanded"
 							/>
+							<span>]</span>
 						</label>
 						<button
 							class="minus"
@@ -42,13 +51,14 @@
 							x
 						</button>
 					</h3>
-					<div class="stat-list">
+					<div>
 						<stat-bar
 							v-for="(stat, propertyName, index) in pokemon.ivs"
 							:key="propertyName"
 							:label="propertyName"
 							:stat-name="propertyName"
 							:pokemon="pokemon"
+							:stat-bar-grid-on="statBarGridOn"
 						></stat-bar>
 					</div>
 					<div
@@ -56,25 +66,23 @@
 						class="controls"
 					>
 						<div class="container_section">
-							<div class="inputtydoo">
-								<label>
-									<span>
-										<span>Pokémon:</span>
-											<span class="hint"> (SHADOW:</span>
-											<input
-												type="checkbox"
-												v-model="pokemon.shadow"
-											/>
-											<span class="hint">)</span>
-										</span>
-									<select
-										v-model="pokemon.name"
-									>
-										<option
-											v-for="(pokemon, pokemonName, index) in pokemonMap"
-											:key="pokemonName"
-										>{{pokemonName}}</option>
-									</select>
+							<div>
+								<span>Pokémon:</span>
+								<select
+									v-model="pokemon.name"
+								>
+									<option
+										v-for="(pokemon, pokemonName, index) in pokemonMap"
+										:key="pokemonName"
+									>{{pokemonName}}</option>
+								</select>
+								<label class="controls-checkbox hint">
+									<span>[Shadow:</span>
+									<input
+										type="checkbox"
+										v-model="pokemon.shadow"
+									/>
+									<span>]</span>
 								</label>
 							</div>
 						</div>
@@ -97,12 +105,14 @@
 							<div>
 								<div>
 									<span>Common levels:</span>
-									<span class="hint"> (WEATHER BOOST:</span>
-									<input
-										type="checkbox"
-										v-model="isWeatherBoosted"
-									/>
-									<span class="hint">)</span>
+									<label class="controls-checkbox hint">
+										<span> [Weather Boost:</span>
+										<input
+											type="checkbox"
+											v-model="isWeatherBoosted"
+										/>
+										<span class="hint">]</span>
+									</label>
 								</div>
 								<button
 									v-for="(value, propertyName, index) in presetLevels"
@@ -120,7 +130,7 @@
 							v-for="(iv, key, index) in pokemon.ivs"
 							>
 								<svg
-									viewBox="0.25 -0.75 23 1.75"
+									viewBox="0.25 -0.75 21 1.75"
 									xmlns="http://www.w3.org/2000/svg"
 									class="iv_bar_width"
 								>
@@ -152,6 +162,13 @@
 											/>
 										</g>
 									</defs>
+									<text
+										class="iv_input_label"
+										x="16.25"
+										y="0.32"
+									>
+										{{key.substring(0,3)}}: {{iv}}
+									</text>
 									<g id="iv_slider_base">
 										<line name="IV slider"
 											class="iv_input_white_bg"
@@ -162,7 +179,7 @@
 											stroke-linecap="round"
 										/>
 									</g>
-								<use  href="#iv_slider_base"/>
+								<use href="#iv_slider_base"/>
 									<g name="iv input bar"
 										v-if="iv"
 									>
@@ -178,17 +195,11 @@
 											stroke-linecap="round"
 										/>
 									</g>
-									<use  href="#iv_input_dividers"/>
-									<text
-										class="iv_input_label"
-										x="16.25"
-										y="0.32"
-									>
-										{{key}} IV: {{iv}}
-									</text>
+									<use href="#iv_input_dividers"/>
 								</svg>
 								<input
 									type="range"
+									style="width: 48%;"
 									min="0"
 									max="15"
 									step="1"
@@ -212,6 +223,35 @@
 			"
 			xmlns="http://www.w3.org/2000/svg"	
 			>
+			<defs>
+				<g id="iv_display_divider">
+					<line name="50 mark line"
+						class="stats_full_range_line"
+						x1="-50"
+						y1="0"
+						x2="-50"
+						:y2="
+							ivBarHeight
+						"
+						stroke-width="0.5"
+						stroke-linecap="butt"
+						opacity=".25"
+						stroke-dasharray="1,0.5"
+					/>
+					<line name="100 mark line"
+						class="stats_full_range_line"
+						x1="0"
+						y1="0"
+						x2="0"
+						:y2="
+							ivBarHeight * 1
+						"
+						stroke-width="0.5"
+						stroke-linecap="square"
+						opacity=".75"
+					/>
+				</g>
+			</defs>
 				<g name="stat bar range">
 					<rect name="max gray bar"
 						class="stats_full_range"
@@ -227,7 +267,7 @@
 				</g>
 				<g name="shadow bonus (attack)"
 					v-if="statName === 'attack' && pokemon.shadow"
-					>
+				>
 					<rect name="pink bar (shadow bonus)"
 						class="stats_iv_max_main"
 						:width="
@@ -298,7 +338,7 @@
 					/>
 				</g>
 				<g name="shadow penalty (defense)"
-				v-if="statName === 'defense' && pokemon.shadow"
+					v-if="statName === 'defense' && pokemon.shadow"
 				>
 					<rect name="pink bar (shadow penalty)"
 						class="stats_iv_max_main"
@@ -334,36 +374,50 @@
 						y="0"
 					/>
 				</g>
-				<text
-					class="current_stat_label"
-					x="1.5"
-					y="7"
-					stroke="#36f"
-					stroke-width="1"
-				>
-				{{currentStatDisplay}}
-				</text>
-				<line name="iv red line marker"
-					class="stats_iv_main_line"
-					:x1="
-					currentStatDisplay
-					"
-					y1="-1"
-					:x2="
+				<g v-if="statBarGridOn">
+					<use href="#iv_display_divider"
+						x="100"
+					/>
+					<use href="#iv_display_divider"
+						x="200"
+					/>
+					<use href="#iv_display_divider"
+						x="300"
+					/>
+					<use href="#iv_display_divider"
+						x="400"
+						/>
+					</g>
+					<line name="iv red line marker"
+						class="stats_iv_main_line"
+						:x1="
 						currentStatDisplay
-					"
-					:y2="
-						ivBarHeight + 3
-					"
-					stroke-width="0.5"
-					stroke-linecap="square"
-				/>
+						"
+						y1="-1"
+						:x2="
+							currentStatDisplay
+						"
+						:y2="
+							ivBarHeight + 3
+						"
+						stroke-width="0.5"
+						stroke-linecap="square"
+					/>
 					<text
-					class="current_stat_label"
-					x="1.5"
-					y="7"
-					fill="#fff"
-				>
+						class="current_stat_label"
+						x="1.5"
+						y="8"
+						stroke="#36f"
+						stroke-width="1"
+					>
+					{{currentStatDisplay}}
+					</text>
+					<text
+						class="current_stat_label"
+						x="1.5"
+						y="8"
+						fill="#fff"
+					>
 				{{currentStatDisplay}}
 				</text>
 			</svg>

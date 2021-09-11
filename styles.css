@@ -5,12 +5,6 @@
 	margin: 0;
 }
 
-body {
-	font-family: sans-serif;
-	margin: 0;
-	padding: 32px;
-}
-
 h1, h2, h3, h4, h5, h6 {
 	padding: 0.5em 0;
 }
@@ -19,10 +13,10 @@ h1 {
 	font-weight: 900;
 }
 .iv_input_label {
-	font-size: 1px;
+	font-size: 1.25px;
 }
 .current_stat_label {
-	font-size: 6px;
+	font-size: 9px;
 }
 
 .iv_input_gray {
@@ -36,6 +30,9 @@ h1 {
 .iv_input_orange {
 	stroke: #e92;
 	stroke-width: 1;
+}
+.iv_input_orange_fill {
+	fill: #e92;
 }
 .iv_input_red {
 	stroke: #c44;
@@ -77,6 +74,9 @@ h1 {
 }
 .stats_full_range {
 	fill: #eee;
+}
+.stats_full_range_line {
+	stroke: #eee;
 }
 
 .hint {
@@ -121,7 +121,6 @@ h1 {
 	padding-bottom: 0px;
 }
 
-.inputtydoo label > span,
 .inputtydoo label > input {
 	display: block;
 	width: 100%;
@@ -169,29 +168,28 @@ h1 {
 	cursor: pointer;
 	width: 48%;
 }
-
 .iv_bar_width{
-	width: 100px;
+	width: 48%;
 }
-@media (min-width: 420px) {
-	.iv_bar_width{
-		width: 150px;
-	}
+body {
+	font-family: sans-serif;
+	margin: 0;
+	padding: 16px;
 }
 @media (min-width: 480px) {
 	.preset-button {
 		width: 32%;
 	}
-	.iv_bar_width{
-		width: 200px;
+	body {
+		padding: 24px;
 	}
 }
 @media (min-width: 640px) {
 	.preset-button {
 		width: 15.75%;
 	}
-	.iv_bar_width{
-		width: 300px;
+	body {
+		padding: 32px;
 	}
 }
 

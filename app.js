@@ -19,6 +19,10 @@ Vue.component('stat-bar', {
 			type: Object,
 			required: true,
 		},
+		statBarGridOn: {
+			type: Boolean,
+			required: true,
+		},
 	},
 	computed: {
 		scale: function () {
@@ -40,7 +44,8 @@ Vue.component('stat-bar', {
 			return lookupCPMFromLevel(this.pokemon.level);
 		},
 		currentStat: function () {
-			var raw_current_stat = (this.basePokemon[this.statName] +
+			var raw_current_stat =
+				(this.basePokemon[this.statName] +
 				this.pokemon.ivs[this.statName]) *
 				lookupCPMFromLevel(this.pokemon.level);
 			if (this.statName === "stamina") {
@@ -62,12 +67,7 @@ Vue.component('stat-bar', {
 			return result;
 		},
 		currentStatDisplay: function () {
-			if (this.statName === "attack") {
-				var result = this.currentStatPlusShadow.toFixed(1);
-			};
-			if (this.statName === "defense") {
-				var result = this.currentStatPlusShadow.toFixed(1);
-			};
+			var result = this.currentStatPlusShadow.toFixed(1);
 			if (this.statName === "stamina") {
 				var result = this.currentStatPlusShadow.toFixed(0);
 			};
@@ -109,6 +109,8 @@ var app = new Vue({
 	data:{
 		level: 20,
 		pokemonMap,
+		isWeatherBoosted: false,
+		statBarGridOn: false,
 		pokemonList: [
 			{
 				name: 'Mewtwo',
@@ -155,7 +157,6 @@ var app = new Vue({
 				shadow: false,
 			},
 		],
-		isWeatherBoosted: false,
 	},
 	computed: {
 		presetLevels: function () {
@@ -189,13 +190,13 @@ var app = new Vue({
 			var attack = basePokemon.attack + ivs.attack;
 			var defense = basePokemon.defense + ivs.defense;
 			var stamina = basePokemon.stamina + ivs.stamina;
-			console.log({
-				basePokemon,
-				cpm,
-				attack,
-				defense,
-				stamina
-			});
+			// console.log({
+			// 	basePokemon,
+			// 	cpm,
+			// 	attack,
+			// 	defense,
+			// 	stamina
+			// });
 			return Math.floor(Math.max(
 				((attack * Math.sqrt(defense) * Math.sqrt(stamina) * Math.pow(cpm, 2))/10),
 				10
