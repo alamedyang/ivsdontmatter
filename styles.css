@@ -60,6 +60,9 @@ h1 {
 .stats_iv_main {
 	fill: #d00;
 }
+.stats_iv_main_line {
+	stroke: #d00;
+}
 .stats_iv_max_main {
 	fill: #fbb;
 }
@@ -70,7 +73,7 @@ h1 {
 	fill: #46c;
 }
 .stats_iv_max_overlap {
-	fill: #68f;
+	fill: #57f;
 }
 .stats_full_range {
 	fill: #eee;

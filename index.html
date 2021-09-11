@@ -208,7 +208,7 @@
 		>
 			<svg
 			:viewBox="
-				'0 0 ' + scale + ' ' + ivBarHeight
+				'0 -1 ' + scale + ' ' + (ivBarHeight + 2)
 			"
 			xmlns="http://www.w3.org/2000/svg"	
 			>
@@ -343,7 +343,22 @@
 				>
 				{{currentStatDisplay}}
 				</text>
-				<text
+				<line name="iv red line marker"
+					class="stats_iv_main_line"
+					:x1="
+					currentStatDisplay
+					"
+					y1="-1"
+					:x2="
+						currentStatDisplay
+					"
+					:y2="
+						ivBarHeight + 3
+					"
+					stroke-width="0.5"
+					stroke-linecap="square"
+				/>
+					<text
 					class="current_stat_label"
 					x="1.5"
 					y="7"

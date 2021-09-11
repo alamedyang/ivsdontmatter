@@ -1,4 +1,4 @@
-# IVs Don't Matter
+# IVs don't matter
 In PoGo, IVs don't matter. Here's why.
 
 # Well, okay… IVs matter sometimes…
