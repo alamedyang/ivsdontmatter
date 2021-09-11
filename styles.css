@@ -26,6 +26,10 @@ h1 {
 	stroke: #ddd;
 	stroke-width: 1;
 }
+.iv_input_white_bg {
+	stroke: #fff;
+	stroke-width: 1.25;
+}
 .iv_input_orange {
 	stroke: #e92;
 	stroke-width: 1;
@@ -101,6 +105,12 @@ h1 {
 	padding-bottom: 8px;
 }
 
+.container_section {
+	background-color: #ddd;
+	padding: 8px;
+	margin: 8px 16px 8px 16px;
+}
+
 .inputtydoo {
 	padding-bottom: 0px;
 }
@@ -143,9 +153,9 @@ h1 {
 }
 
 .preset-button {
-	background-color: #b9f;
+	background-color: #bbb;
 	padding: 6px;
-	border-color: #74f;
+	border-color: #777;
 	border-width: 1px;
 	border-style: solid;
 	border-radius: 8px;
@@ -157,7 +167,7 @@ h1 {
 .iv_bar_width{
 	width: 100px;
 }
-@media (min-width: 360px) {
+@media (min-width: 400px) {
 	.iv_bar_width{
 		width: 150px;
 	}
@@ -167,7 +177,7 @@ h1 {
 		width: 32%;
 	}
 	.iv_bar_width{
-		width: 225px;
+		width: 200px;
 	}
 }
 @media (min-width: 640px) {

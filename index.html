@@ -62,65 +62,100 @@
 						v-if="pokemon.expanded"
 						class="controls"
 					>
-						<div class="inputtydoo">
-							<label>
-								<span>
-									<span>Pokemon:</span>
-								</span>
-								<select
-									v-model="pokemon.name"
-								>
-									<option
-										v-for="(pokemon, pokemonName, index) in pokemonMap"
-										:key="pokemonName"
-									>{{pokemonName}}</option>
-								</select>
-							</label>
-						</div>
-						<div class="inputtydoo">
-							<label>
-								<span>
-									<span>Level: {{pokemon.level}}</span>
-									<span class="hint">(CPM: {{lookupCPMFromLevel(pokemon.level)}})</span>
-								</span>
-								<input
-									type="range"
-									min="1"
-									max="51"
-									step="0.5"
-									v-model="pokemon.level"
-								/>
-							</label>
-						</div>
-						<div>
-							<div>
-								<span>Common levels:</span>
-								<span class="hint"> (weather boost:</span>
-								<input
-									type="checkbox"
-									v-model="isWeatherBoosted"
-								/>
-								<span class="hint">)</span>
+						<div class="container_section">
+							<div class="inputtydoo">
+								<label>
+									<span>
+										<span>Pokemon:</span>
+									</span>
+									<select
+										v-model="pokemon.name"
+									>
+										<option
+											v-for="(pokemon, pokemonName, index) in pokemonMap"
+											:key="pokemonName"
+										>{{pokemonName}}</option>
+									</select>
+								</label>
 							</div>
-							<button
-								v-for="(value, propertyName, index) in presetLevels"
-								@click="pokemon.level=value"
-								:key="propertyName"
-								class="preset-button"
-							>{{propertyName}}</button>
 						</div>
-						<div
-						v-for="(iv, key, index) in pokemon.ivs"
-						>
-							<svg
-								viewBox="0 -1 22.5 1.5"
-								xmlns="http://www.w3.org/2000/svg"
-								class="iv_bar_width"
+						<div class="container_section">
+							<div class="inputtydoo">
+								<label>
+									<span>
+										<span>Level: {{pokemon.level}}</span>
+										<span class="hint">(CPM: {{lookupCPMFromLevel(pokemon.level)}})</span>
+									</span>
+									<input
+										type="range"
+										min="1"
+										max="51"
+										step="0.5"
+										v-model="pokemon.level"
+									/>
+								</label>
+							</div>
+							<div>
+								<div>
+									<span>Common levels:</span>
+									<span class="hint"> (weather boost:</span>
+									<input
+										type="checkbox"
+										v-model="isWeatherBoosted"
+									/>
+									<span class="hint">)</span>
+								</div>
+								<button
+									v-for="(value, propertyName, index) in presetLevels"
+									@click="pokemon.level=value"
+									:key="propertyName"
+									class="preset-button"
+								>{{propertyName}}</button>
+							</div>
+						</div>
+						<div class="container_section">
+							<label>
+								IVs:
+							</label>
+							<div
+							v-for="(iv, key, index) in pokemon.ivs"
 							>
-								<defs>
+								<svg
+									viewBox="0.25 -0.75 23 1.75"
+									xmlns="http://www.w3.org/2000/svg"
+									class="iv_bar_width"
+								>
+									<defs>
+										<g id="iv_slider_base">
+											<line name="IV slider"
+												class="iv_input_gray"
+												x1="1"
+												y1="0"
+												x2="15"
+												y2="0"
+												stroke-linecap="round"
+											/>
+										</g>
+										<g id="iv_input_dividers">
+											<line name="divider"
+												class="iv_input_divider"
+												x1="5.55"
+												y1="-0.625"
+												x2="5.55"
+												y2="0.625"
+											/>
+											<line name="divider"
+												class="iv_input_divider"
+												x1="10.55"
+												y1="-0.625"
+												x2="10.55"
+												y2="0.625"
+											/>
+										</g>
+									</defs>
 									<g id="iv_slider_base">
 										<line name="IV slider"
-											class="iv_input_gray"
+											class="iv_input_white_bg"
 											x1="1"
 											y1="0"
 											x2="15"
@@ -128,55 +163,39 @@
 											stroke-linecap="round"
 										/>
 									</g>
-									<g id="iv_input_dividers">
-										<line name="divider"
-											class="iv_input_divider"
-											x1="5.55"
-											y1="-1"
-											x2="5.55"
-											y2="1"
-										/>
-										<line name="divider"
-											class="iv_input_divider"
-											x1="10.55"
-											y1="-1"
-											x2="10.55"
-											y2="1"
+								<use  href="#iv_slider_base"/>
+									<g name="iv input bar"
+										v-if="iv"
+									>
+										<line name="orange iv bar"
+											:class="{
+												iv_input_orange: iv < 15,
+												iv_input_red: iv >= 15
+											}"
+											x1="1"
+											y1="0"
+											:x2="iv"
+											y2="0"
+											stroke-linecap="round"
 										/>
 									</g>
-								</defs>
-								<use  href="#iv_slider_base"/>
-								<g name="iv input bar"
-									v-if="iv"
-								>
-									<line name="orange iv bar"
-										:class="{
-											iv_input_orange: iv < 15,
-											iv_input_red: iv >= 15
-										}"
-										x1="1"
-										y1="0"
-										:x2="iv"
-										y2="0"
-										stroke-linecap="round"
-									/>
-								</g>
-								<use  href="#iv_input_dividers"/>
-								<text
-									class="iv_input_label"
-									x="16"
-									y="0.32"
-								>
-									{{key}} IV: {{iv}}
-								</text>
-							</svg>
-							<input
-								type="range"
-								min="0"
-								max="15"
-								step="1"
-								v-model.number="pokemon.ivs[key]"
-							/>
+									<use  href="#iv_input_dividers"/>
+									<text
+										class="iv_input_label"
+										x="16.25"
+										y="0.32"
+									>
+										{{key}} IV: {{iv}}
+									</text>
+								</svg>
+								<input
+									type="range"
+									min="0"
+									max="15"
+									step="1"
+									v-model.number="pokemon.ivs[key]"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
