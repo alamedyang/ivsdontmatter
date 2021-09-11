@@ -299,41 +299,58 @@
 				</g>
 				<g name="shadow penalty (defense)"
 				v-if="statName === 'defense' && pokemon.shadow"
-			>
-				<rect name="pink bar (shadow penalty)"
-					class="stats_iv_max_main"
-					:width="
-						(((baseStat + 15) * cpm) * (5/6))
-					"
-					:height="
-						ivBarHeight
-					"
-					x="0"
-					y="0"
-				/>
-				<rect name="red bar (shadow penalty)"
-					class="stats_iv_main"
-					:width="
-						(((baseStat + iv) * cpm) * (5/6))
-					"
-					:height="
-						ivBarHeight
-					"
-					x="0"
-					y="0"
-				/>
-				<rect name="blue bar (shadow penalty)"
-					class="stats_base_main"
-					:width="
-						(((baseStat) * cpm) * (5/6))
-					"
-					:height="
-						ivBarHeight
-					"
-					x="0"
-					y="0"
-				/>
-			</g>
+				>
+					<rect name="pink bar (shadow penalty)"
+						class="stats_iv_max_main"
+						:width="
+							(((baseStat + 15) * cpm) * (5/6))
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+					<rect name="red bar (shadow penalty)"
+						class="stats_iv_main"
+						:width="
+							(((baseStat + iv) * cpm) * (5/6))
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+					<rect name="blue bar (shadow penalty)"
+						class="stats_base_main"
+						:width="
+							(((baseStat) * cpm) * (5/6))
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+				</g>
+				<text
+					class="current_stat_label"
+					x="1.5"
+					y="7"
+					stroke="#36f"
+					stroke-width="1"
+				>
+				{{currentStatDisplay}}
+				</text>
+				<text
+					class="current_stat_label"
+					x="1.5"
+					y="7"
+					fill="#fff"
+				>
+				{{currentStatDisplay}}
+				</text>
 			</svg>
 		</div>
 	</script>

@@ -21,6 +21,9 @@ h1 {
 .iv_input_label {
 	font-size: 1px;
 }
+.current_stat_label {
+	font-size: 6px;
+}
 
 .iv_input_gray {
 	stroke: #ddd;
@@ -52,16 +55,16 @@ h1 {
 	fill: #edd;
 }
 .stats_base_main {
-	fill: #47f;
+	fill: #36f;
 }
 .stats_iv_main {
 	fill: #d00;
 }
 .stats_iv_max_main {
-	fill: #fcc;
+	fill: #fbb;
 }
 .stats_base_overlap {
-	fill: #47f;
+	fill: #36f;
 }
 .stats_iv_overlap {
 	fill: #46c;

@@ -39,6 +39,40 @@ Vue.component('stat-bar', {
 		cpm: function () {
 			return lookupCPMFromLevel(this.pokemon.level);
 		},
+		currentStat: function () {
+			var raw_current_stat = (this.basePokemon[this.statName] +
+				this.pokemon.ivs[this.statName]) *
+				lookupCPMFromLevel(this.pokemon.level);
+			if (this.statName === "stamina") {
+				var result = Math.floor(raw_current_stat);
+			}
+			else{
+				var result = raw_current_stat;
+			};
+			return result;
+		},
+		currentStatPlusShadow: function () {
+			var result = this.currentStat;
+			if (this.statName === "attack" && this.pokemon.shadow === true) {
+				var result = (this.currentStat * 1.2);
+			};
+			if (this.statName === "defense" && this.pokemon.shadow === true) {
+				var result = (this.currentStat * (5/6) );
+			};
+			return result;
+		},
+		currentStatDisplay: function () {
+			if (this.statName === "attack") {
+				var result = this.currentStatPlusShadow.toFixed(1);
+			};
+			if (this.statName === "defense") {
+				var result = this.currentStatPlusShadow.toFixed(1);
+			};
+			if (this.statName === "stamina") {
+				var result = this.currentStatPlusShadow.toFixed(0);
+			};
+			return result;
+		},
 		overlapOrMainPinkClasses: function () {
 			var attack_bonus = this.statName === 'attack' && this.pokemon.shadow;
 			var defense_bonus = this.statName === 'defense' && this.pokemon.shadow;
@@ -84,8 +118,8 @@ var app = new Vue({
 					defense: 10,
 					stamina: 10,
 				},
-				expanded: true,
-				shadow: true,
+				expanded: false,
+				shadow: false,
 			},
 			{
 				name: 'Gengar',
