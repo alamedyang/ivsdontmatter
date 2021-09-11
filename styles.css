@@ -39,13 +39,13 @@ h1 {
 	stroke-width: 0.1;
 }
 .stats_base_ghost {
-	fill: #acf;
+	fill: #bdf;
 }
 .stats_iv_ghost {
-	fill: #e88;
+	fill: #fbb;
 }
 .stats_iv_max_ghost {
-	fill: #fee;
+	fill: #fdd;
 }
 .stats_base_main {
 	fill: #47f;
@@ -60,10 +60,10 @@ h1 {
 	fill: #47f;
 }
 .stats_iv_overlap {
-	fill: #35b;
+	fill: #46c;
 }
 .stats_iv_max_overlap {
-	fill: #8af;
+	fill: #68f;
 }
 .stats_full_range {
 	fill: #eee;
@@ -155,7 +155,7 @@ h1 {
 }
 
 .iv_bar_width{
-	width: 150px;
+	width: 100px;
 }
 @media (min-width: 360px) {
 	.iv_bar_width{

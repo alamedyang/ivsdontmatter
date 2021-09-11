@@ -38,6 +38,33 @@ Vue.component('stat-bar', {
 		},
 		cpm: function () {
 			return lookupCPMFromLevel(this.pokemon.level);
+		},
+		overlapOrMainPinkClasses: function () {
+			var attack_bonus = this.statName === 'attack' && this.pokemon.shadow;
+			var defense_bonus = this.statName === 'defense' && this.pokemon.shadow;
+			return {
+				stats_iv_max_overlap: attack_bonus,
+				stats_iv_max_ghost: defense_bonus,
+				stats_iv_max_main: !attack_bonus && !defense_bonus
+			};
+		},
+		overlapOrMainRedClasses: function () {
+			var attack_bonus = this.statName === 'attack' && this.pokemon.shadow;
+			var defense_bonus = this.statName === 'defense' && this.pokemon.shadow;
+			return {
+				stats_iv_overlap: attack_bonus,
+				stats_iv_ghost: defense_bonus,
+				stats_iv_main: !attack_bonus && !defense_bonus
+			};
+		},
+		overlapOrMainBlueClasses: function () {
+			var attack_bonus = this.statName === 'attack' && this.pokemon.shadow;
+			var defense_bonus = this.statName === 'defense' && this.pokemon.shadow;
+			return {
+				stats_base_overlap: attack_bonus,
+				stats_base_ghost: defense_bonus,
+				stats_base_main: !attack_bonus && !defense_bonus
+			};
 		}
 	},
 	template: '#stat-bar',
