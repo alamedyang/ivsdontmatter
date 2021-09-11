@@ -43,13 +43,13 @@ h1 {
 	stroke-width: 0.1;
 }
 .stats_base_ghost {
-	fill: #bdf;
+	fill: #bce;
 }
 .stats_iv_ghost {
-	fill: #fbb;
+	fill: #dbb;
 }
 .stats_iv_max_ghost {
-	fill: #fdd;
+	fill: #edd;
 }
 .stats_base_main {
 	fill: #47f;
@@ -107,8 +107,8 @@ h1 {
 
 .container_section {
 	background-color: #ddd;
-	padding: 8px;
-	margin: 8px 16px 8px 16px;
+	padding: 8px 12px;
+	margin: 8px 16px;
 }
 
 .inputtydoo {
@@ -167,7 +167,7 @@ h1 {
 .iv_bar_width{
 	width: 100px;
 }
-@media (min-width: 400px) {
+@media (min-width: 420px) {
 	.iv_bar_width{
 		width: 150px;
 	}

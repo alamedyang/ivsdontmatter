@@ -29,17 +29,10 @@
 						<span>{{pokemon.name}}</span>
 						<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
 						<label class="controls-checkbox hint">
-							<span>MORE:</span>
+							<span>EXPAND:</span>
 							<input
 								type="checkbox"
 								v-model="pokemon.expanded"
-							/>
-						</label>
-						<label class="controls-checkbox hint">
-							<span>SHADOW:</span>
-							<input
-								type="checkbox"
-								v-model="pokemon.shadow"
 							/>
 						</label>
 						<button
@@ -66,8 +59,14 @@
 							<div class="inputtydoo">
 								<label>
 									<span>
-										<span>Pokemon:</span>
-									</span>
+										<span>Pokémon:</span>
+											<span class="hint"> (SHADOW:</span>
+											<input
+												type="checkbox"
+												v-model="pokemon.shadow"
+											/>
+											<span class="hint">)</span>
+										</span>
 									<select
 										v-model="pokemon.name"
 									>
@@ -98,7 +97,7 @@
 							<div>
 								<div>
 									<span>Common levels:</span>
-									<span class="hint"> (weather boost:</span>
+									<span class="hint"> (WEATHER BOOST:</span>
 									<input
 										type="checkbox"
 										v-model="isWeatherBoosted"
