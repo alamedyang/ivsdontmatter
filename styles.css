@@ -18,10 +18,60 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	font-weight: 900;
 }
+.iv_input_label {
+	font-size: 1px;
+}
+
+.iv_input_gray {
+	stroke: #ddd;
+	stroke-width: 1;
+}
+.iv_input_orange {
+	stroke: #e92;
+	stroke-width: 1;
+}
+.iv_input_red {
+	stroke: #c44;
+	stroke-width: 1;
+}
+.iv_input_divider {
+	stroke: #fff;
+	stroke-width: 0.1;
+}
+.stats_base_ghost {
+	fill: #acf;
+}
+.stats_iv_ghost {
+	fill: #e88;
+}
+.stats_iv_max_ghost {
+	fill: #fee;
+}
+.stats_base_main {
+	fill: #47f;
+}
+.stats_iv_main {
+	fill: #d00;
+}
+.stats_iv_max_main {
+	fill: #fcc;
+}
+.stats_base_overlap {
+	fill: #47f;
+}
+.stats_iv_overlap {
+	fill: #35b;
+}
+.stats_iv_max_overlap {
+	fill: #8af;
+}
+.stats_full_range {
+	fill: #eee;
+}
 
 .hint {
 	color: #999;
-	font-size: 0.8em;
+	font-size: 0.9em;
 }
 
 .iv-label {
@@ -103,14 +153,29 @@ h1 {
 	cursor: pointer;
 	width: 48%;
 }
+
+.iv_bar_width{
+	width: 150px;
+}
+@media (min-width: 360px) {
+	.iv_bar_width{
+		width: 150px;
+	}
+}
 @media (min-width: 480px) {
 	.preset-button {
 		width: 32%;
+	}
+	.iv_bar_width{
+		width: 225px;
 	}
 }
 @media (min-width: 640px) {
 	.preset-button {
 		width: 15.75%;
+	}
+	.iv_bar_width{
+		width: 300px;
 	}
 }
 

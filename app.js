@@ -24,6 +24,9 @@ Vue.component('stat-bar', {
 		scale: function () {
 			return (496 + 15) * 0.85;
 		},
+		ivBarHeight: function () {
+			return 10;
+		},
 		iv: function () {
 			return this.pokemon.ivs[this.statName];
 		},
@@ -54,7 +57,8 @@ var app = new Vue({
 					defense: 10,
 					stamina: 10,
 				},
-				expanded: false,
+				expanded: true,
+				shadow: true,
 			},
 			{
 				name: 'Gengar',
@@ -65,6 +69,7 @@ var app = new Vue({
 					stamina: 13,
 				},
 				expanded: false,
+				shadow: false,
 			},
 			{
 				name: 'Magikarp',
@@ -75,6 +80,7 @@ var app = new Vue({
 					stamina: 15,
 				},
 				expanded: false,
+				shadow: false,
 			},
 			{
 				name: 'Blissey',
@@ -85,6 +91,7 @@ var app = new Vue({
 					stamina: 13,
 				},
 				expanded: false,
+				shadow: false,
 			},
 		],
 		isWeatherBoosted: false,
@@ -107,6 +114,7 @@ var app = new Vue({
 					stamina: 13,
 				},
 				expanded: false,
+				shadow: false,
 			});
 		},
 		removePokemon: function (index) {

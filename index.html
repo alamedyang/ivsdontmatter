@@ -21,7 +21,6 @@
 		</h2>
 		<div>
 			<div class="pokemon-list">
-				
 				<div
 					v-for="(pokemon, index) in pokemonList"
 					class="pokemon-graph"
@@ -30,7 +29,14 @@
 						<span>{{pokemon.name}}</span>
 						<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
 						<label class="controls-checkbox hint">
-							<span>EXPAND:</span>
+							<span>SHADOW:</span>
+							<input
+								type="checkbox"
+								v-model="pokemon.shadow"
+							/>
+						</label>
+						<label class="controls-checkbox hint">
+							<span>MORE</span>
 							<input
 								type="checkbox"
 								v-model="pokemon.expanded"
@@ -103,41 +109,71 @@
 								class="preset-button"
 							>{{propertyName}}</button>
 						</div>
-						<div>
+						<div
+						v-for="(iv, key, index) in pokemon.ivs"
+						>
+							<svg
+								viewBox="0 -1 22.5 1.5"
+								xmlns="http://www.w3.org/2000/svg"
+								class="iv_bar_width"
+							>
+								<defs>
+									<g id="iv_slider_base">
+										<line name="IV slider"
+											class="iv_input_gray"
+											x1="1"
+											y1="0"
+											x2="15"
+											y2="0"
+											stroke-linecap="round"
+										/>
+									</g>
+									<g id="iv_input_dividers">
+										<line name="divider"
+											class="iv_input_divider"
+											x1="5.55"
+											y1="-1"
+											x2="5.55"
+											y2="1"
+										/>
+										<line name="divider"
+											class="iv_input_divider"
+											x1="10.55"
+											y1="-1"
+											x2="10.55"
+											y2="1"
+										/>
+									</g>
+								</defs>
+								<use  href="#iv_slider_base"/>
+								<g name="iv input bar"
+									v-if="iv"
+								>
+									<line name="orange iv bar"
+										class="iv_input_orange"
+										x1="1"
+										y1="0"
+										:x2="iv"
+										y2="0"
+										stroke-linecap="round"
+									/>
+								</g>
+								<use  href="#iv_input_dividers"/>
+								<text
+									class="iv_input_label"
+									x="16"
+									y="0.32"
+								>
+									{{key}} IV: {{iv}}
+								</text>
+							</svg>
 							<input
 								type="range"
-								min="1"
+								min="0"
 								max="15"
 								step="1"
-								v-model.number="pokemon.ivs.attack"
+								v-model.number="pokemon.ivs[key]"
 							/>
-							<span class="iv-label">
-								<span>Attack IV: {{pokemon.ivs.attack}}</span>
-							</span>
-						</div>
-						<div>
-							<input
-								type="range"
-								min="1"
-								max="15"
-								step="1"
-								v-model.number="pokemon.ivs.defense"
-							/>
-							<span class="iv-label">
-								<span>Defense IV: {{pokemon.ivs.defense}}</span>
-							</span>
-						</div>
-						<div>
-							<input
-								type="range"
-								min="1"
-								max="15"
-								step="1"
-								v-model.number="pokemon.ivs.stamina"
-							/>
-							<span class="iv-label">
-								<span>Stamina IV: {{pokemon.ivs.stamina}}</span>
-							</span>
 						</div>
 					</div>
 				</div>
@@ -145,28 +181,65 @@
 		</div>
 	</div>
 	<script type="text/x-template" id="stat-bar">
+		
 		<div
 			class="stat-bar"
 		>
-			<span class="stat-bar-label">{{label}}</span>
-			<span
-				class="stat-bar-progress"
-				:style="{
-					width: (((baseStat * cpm) / scale) * 100) + '%'
-				}"
-			></span>
-			<span
-				class="stat-bar-progress-iv"
-				:style="{
-					width: (((iv * cpm) / scale) * 100) + '%'
-				}"
-			></span>
-			<span
-				class="stat-bar-progress-iv-max"
-				:style="{
-					width: ((((15 - iv) * cpm) / scale) * 100) + '%'
-				}"
-			></span>
+			<svg
+			:viewBox="
+				'0 0 ' + scale + ' ' + ivBarHeight
+			"
+			xmlns="http://www.w3.org/2000/svg"	
+			>
+				<g name="stat bar range">
+					<rect name="max gray bar"
+						class="stats_full_range"
+						:width="
+							scale
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+				</g>
+				<g name="total stat bar">
+					<rect name="pink bar"
+						class="stats_iv_max_main"
+						:width="
+							((baseStat + 15) * cpm)
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+					<rect name="red bar"
+						class="stats_iv_main"
+						:width="
+							((baseStat + iv) * cpm)
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+					<rect name="blue bar"
+						class="stats_base_main"
+						:width="
+							((baseStat) * cpm)
+						"
+						:height="
+							ivBarHeight
+						"
+						x="0"
+						y="0"
+					/>
+				</g>
+			</svg>
 		</div>
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
