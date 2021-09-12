@@ -66,7 +66,7 @@
 						class="controls"
 					>
 						<div class="container_section">
-							<div>
+							<span class="four_fifths">
 								<span>Pokémon:</span>
 								<select
 									v-model="pokemon.name"
@@ -76,15 +76,34 @@
 										:key="pokemonName"
 									>{{pokemonName}}</option>
 								</select>
-								<label class="controls-checkbox hint">
-									<span>[Shadow:</span>
-									<input
-										type="checkbox"
-										v-model="pokemon.shadow"
-									/>
-									<span>]</span>
-								</label>
-							</div>
+							</span>
+							<span class="one_fifth" name="pokemon toggles">
+								<svg
+									viewBox="0 0 2.1 1"
+									xmlns="http://www.w3.org/2000/svg"	
+								>
+									<g name="shadow toggle"
+									@mousedown="clickShadowButton($event, pokemon)"
+									>
+										<use href="#circle_button_base"
+											:class="{
+												common_levels_button_noselect: !pokemon.shadow,
+												common_levels_button_shadow: pokemon.shadow
+											}"
+										/>
+										<use href="#icon_shadow"/>
+									</g>
+									<g name="buddy toggle">
+										<use href="#circle_button_base"
+											class="common_levels_button_noselect"
+											@mousedown="clickBuddyButton($event, pokemon)"
+											transform="translate(1.1,0)"
+										/>
+										<use href="#icon_buddy"
+										transform="translate(1.1,0)"/>
+									</g>
+								</svg>
+							</span>
 						</div>
 						<div class="container_section">
 							<div class="inputtydoo">
@@ -115,10 +134,7 @@
 										rx="0.2"
 									/>
 									<ellipse id="circle_button_base"
-									rx="0.5"
-									ry="0.5"
-									cx="0.5"
-									cy="0.5"
+										rx="0.5" ry="0.5" cx="0.5" cy="0.5"
 									/>
 									<g id="icon_research" transform="scale(0.013888888888889)">
 										<path class="st0" d="M49.58,37.05c-4.82,0-8.73,3.91-8.73,8.73c0,4.82,3.91,8.73,8.73,8.73c4.82,0,8.73-3.91,8.73-8.73

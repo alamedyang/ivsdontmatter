@@ -142,6 +142,17 @@ h1 {
 .common_levels_button_select {
 	fill: #844;
 }
+.common_levels_button_shadow {
+	fill: #64a;
+}
+.common_levels_button_buddy {
+	fill: #b44;
+}
+.right_just {
+	width: 20%;
+	display: inline-block;
+	justify-content: right; 
+ }
 
 .plus,
 .minus {
@@ -169,7 +180,14 @@ h1 {
 	position: absolute;
 	right: 0;
 }
-
+.one_fifth{
+	width: 19%;
+	display: inline-block;
+}
+.four_fifths{
+	width: 79%;
+	display: inline-block;
+}
 .iv_bar_width{
 	width: 48%;
 }

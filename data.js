@@ -213,7 +213,7 @@ var presetLevels = {
 var presetLevelsWB = {
 	"Shadow (WB)": 13,
 	"Research": 15,
-	"Egg": 25,
+	"Egg": 20,
 	"Raid (WB)": 25,
 	"Wild Max (WB)": 35,
 	"Maxed": 40,

@@ -170,11 +170,19 @@ var app = new Vue({
 			mouseDownEvent.preventDefault();
 			this.isWeatherBoosted = !this.isWeatherBoosted;
 		},
+		clickShadowButton: function (clicky, pokemon) {
+			clicky.preventDefault();
+			pokemon.shadow = !pokemon.shadow;
+		},
+		clickBuddyButton: function (clicky, pokemon) {
+			clicky.preventDefault();
+		},
 		setPokemonLevelFromEncounterType: function (encounterContext, poke) {
 			levelFinalContextLookup =
 				this.presetLevels[encounterContext] ||
 				this.presetLevels[encounterContext + " (WB)"];
 			poke.level = levelFinalContextLookup;
+			console.log(encounterContext);
 		},
 		addPokemon: function () {
 			this.pokemonList.push({
