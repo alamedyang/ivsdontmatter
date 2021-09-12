@@ -120,7 +120,7 @@ var app = new Vue({
 					defense: 10,
 					stamina: 10,
 				},
-				expanded: false,
+				expanded: true,
 				shadow: false,
 			},
 			{
@@ -163,9 +163,19 @@ var app = new Vue({
 			return this.isWeatherBoosted
 				? presetLevelsWB
 				: presetLevels;
-		}
+		},
 	},
 	methods: {
+		clickWeatherBoostButton: function (mouseDownEvent) {
+			mouseDownEvent.preventDefault();
+			this.isWeatherBoosted = !this.isWeatherBoosted;
+		},
+		setPokemonLevelFromEncounterType: function (encounterContext, poke) {
+			levelFinalContextLookup =
+				this.presetLevels[encounterContext] ||
+				this.presetLevels[encounterContext + " (WB)"];
+			poke.level = levelFinalContextLookup;
+		},
 		addPokemon: function () {
 			this.pokemonList.push({
 				name: 'Blissey',

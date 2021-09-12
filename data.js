@@ -203,6 +203,7 @@ var pokemonMap = {
 var presetLevels = {
 	"Shadow": 8,
 	"Research": 15,
+	"Egg": 20,
 	"Raid": 20,
 	"Wild Max": 30,
 	"Maxed": 40,
@@ -212,6 +213,7 @@ var presetLevels = {
 var presetLevelsWB = {
 	"Shadow (WB)": 13,
 	"Research": 15,
+	"Egg": 25,
 	"Raid (WB)": 25,
 	"Wild Max (WB)": 35,
 	"Maxed": 40,

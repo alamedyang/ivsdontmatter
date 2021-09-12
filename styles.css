@@ -78,6 +78,9 @@ h1 {
 .stats_full_range_line {
 	stroke: #eee;
 }
+.st0 {
+	fill: #fff;
+}
 
 .hint {
 	color: #999;
@@ -130,6 +133,16 @@ h1 {
 	padding-left: 8px;
 }
 
+.common_levels_button_gray {
+	fill: #666;
+}
+.common_levels_button_noselect {
+	fill: #aaa;
+}
+.common_levels_button_select {
+	fill: #844;
+}
+
 .plus,
 .minus {
 	margin-left: 8px;
@@ -157,17 +170,6 @@ h1 {
 	right: 0;
 }
 
-.preset-button {
-	background-color: #bbb;
-	padding: 6px;
-	border-color: #777;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 8px;
-	margin: 2px;
-	cursor: pointer;
-	width: 48%;
-}
 .iv_bar_width{
 	width: 48%;
 }
@@ -177,17 +179,11 @@ body {
 	padding: 16px;
 }
 @media (min-width: 480px) {
-	.preset-button {
-		width: 32%;
-	}
 	body {
 		padding: 24px;
 	}
 }
 @media (min-width: 640px) {
-	.preset-button {
-		width: 15.75%;
-	}
 	body {
 		padding: 32px;
 	}
