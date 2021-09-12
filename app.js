@@ -182,7 +182,6 @@ var app = new Vue({
 				this.presetLevels[encounterContext] ||
 				this.presetLevels[encounterContext + " (WB)"];
 			poke.level = levelFinalContextLookup;
-			console.log(encounterContext);
 		},
 		addPokemon: function () {
 			this.pokemonList.push({
