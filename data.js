@@ -198,8 +198,17 @@ var pokemonMap = {
 		defense: 169,
 		stamina: 496,
 	},
+	'Dragonite': {
+		number: 149,
+		types: [
+			'Dragon',
+			'Flying'
+		],
+		attack: 209,
+		defense: 263,
+		stamina: 198,
+	},
 }
-
 var presetLevels = {
 	"Shadow": 8,
 	"Shadow (WB)": 13,
@@ -212,3 +221,37 @@ var presetLevels = {
 	"Maxed": 40,
 	"Maxed (XL)": 50,
 };
+
+var weatherBoostElements = {
+	"Grass": "Clear",
+	"Bug": "Rain",
+	"Poison": "Cloudy",
+	"Fire": "Clear",
+	"Water": "Rain",
+	"Ice": "Snow",
+	"Electric": "Rain",
+	"Fighting": "Cloudy",
+	"Rock": "Partly Cloudy",
+	"Ground": "Clear",
+	"Psychic": "Windy",
+	"Ghost": "Fog",
+	"Normal": "Partly Cloudy",
+	"Flying": "Windy",
+	"Dragon": "Windy",
+	"Dark": "Fog",
+	"Steel": "Snow",
+	"Fairy": "Cloudy",
+};
+
+var weatherIconIdMap = {
+	"Clear": "clear-sun",
+	"Clear (Night)": "clear-moon",
+	"Windy": "wind",
+	"Partly Cloudy": "partcloud-sun",
+	"Partly Cloudy (Night)": "partcloud-moon",
+	"Fog": "fog",
+	"Cloudy": "cloud",
+	"Snow": "snow",
+	"Rain": "rain",
+};
+

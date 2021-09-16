@@ -18,6 +18,20 @@ Vue.component('pokemon-controls', {
 		};
 	},
 	computed: {
+		basePokemon: function () {
+			return this.getBasePokemon(this.pokemon);
+		},
+		weatherBoostIcon: function () {
+			var uniqueIconMap = {};
+			var pokemonTypeNameIterationFunction = function(type) {
+				var niceWeatherName = weatherBoostElements[type];
+				var icon = weatherIconIdMap[niceWeatherName];
+				uniqueIconMap[icon] = true;
+			};
+			this.basePokemon.types.forEach(pokemonTypeNameIterationFunction);
+			var icons = Object.keys(uniqueIconMap);
+			return icons;
+		}
 	},
 	methods: {
 		emitChanges(changes) {
@@ -145,7 +159,11 @@ Vue.component('pokemon-controls', {
 				viewBox="-1.1 0 8.7 1"
 				xmlns="http://www.w3.org/2000/svg"	
 				>
+				<clipPath id="aaaaaaaaa">
+					<use href="#circle_button_base" />
+				</clipPath>
 				<g name="WB button"
+					clip-path="url(#aaaaaaaaa)"
 					transform="translate(-1.1,0)"
 					@mousedown="clickWeatherBoostButton"
 					:is-weather-boosted="isWeatherBoosted"
@@ -156,13 +174,43 @@ Vue.component('pokemon-controls', {
 							common_levels_button_select: isWeatherBoosted
 						}"
 					/>
-					<text
-						font-size="0.4px"
-						fill="#fff"
-						y="0.65"
-						x="0.5"
-						text-anchor="middle"
-					>WB</text>
+					<g
+						v-if="weatherBoostIcon.length < 2"
+					>
+						<use
+							:href="'#' + weatherBoostIcon[0]"
+						/>
+					</g>
+					<g
+						v-else
+						transform="
+							scale(0.7)
+							translate(0.2,0.2)
+						"
+					>
+						<use
+							:href="'#' + weatherBoostIcon[0]"
+							transform="
+								translate(-0.27 -0.22)
+							"
+						/>
+						<use
+							:href="'#' + weatherBoostIcon[1]"
+							transform="
+								translate(0.27 0.22)
+							"
+						/>
+						
+					</g>
+					<line
+						v-if="weatherBoostIcon.length > 1"
+						x1="0.1"
+						y1="0.9"
+						x2="0.9"
+						y2="0.1"
+						stroke-width="0.02"
+						stroke="#fff"
+					/>
 				</g>
 				<g id="encounter_context-shadow-button"
 					transform="translate(0,0)"
