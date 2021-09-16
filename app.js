@@ -1,6 +1,13 @@
 var getBasePokemon = function (pokemon) {
 	return pokemonMap[pokemon.name];
 };
+var getPokemonLevel = function (pokemon) {
+	var level = pokemon.level;
+	if (pokemon.buddy) {
+		level +=1
+	};
+	return level;
+};
 var lookupCPMFromLevel = function (level) {
 	return levelMap[level] || levelMap["1"];
 };
@@ -41,13 +48,13 @@ Vue.component('stat-bar', {
 			return this.basePokemon[this.statName];
 		},
 		cpm: function () {
-			return lookupCPMFromLevel(this.pokemon.level);
+			return lookupCPMFromLevel( getPokemonLevel(this.pokemon) );
 		},
 		currentStat: function () {
 			var raw_current_stat =
 				(this.basePokemon[this.statName] +
 				this.pokemon.ivs[this.statName]) *
-				lookupCPMFromLevel(this.pokemon.level);
+				lookupCPMFromLevel( getPokemonLevel(this.pokemon) );
 			if (this.statName === "stamina") {
 				var result = Math.floor(raw_current_stat);
 			}
@@ -122,6 +129,7 @@ var app = new Vue({
 				},
 				expanded: true,
 				shadow: false,
+				buddy: false,
 			},
 			{
 				name: 'Gengar',
@@ -133,6 +141,7 @@ var app = new Vue({
 				},
 				expanded: false,
 				shadow: false,
+				buddy: false,
 			},
 			{
 				name: 'Magikarp',
@@ -144,6 +153,7 @@ var app = new Vue({
 				},
 				expanded: false,
 				shadow: false,
+				buddy: false,
 			},
 			{
 				name: 'Blissey',
@@ -155,6 +165,7 @@ var app = new Vue({
 				},
 				expanded: false,
 				shadow: false,
+				buddy: false,
 			},
 		],
 	},
@@ -175,6 +186,7 @@ var app = new Vue({
 			pokemon.shadow = !pokemon.shadow;
 		},
 		clickBuddyButton: function (clicky, pokemon) {
+			pokemon.buddy = !pokemon.buddy;
 			clicky.preventDefault();
 		},
 		setPokemonLevelFromEncounterType: function (encounterContext, poke) {
@@ -199,11 +211,13 @@ var app = new Vue({
 		removePokemon: function (index) {
 			this.pokemonList.splice(index, 1);
 		},
-		lookupCPMFromLevel,
+		lookupCPMFromLevel: lookupCPMFromLevel,
+		getPokemonLevel: getPokemonLevel,
 		calculateCP: function (pokemon) {
 			var basePokemon = getBasePokemon(pokemon);
+			var level = getPokemonLevel(pokemon);
 			var ivs = pokemon.ivs;
-			var cpm = lookupCPMFromLevel(pokemon.level);
+			var cpm = lookupCPMFromLevel(level);
 			var attack = basePokemon.attack + ivs.attack;
 			var defense = basePokemon.defense + ivs.defense;
 			var stamina = basePokemon.stamina + ivs.stamina;
