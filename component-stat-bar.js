@@ -1,4 +1,7 @@
 Vue.component('stat-bar', {
+	mixins: [
+		statMethodsMixin,
+	],
 	props: {
 		label: {
 			type: String,
@@ -28,19 +31,21 @@ Vue.component('stat-bar', {
 			return this.pokemon.ivs[this.statName];
 		},
 		basePokemon: function () {
-			return getBasePokemon(this.pokemon);
+			return this.getBasePokemon(this.pokemon);
 		},
 		baseStat: function () {
 			return this.basePokemon[this.statName];
 		},
 		cpm: function () {
-			return lookupCPMFromLevel( getPokemonLevel(this.pokemon) );
+			return this.lookupCPMFromLevel(
+				this.getPokemonLevel(this.pokemon)
+			);
 		},
 		currentStat: function () {
 			var raw_current_stat =
 				(this.basePokemon[this.statName] +
 				this.pokemon.ivs[this.statName]) *
-				lookupCPMFromLevel( getPokemonLevel(this.pokemon) );
+				this.cpm;
 			if (this.statName === "stamina") {
 				var result = Math.floor(raw_current_stat);
 			}

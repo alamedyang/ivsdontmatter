@@ -1,19 +1,8 @@
-var getBasePokemon = function (pokemon) {
-	return pokemonMap[pokemon.name];
-};
-var getPokemonLevel = function (pokemon) {
-	var level = pokemon.level;
-	if (pokemon.buddy) {
-		level +=1
-	};
-	return level;
-};
-var lookupCPMFromLevel = function (level) {
-	return levelMap[level] || levelMap["1"];
-};
-
 var app = new Vue({
 	el: '#stat-explorer',
+	mixins: [
+		statMethodsMixin,
+	],
 	data:{
 		level: 20,
 		pokemonMap,
@@ -70,31 +59,9 @@ var app = new Vue({
 			},
 		],
 	},
-	computed: {
-		presetLevels: function () {
-			return this.isWeatherBoosted
-				? presetLevelsWB
-				: presetLevels;
-		},
-	},
 	methods: {
-		clickWeatherBoostButton: function (mouseDownEvent) {
-			mouseDownEvent.preventDefault();
-			this.isWeatherBoosted = !this.isWeatherBoosted;
-		},
-		clickShadowButton: function (clicky, pokemon) {
-			clicky.preventDefault();
-			pokemon.shadow = !pokemon.shadow;
-		},
-		clickBuddyButton: function (clicky, pokemon) {
-			pokemon.buddy = !pokemon.buddy;
-			clicky.preventDefault();
-		},
-		setPokemonLevelFromEncounterType: function (encounterContext, poke) {
-			levelFinalContextLookup =
-				this.presetLevels[encounterContext] ||
-				this.presetLevels[encounterContext + " (WB)"];
-			poke.level = levelFinalContextLookup;
+		replacePokemonByIndex: function (index, updatedPokemon) {
+			this.pokemonList.splice(index, 1, updatedPokemon);
 		},
 		addPokemon: function () {
 			this.pokemonList.push({
@@ -112,27 +79,5 @@ var app = new Vue({
 		removePokemon: function (index) {
 			this.pokemonList.splice(index, 1);
 		},
-		lookupCPMFromLevel: lookupCPMFromLevel,
-		getPokemonLevel: getPokemonLevel,
-		calculateCP: function (pokemon) {
-			var basePokemon = getBasePokemon(pokemon);
-			var level = getPokemonLevel(pokemon);
-			var ivs = pokemon.ivs;
-			var cpm = lookupCPMFromLevel(level);
-			var attack = basePokemon.attack + ivs.attack;
-			var defense = basePokemon.defense + ivs.defense;
-			var stamina = basePokemon.stamina + ivs.stamina;
-			// console.log({
-			// 	basePokemon,
-			// 	cpm,
-			// 	attack,
-			// 	defense,
-			// 	stamina
-			// });
-			return Math.floor(Math.max(
-				((attack * Math.sqrt(defense) * Math.sqrt(stamina) * Math.pow(cpm, 2))/10),
-				10
-			));
-		}
 	},
 });
