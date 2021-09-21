@@ -11,10 +11,15 @@ Vue.component('pokemon-controls', {
 			type: Object,
 			required: true,
 		},
+		verboseOn: {
+			type: Boolean,
+			required: true,
+		},
 	},
 	data: function () {
 		return {
 			isWeatherBoosted: false,
+			encounter_context_message: '',
 		};
 	},
 	computed: {
@@ -61,6 +66,11 @@ Vue.component('pokemon-controls', {
 		clickWeatherBoostButton: function (mouseDownEvent) {
 			mouseDownEvent.preventDefault();
 			this.isWeatherBoosted = !this.isWeatherBoosted;
+			if (this.isWeatherBoosted){
+				this.encounter_context_message = 'Weather boost! Level +5 for certain encounters!';
+			}else{
+				this.encounter_context_message = 'Normal weather';
+			}
 		},
 		setPokemonLevelFromEncounterType: function (rawEncounterContext) {
 			var weatheredEncounterContext = rawEncounterContext;
@@ -70,6 +80,14 @@ Vue.component('pokemon-controls', {
 			var levelFinalContextLookup =
 				presetLevels[weatheredEncounterContext] ||
 				presetLevels[rawEncounterContext];
+			var displayEncounterContext = rawEncounterContext;
+			if (
+				this.isWeatherBoosted &&
+				presetLevels[weatheredEncounterContext]
+			){
+				displayEncounterContext += " (weather boosted)";
+			}
+			this.encounter_context_message = displayEncounterContext;
 			this.emitChanges(
 				{
 					level: levelFinalContextLookup,
@@ -150,13 +168,13 @@ Vue.component('pokemon-controls', {
 						max="50"
 						step="0.5"
 						v-model.number="pokemon.level"
+						@input="encounter_context_message = ''"
 					/>
 				</label>
 			</div>
 			<div>
-				<div>Common levels:</div>
 				<svg
-				viewBox="-1.1 0 8.7 1"
+				viewBox="-1.1 -0.1 8.7 1.15"
 				xmlns="http://www.w3.org/2000/svg"	
 				>
 				<clipPath id="aaaaaaaaa">
@@ -285,6 +303,11 @@ Vue.component('pokemon-controls', {
 					<use href="#icon_max_xl"/>
 				</g>
 				</svg>
+				<div v-if="verboseOn">
+					<span>Encounter context:</span>
+					<em v-if="!encounter_context_message">Click a button!</em>
+					<span v-else>{{encounter_context_message}}</span>
+				</div>
 			</div>
 		</div>
 		<div class="container_section">

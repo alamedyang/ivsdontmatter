@@ -8,6 +8,7 @@ var app = new Vue({
 		pokemonMap,
 		isWeatherBoosted: false,
 		statBarGridOn: false,
+		verboseOn: false,
 		pokemonList: [
 			{
 				name: 'Mewtwo',

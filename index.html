@@ -26,6 +26,14 @@
 				/>
 				<span>]</span>
 			</label>
+			<label class="controls-checkbox hint">
+				<span>[Verbose:</span>
+				<input
+					type="checkbox"
+					v-model="verboseOn"
+				/>
+				<span>]</span>
+			</label>
 		</h2>
 		<svg-defs></svg-defs>
 		<div>
@@ -66,6 +74,7 @@
 						v-if="pokemon.expanded"
 						:pokemon="pokemon"
 						:pokemon-map="pokemonMap"
+						:verbose-on="verboseOn"
 						@changes="replacePokemonByIndex(pokemonIndex, $event)"
 					></pokemon-controls>
 				</div>
