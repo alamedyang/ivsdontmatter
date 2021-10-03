@@ -394,6 +394,18 @@ Vue.component('pokemon-controls', {
 					v-model.number="pokemon.ivs[key]"
 				/>
 			</div>
+			<div v-show="verboseOn">
+				<span>
+					{{pokemon.ivs.attack}}/{{pokemon.ivs.defense}}/{{pokemon.ivs.stamina}} =
+					{{IVSum(pokemon.ivs)}}/45 ({{IVPercentage(pokemon.ivs)}}%)
+				</span>
+				<span v-if="IVPercentage(pokemon.ivs) >= 100">
+					<strong>HUNDO!</strong>
+				</span>
+				<span v-if="functionalHundo(pokemon)">
+					<strong>Functional Hundo!</strong>
+				</span>
+			</div>
 		</div>
 	</div>
 	`

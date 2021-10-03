@@ -255,3 +255,31 @@ var weatherIconIdMap = {
 	"Rain": "rain",
 };
 
+var starBreakPoints = [
+	{
+		'stars': 0,
+		'lowSum': 0,
+		'highSum': 22,
+	},
+	{
+		'stars': 1,
+		'lowSum': 23,
+		'highSum': 29,
+	},
+	{
+		'stars': 2,
+		'lowSum': 30,
+		'highSum': 36,
+	},
+	{
+		'stars': 3,
+		'lowSum': 37,
+		'highSum': 44,
+	},
+	{
+		'stars': 4,
+		'lowSum': 45,
+		'highSum': 45,
+	}
+];
+
