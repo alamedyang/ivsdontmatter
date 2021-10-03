@@ -6,13 +6,33 @@
 	max-width: 800px;
 }
 
+ul, p {
+	padding-bottom: 8px;
+	padding-top: 4px;
+}
+
+ul {
+	margin-left: 24px;
+}
+
+a {
+	color: #aaa;
+}
+
 h1, h2, h3, h4, h5, h6 {
-	padding: 0.5em 0;
+	padding: 0.4em 0;
 }
 
 h1 {
 	font-weight: 900;
 }
+
+.secret-button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
 .iv_input_label {
 	font-size: 1.25px;
 }
@@ -86,6 +106,19 @@ h1 {
 .hint {
 	color: #999;
 	font-size: 0.9em;
+}
+
+.title-flex {
+	line-height: 0.8em;
+}
+
+.blocky {
+	display: inline-block;
+}
+
+.minihint {
+	color: #999;
+	font-size: 0.5em;
 }
 
 .iv-label {

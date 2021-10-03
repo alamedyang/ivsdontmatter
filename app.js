@@ -7,6 +7,7 @@ var app = new Vue({
 		level: 20,
 		pokemonMap,
 		isWeatherBoosted: false,
+		infoShown: false,
 		statBarGridOn: false,
 		verboseOn: false,
 		pokemonList: [
@@ -80,5 +81,10 @@ var app = new Vue({
 		removePokemon: function (index) {
 			this.pokemonList.splice(index, 1);
 		},
+		toggleShowInfo: function (event) {
+			event.preventDefault();
+			this.infoShown = !this.infoShown;
+		},
+
 	},
 });
