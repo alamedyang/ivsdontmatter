@@ -1,18 +1,18 @@
 var app = new Vue({
 	el: '#stat-explorer',
 	mixins: [
-		statMethodsMixin,
+		sprimkles,
 	],
 	data:{
 		level: 20,
 		pokemonMap,
-		isWeatherBoosted: false,
 		infoShown: false,
 		statBarGridOn: false,
 		verboseOn: false,
 		pokemonList: [
 			{
 				name: 'Mewtwo',
+				id: Math.random(),
 				level: 20,
 				ivs: {
 					attack: 10,
@@ -25,6 +25,7 @@ var app = new Vue({
 			},
 			{
 				name: 'Gengar',
+				id: Math.random(),
 				level: 20,
 				ivs: {
 					attack: 10,
@@ -37,6 +38,7 @@ var app = new Vue({
 			},
 			{
 				name: 'Magikarp',
+				id: Math.random(),
 				level: 20,
 				ivs: {
 					attack: 6,
@@ -49,6 +51,7 @@ var app = new Vue({
 			},
 			{
 				name: 'Blissey',
+				id: Math.random(),
 				level: 20,
 				ivs: {
 					attack: 12,
@@ -65,9 +68,13 @@ var app = new Vue({
 		replacePokemonByIndex: function (index, updatedPokemon) {
 			this.pokemonList.splice(index, 1, updatedPokemon);
 		},
+		removePokemonByIndex: function (index) {
+			this.pokemonList.splice(index, 1);
+		},
 		addPokemon: function () {
 			this.pokemonList.push({
 				name: 'Blissey',
+				id: Math.random(),
 				level: 20,
 				ivs: {
 					attack: 12,
@@ -78,13 +85,9 @@ var app = new Vue({
 				shadow: false,
 			});
 		},
-		removePokemon: function (index) {
-			this.pokemonList.splice(index, 1);
-		},
 		toggleShowInfo: function (event) {
 			event.preventDefault();
 			this.infoShown = !this.infoShown;
 		},
-
 	},
 });

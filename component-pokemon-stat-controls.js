@@ -1,6 +1,6 @@
-Vue.component('pokemon-controls', {
+Vue.component('pokemon-stat-controls', {
 	mixins: [
-		statMethodsMixin,
+		sprimkles,
 	],
 	props: {
 		pokemon: {
@@ -20,6 +20,7 @@ Vue.component('pokemon-controls', {
 		return {
 			isWeatherBoosted: false,
 			encounter_context_message: '',
+			functionalHundoInfo: false,
 		};
 	},
 	computed: {
@@ -45,6 +46,7 @@ Vue.component('pokemon-controls', {
 				this.pokemon,
 				changes
 			);
+			this.functionalHundoInfo = false;
 			this.$emit('changes', updatedPokemon);
 		},
 		clickShadowButton: function (clicky) {
@@ -94,6 +96,14 @@ Vue.component('pokemon-controls', {
 				}
 			);
 		},
+		toggleFunctionalHundoInfo: function (event) {
+			event.preventDefault();
+			this.functionalHundoInfo = !this.functionalHundoInfo;
+		},
+		levelInputResets: function () {
+			this.encounter_context_message = '';
+			this.functionalHundoInfo = false;
+		}
 	},
 	template:
 	/* html */
@@ -158,7 +168,7 @@ Vue.component('pokemon-controls', {
 							+ 1
 						</strong>
 						</span>
-						<span class="hint">(CPM: {{
+						<span v-show="verboseOn" class="hint">(CPM: {{
 							lookupCPMFromLevel(getPokemonLevel(pokemon))
 						}})</span>
 					</span>
@@ -168,7 +178,7 @@ Vue.component('pokemon-controls', {
 						max="50"
 						step="0.5"
 						v-model.number="pokemon.level"
-						@input="encounter_context_message = ''"
+						@input="levelInputResets"
 					/>
 				</label>
 			</div>
@@ -392,19 +402,41 @@ Vue.component('pokemon-controls', {
 					max="15"
 					step="1"
 					v-model.number="pokemon.ivs[key]"
+					@input="functionalHundoInfo = false"
 				/>
 			</div>
 			<div v-show="verboseOn">
 				<span>
-					{{pokemon.ivs.attack}}/{{pokemon.ivs.defense}}/{{pokemon.ivs.stamina}} =
-					{{IVSum(pokemon.ivs)}}/45 ({{IVPercentage(pokemon.ivs)}}%)
+					{{pokemon.ivs.attack}}/{{pokemon.ivs.defense}}/{{pokemon.ivs.stamina}} = 
+					{{IVSum(pokemon.ivs)}}/45 = 
+					{{IVPercentage(pokemon.ivs)}}%
 				</span>
-				<span v-if="IVPercentage(pokemon.ivs) >= 100">
-					<strong>HUNDO!</strong>
+				<span class="blocky">
+					<span v-if="IVPercentage(pokemon.ivs) >= 100">
+						<strong> HUNDO!</strong>
+					</span>
+					<span v-if="functionalHundo(pokemon)">
+						<span><strong> Functional Hundo! </strong></span>
+						<button class="hint secret-button"><em @click="toggleFunctionalHundoInfo">What is this?</em></button>
+					</span>
 				</span>
-				<span v-if="functionalHundo(pokemon)">
-					<strong>Functional Hundo!</strong>
-				</span>
+				<div
+					v-show="
+						functionalHundoInfo
+						&& functionalHundo(pokemon)
+					"
+					class="container_section_inner"
+				>
+					<p><strong>Functional hundo:</strong> At certain levels, a 15/15/14 Pok&eacute;mon will have the same stats at
+					as a hundo (15/15/15). This is be cause HP is always rounded down,
+					and one HP is worth less than one IV point.</p>
+					<button
+						@click="toggleFunctionalHundoInfo"
+						class="secret-button"
+					>
+						<strong class="hint">CLOSE</strong>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

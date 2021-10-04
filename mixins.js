@@ -1,4 +1,4 @@
-var statMethodsMixin = {
+var sprimkles = {
 	methods: {
 		getBasePokemon: function (pokemon) {
 			return pokemonMap[pokemon.name];
@@ -71,6 +71,14 @@ var statMethodsMixin = {
 				((attack * Math.sqrt(defense) * Math.sqrt(stamina) * Math.pow(cpm, 2))/10),
 				10
 			));
-		}
+		},
+		getPokemonListIndexFromId: function (id) {
+			var index = this.pokemonList.findIndex(
+				function (pokemonListObjects) {
+					return pokemonListObjects.id === id;
+				}
+			)
+			return index;
+		},
 	}
 };

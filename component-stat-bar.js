@@ -1,6 +1,6 @@
 Vue.component('stat-bar', {
 	mixins: [
-		statMethodsMixin,
+		sprimkles,
 	],
 	props: {
 		label: {

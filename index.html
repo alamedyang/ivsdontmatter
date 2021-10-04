@@ -96,47 +96,19 @@
 		<svg-defs></svg-defs>
 		<div>
 			<div class="pokemon-list">
-				<div
+				<stat-explorer-pokemon
 					v-for="(pokemon, pokemonIndex) in pokemonList"
+					:key="pokemon.id"
 					class="pokemon-graph"
+					:pokemon="pokemon"
+					:stat-bar-grid-on="statBarGridOn"
+					:pokemon-map="pokemonMap"
+					:pokemon-list="pokemonList"
+					:verbose-on="verboseOn"
+					@changes="replacePokemonByIndex(pokemonIndex, $event)"
+					@delete="removePokemonByIndex(pokemonIndex)"
 				>
-					<h3>
-						<span>{{pokemon.name}}</span>
-						<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
-						<span class="hint">{{IVStarEval(pokemon.ivs).stars}}*</span>
-						<label class="controls-checkbox hint">
-							<span>[Expand:</span>
-							<input
-								type="checkbox"
-								v-model="pokemon.expanded"
-							/>
-							<span>]</span>
-						</label>
-						<button
-							class="minus"
-							@click="removePokemon(pokemonIndex)"
-						>
-							x
-						</button>
-					</h3>
-					<div>
-						<stat-bar
-							v-for="(stat, propertyName, statBarIndex) in pokemon.ivs"
-							:key="propertyName"
-							:label="propertyName"
-							:stat-name="propertyName"
-							:pokemon="pokemon"
-							:stat-bar-grid-on="statBarGridOn"
-						></stat-bar>
-					</div>
-					<pokemon-controls
-						v-if="pokemon.expanded"
-						:pokemon="pokemon"
-						:pokemon-map="pokemonMap"
-						:verbose-on="verboseOn"
-						@changes="replacePokemonByIndex(pokemonIndex, $event)"
-					></pokemon-controls>
-				</div>
+				</stat-explorer-pokemon>
 			</div>
 		</div>
 	</div>
@@ -145,7 +117,8 @@
 	<script src="./mixins.js"></script>
 	<script src="./component-svg-defs.js"></script>
 	<script src="./component-stat-bar.js"></script>
-	<script src="./component-pokemon-controls.js"></script>
+	<script src="./component-pokemon-stat-controls.js"></script>
+	<script src="./component-stat-explorer-pokemon.js"></script>
 	<script src="./app.js"></script>
 </body>
 </html>

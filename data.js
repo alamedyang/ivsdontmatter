@@ -208,7 +208,8 @@ var pokemonMap = {
 		defense: 263,
 		stamina: 198,
 	},
-}
+};
+
 var presetLevels = {
 	"Shadow": 8,
 	"Shadow (WB)": 13,
