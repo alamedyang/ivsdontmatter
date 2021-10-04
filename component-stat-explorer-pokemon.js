@@ -1,6 +1,7 @@
 Vue.component('stat-explorer-pokemon', {
 	mixins: [
 		sprimkles,
+		pokemonMutationMixin,
 	],
 	props: {
 		pokemon: {
@@ -29,26 +30,21 @@ Vue.component('stat-explorer-pokemon', {
 			isWeatherBoosted: false,
 		}
 	},
-	computed: {},
 	methods: {
-		removePokemon: function (id) {
-			var index = this.getPokemonListIndexFromId(id);
-			this.pokemonList.splice(index, 1);
-		},
 	},
 	template: 
 	/* html */
 	`
 	<div class="stat-explorer-pokemon">
 		<h3>
-			<span>{{pokemon.name}}</span>
+			<span>{{name}}</span>
 			<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
-			<span class="hint">{{IVStarEval(pokemon.ivs).stars}}*</span>
+			<span class="hint">{{IVStarEval(ivs).stars}}*</span>
 			<label class="controls-checkbox hint">
 				<span>[Expand:</span>
 				<input
 					type="checkbox"
-					v-model="pokemon.expanded"
+					v-model="expanded"
 				/>
 				<span>]</span>
 			</label>
@@ -61,7 +57,7 @@ Vue.component('stat-explorer-pokemon', {
 		</h3>
 		<div>
 			<stat-bar
-				v-for="(stat, propertyName, statBarIndex) in pokemon.ivs"
+				v-for="(stat, propertyName, statBarIndex) in ivs"
 				:key="propertyName"
 				:label="propertyName"
 				:stat-name="propertyName"
@@ -70,11 +66,12 @@ Vue.component('stat-explorer-pokemon', {
 			></stat-bar>
 		</div>
 		<pokemon-stat-controls
-			v-if="pokemon.expanded"
+			v-if="expanded"
 			:pokemon="pokemon"
 			:pokemon-map="pokemonMap"
 			:verbose-on="verboseOn"
-			@changes="$emit('changes', $event)"
+			@update:pokemon="$emit('update:pokemon', $event)"
+			@update:ivs="ivs = $event"
 		></pokemon-stat-controls>
 	</div>
 	`

@@ -82,3 +82,80 @@ var sprimkles = {
 		},
 	}
 };
+
+
+var makeGenericObjectComputedPropertiesSetter = function(dataPath, propertyNameList) {
+	var computedObject = {};
+	var mutatorMethodName = 'emitChangesFor-' + dataPath;
+	var mutationEventName = 'update:' + dataPath;
+	propertyNameList.forEach(function (propertyName) {
+		computedObject[propertyName] = {
+			get: function () {
+				return this[dataPath][propertyName];
+			},
+			set: function (value) {
+				// console.log(`dataPath:${dataPath}, propertyName:${propertyName}, value: ${value}`)
+				this[mutatorMethodName](
+					{
+						[propertyName]: value
+					}
+				);
+			},
+		};
+	});
+	return {
+		computed: computedObject,
+		methods: {
+			[mutatorMethodName](changes) {
+				var newValue = Object.assign(
+					{},
+					this[dataPath],
+					changes
+				);
+				this.$emit(mutationEventName, newValue);
+			},
+		}
+	};
+}
+
+var makeGenericPropObjectComputedPropertiesSetter = function(
+	propName,
+	propertyNameList,
+) {
+	return Object.assign(
+		{
+			props: {
+				[propName]: {
+					type: Object,
+					required: true,
+				},
+			},
+		},
+		makeGenericObjectComputedPropertiesSetter(
+			propName,
+			propertyNameList,
+		),
+	);
+}
+
+var pokemonMutationMixin = makeGenericPropObjectComputedPropertiesSetter(
+	'pokemon',
+	[
+		'name',
+		'id',
+		'level',
+		'ivs',
+		'expanded',
+		'shadow',
+		'buddy',
+	],
+);
+
+var ivsMutationMixin = makeGenericObjectComputedPropertiesSetter(
+	'ivs',
+	[
+		'attack',
+		'defense',
+		'stamina',
+	],
+);

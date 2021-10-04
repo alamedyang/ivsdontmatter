@@ -66,6 +66,7 @@ var app = new Vue({
 	},
 	methods: {
 		replacePokemonByIndex: function (index, updatedPokemon) {
+			// console.log(`replacePokemonByIndex: index:${index}, updatedPokemon:`, updatedPokemon);
 			this.pokemonList.splice(index, 1, updatedPokemon);
 		},
 		removePokemonByIndex: function (index) {

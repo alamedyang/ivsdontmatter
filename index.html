@@ -99,13 +99,12 @@
 				<stat-explorer-pokemon
 					v-for="(pokemon, pokemonIndex) in pokemonList"
 					:key="pokemon.id"
-					class="pokemon-graph"
 					:pokemon="pokemon"
 					:stat-bar-grid-on="statBarGridOn"
 					:pokemon-map="pokemonMap"
 					:pokemon-list="pokemonList"
 					:verbose-on="verboseOn"
-					@changes="replacePokemonByIndex(pokemonIndex, $event)"
+					@update:pokemon="replacePokemonByIndex(pokemonIndex, $event)"
 					@delete="removePokemonByIndex(pokemonIndex)"
 				>
 				</stat-explorer-pokemon>

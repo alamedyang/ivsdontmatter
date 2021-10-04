@@ -212,11 +212,11 @@ h1 {
 }
 
 
-.pokemon-graph {
+.stat-explorer-pokemon {
 	position: relative;
 }
 
-.pokemon-graph .minus {
+.stat-explorer-pokemon .minus {
 	position: absolute;
 	right: 0;
 }

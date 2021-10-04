@@ -1,12 +1,10 @@
 Vue.component('pokemon-stat-controls', {
 	mixins: [
 		sprimkles,
+		pokemonMutationMixin,
+		ivsMutationMixin,
 	],
 	props: {
-		pokemon: {
-			type: Object,
-			required: true,
-		},
 		pokemonMap: {
 			type: Object,
 			required: true,
@@ -37,33 +35,16 @@ Vue.component('pokemon-stat-controls', {
 			this.basePokemon.types.forEach(pokemonTypeNameIterationFunction);
 			var icons = Object.keys(uniqueIconMap);
 			return icons;
-		}
+		},
 	},
 	methods: {
-		emitChanges(changes) {
-			var updatedPokemon = Object.assign(
-				{},
-				this.pokemon,
-				changes
-			);
-			this.functionalHundoInfo = false;
-			this.$emit('changes', updatedPokemon);
-		},
 		clickShadowButton: function (clicky) {
 			clicky.preventDefault();
-			this.emitChanges(
-				{
-					shadow: !this.pokemon.shadow,
-				}
-			);
+			this.shadow = !this.shadow;
 		},
 		clickBuddyButton: function (clicky) {
 			clicky.preventDefault();
-			this.emitChanges(
-				{
-					buddy: !this.pokemon.buddy,
-				}
-			);
+			this.buddy = !this.buddy;
 		},
 		clickWeatherBoostButton: function (mouseDownEvent) {
 			mouseDownEvent.preventDefault();
@@ -90,11 +71,8 @@ Vue.component('pokemon-stat-controls', {
 				displayEncounterContext += " (weather boosted)";
 			}
 			this.encounter_context_message = displayEncounterContext;
-			this.emitChanges(
-				{
-					level: levelFinalContextLookup,
-				}
-			);
+			this.level = levelFinalContextLookup;
+			this.functionalHundoInfo = false;
 		},
 		toggleFunctionalHundoInfo: function (event) {
 			event.preventDefault();
@@ -113,7 +91,7 @@ Vue.component('pokemon-stat-controls', {
 			<span class="four_fifths">
 				<span>Pokémon:</span>
 				<select
-					v-model="pokemon.name"
+					v-model="name"
 				>
 					<option
 						v-for="(pokemon, pokemonName, index) in pokemonMap"
@@ -131,8 +109,8 @@ Vue.component('pokemon-stat-controls', {
 					>
 						<use href="#circle_button_base"
 							:class="{
-								common_levels_button_noselect: !pokemon.shadow,
-								common_levels_button_shadow: pokemon.shadow
+								common_levels_button_noselect: !shadow,
+								common_levels_button_shadow: shadow
 							}"
 						/>
 						<use href="#icon_shadow"/>
@@ -142,8 +120,8 @@ Vue.component('pokemon-stat-controls', {
 					>
 						<use href="#circle_button_base"
 						:class="{
-							common_levels_button_noselect: !pokemon.buddy,
-							common_levels_button_buddy: pokemon.buddy
+							common_levels_button_noselect: !buddy,
+							common_levels_button_buddy: buddy
 						}"
 							transform="translate(1.1,0)"
 						/>
@@ -158,10 +136,10 @@ Vue.component('pokemon-stat-controls', {
 				<label>
 					<span>
 						<span>
-							Level: {{pokemon.level}}
+							Level: {{level}}
 						</span>
 						<span
-							v-if="pokemon.buddy"
+							v-if="buddy"
 							class="common_levels_button_buddy"
 						>
 						<strong>
@@ -177,7 +155,7 @@ Vue.component('pokemon-stat-controls', {
 						min="1"
 						max="50"
 						step="0.5"
-						v-model.number="pokemon.level"
+						v-model.number="level"
 						@input="levelInputResets"
 					/>
 				</label>
@@ -325,7 +303,7 @@ Vue.component('pokemon-stat-controls', {
 				IVs:
 			</label>
 			<div
-			v-for="(iv, key, index) in pokemon.ivs"
+				v-for="(iv, key, index) in ivs"
 			>
 				<svg
 					viewBox="0.25 -0.75 21 1.75"
@@ -396,23 +374,44 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#iv_input_dividers"/>
 				</svg>
 				<input
+					v-if="key === 'attack'"
 					type="range"
 					style="width: 48%;"
 					min="0"
 					max="15"
 					step="1"
-					v-model.number="pokemon.ivs[key]"
+					v-model.number="attack"
+					@input="functionalHundoInfo = false"
+				/>
+				<input
+					v-if="key === 'defense'"
+					type="range"
+					style="width: 48%;"
+					min="0"
+					max="15"
+					step="1"
+					v-model.number="defense"
+					@input="functionalHundoInfo = false"
+				/>
+				<input
+					v-if="key === 'stamina'"
+					type="range"
+					style="width: 48%;"
+					min="0"
+					max="15"
+					step="1"
+					v-model.number="stamina"
 					@input="functionalHundoInfo = false"
 				/>
 			</div>
 			<div v-show="verboseOn">
 				<span>
-					{{pokemon.ivs.attack}}/{{pokemon.ivs.defense}}/{{pokemon.ivs.stamina}} = 
-					{{IVSum(pokemon.ivs)}}/45 = 
-					{{IVPercentage(pokemon.ivs)}}%
+					{{attack}}/{{defense}}/{{stamina}} = 
+					{{IVSum(ivs)}}/45 = 
+					{{IVPercentage(ivs)}}%
 				</span>
 				<span class="blocky">
-					<span v-if="IVPercentage(pokemon.ivs) >= 100">
+					<span v-if="IVPercentage(ivs) >= 100">
 						<strong> HUNDO!</strong>
 					</span>
 					<span v-if="functionalHundo(pokemon)">
@@ -428,7 +427,7 @@ Vue.component('pokemon-stat-controls', {
 					class="container_section_inner"
 				>
 					<p><strong>Functional hundo:</strong> At certain levels, a 15/15/14 Pok&eacute;mon will have the same stats at
-					as a hundo (15/15/15). This is be cause HP is always rounded down,
+					as a hundo (15/15/15). This is because HP is always rounded down,
 					and one HP is worth less than one IV point.</p>
 					<button
 						@click="toggleFunctionalHundoInfo"
