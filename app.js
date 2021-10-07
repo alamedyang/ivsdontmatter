@@ -1,6 +1,6 @@
 var app = new Vue({
 	el: '#stat-explorer',
-	imageListByDexNumber: imageListByDexNumber,
+	// imageListByDexNumber: imageListByDexNumber,
 	mixins: [
 		sprimkles,
 	],
