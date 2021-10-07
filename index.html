@@ -9,6 +9,16 @@
 </head>
 <body>
 	<div id="stat-explorer">
+		<!-- <div
+			v-for="(values,dexNumber) in $options.imageListByDexNumber"
+			:key="dexNumber"
+		>
+			<pokemon-image-display
+				v-for="image in values"
+				:pokemon-image="image"
+				:shiny="showShiny"
+			></pokemon-image-display>
+		</div> -->
 		<h1 class="title-flex">
 			<span>IVs Don't Matter </span>
 			<button
@@ -76,21 +86,19 @@
 			>
 				+
 			</button>
-			<label class="controls-checkbox hint">
-				<span>[Stat Grid:</span>
+			<label class="controls-checkbox hint blocky">
+				<span>Stat Grid:</span>
 				<input
 					type="checkbox"
 					v-model="statBarGridOn"
 				/>
-				<span>]</span>
 			</label>
-			<label class="controls-checkbox hint">
-				<span>[Verbose:</span>
+			<label class="controls-checkbox hint blocky">
+				<span>Verbose:</span>
 				<input
 					type="checkbox"
 					v-model="verboseOn"
 				/>
-				<span>]</span>
 			</label>
 		</h2>
 		<svg-defs></svg-defs>
@@ -112,12 +120,14 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script src="./image_list.js"></script>
 	<script src="./data.js"></script>
 	<script src="./mixins.js"></script>
 	<script src="./component-svg-defs.js"></script>
 	<script src="./component-stat-bar.js"></script>
 	<script src="./component-pokemon-stat-controls.js"></script>
 	<script src="./component-stat-explorer-pokemon.js"></script>
+	<script src="./component-pokemon-image-display.js"></script>
 	<script src="./app.js"></script>
 </body>
 </html>

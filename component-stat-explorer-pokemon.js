@@ -36,18 +36,20 @@ Vue.component('stat-explorer-pokemon', {
 	/* html */
 	`
 	<div class="stat-explorer-pokemon">
-		<h3>
+		<h3 class="making-room-for-image">
 			<span>{{name}}</span>
 			<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
 			<span class="hint">{{IVStarEval(ivs).stars}}*</span>
-			<label class="controls-checkbox hint">
-				<span>[Expand:</span>
+			<label class="controls-checkbox hint blocky">
+				<span>Expand:</span>
 				<input
 					type="checkbox"
 					v-model="expanded"
 				/>
-				<span>]</span>
+				<span></span>
 			</label>
+			<label class="controls-checkbox hint blocky">
+		</label>
 			<button
 				class="minus"
 				@click="$emit('delete')"
@@ -55,15 +57,25 @@ Vue.component('stat-explorer-pokemon', {
 				x
 			</button>
 		</h3>
-		<div>
-			<stat-bar
-				v-for="(stat, propertyName, statBarIndex) in ivs"
-				:key="propertyName"
-				:label="propertyName"
-				:stat-name="propertyName"
-				:pokemon="pokemon"
-				:stat-bar-grid-on="statBarGridOn"
-			></stat-bar>
+		<div class="bar-holder">
+			<div class="bar-image">
+				<pokemon-image-display
+					:dex-number="getBasePokemon(pokemon).number"
+					:pokemon-name="pokemon.name"
+				>
+				</pokemon-image-display>
+			</div>
+			<div class="making-room-for-image">
+				<stat-bar
+					v-for="(stat, propertyName, statBarIndex) in ivs"
+					:key="propertyName"
+					:label="propertyName"
+					:stat-name="propertyName"
+					:pokemon="pokemon"
+					:stat-bar-grid-on="statBarGridOn"
+				></stat-bar>
+			</div>
+		
 		</div>
 		<pokemon-stat-controls
 			v-if="expanded"
@@ -75,7 +87,4 @@ Vue.component('stat-explorer-pokemon', {
 		></pokemon-stat-controls>
 	</div>
 	`
-
-
-
 });

@@ -105,7 +105,7 @@ h1 {
 
 .hint {
 	color: #999;
-	font-size: 0.9em;
+	font-size: 0.8em;
 }
 
 .title-flex {
@@ -151,7 +151,7 @@ h1 {
 .container_section {
 	background-color: #ddd;
 	padding: 8px 12px;
-	margin: 8px 16px;
+	margin: 8px 0px;
 }
 .container_section_inner {
 	background-color: #fff;
@@ -196,7 +196,7 @@ h1 {
 
 .plus,
 .minus {
-	margin-left: 8px;
+	/* margin-left: 4px; */
 	padding: 2px 4px;
 	line-height: 0.75em;
 	font-size: inherit;
@@ -231,6 +231,24 @@ h1 {
 .iv_bar_width{
 	width: 48%;
 }
+
+.bar-holder {
+	position: relative;
+}
+.bar-image{
+	position: absolute;
+	top: -20px;
+	left: -5px;
+	width: 18%;
+}
+.making-room-for-image {
+	padding-left: 18%;
+}
+.pokemon-image-display {
+	max-width: 100%;
+	height: auto;
+}
+
 body {
 	font-family: sans-serif;
 	margin: 0;
@@ -240,10 +258,24 @@ body {
 	body {
 		padding: 24px;
 	}
+	.bar-image{
+		position: absolute;
+		width: 16%;
+	}
+	.making-room-for-image {
+		padding-left: 16%;
+	}
 }
 @media (min-width: 640px) {
 	body {
 		padding: 32px;
+	}
+	.bar-image{
+		position: absolute;
+		width: 14%;
+	}
+	.making-room-for-image {
+		padding-left: 14%;
 	}
 }
 

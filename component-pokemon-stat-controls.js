@@ -426,9 +426,9 @@ Vue.component('pokemon-stat-controls', {
 					"
 					class="container_section_inner"
 				>
-					<p><strong>Functional hundo:</strong> At certain levels, a 15/15/14 Pok&eacute;mon will have the same stats at
+					<p><strong>Functional hundo:</strong> At certain levels, a 15/15/14 Pok&eacute;mon will have the same stats
 					as a hundo (15/15/15). This is because HP is always rounded down,
-					and one HP is worth less than one IV point.</p>
+					and HP increases by less than 1 for each IV point.</p>
 					<button
 						@click="toggleFunctionalHundoInfo"
 						class="secret-button"

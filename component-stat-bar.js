@@ -21,8 +21,11 @@ Vue.component('stat-bar', {
 		},
 	},
 	computed: {
-		scale: function () {
+		blisseyScale: function () {
 			return (496 + 15) * 0.85;
+		},
+		widthScale: function () {
+			return 0.7;
 		},
 		ivBarHeight: function () {
 			return 10;
@@ -104,7 +107,7 @@ Vue.component('stat-bar', {
 	`
 	<div class="stat-bar">
 		<svg
-		:viewBox=" '0 -1 ' + scale + ' ' + (ivBarHeight + 2)"
+		:viewBox=" '0 -1 ' + blisseyScale*widthScale + ' ' + (ivBarHeight + 2)"
 		xmlns="http://www.w3.org/2000/svg"	
 		>
 		<defs>
@@ -132,10 +135,14 @@ Vue.component('stat-bar', {
 				/>
 			</g>
 		</defs>
+		<g
+			name="whole stat bar"
+			:transform="'scale(' + widthScale + ',1)'"
+		>
 			<g name="stat bar range">
 				<rect name="max gray bar"
 					class="stats_full_range"
-					:width="scale"
+					:width="blisseyScale"
 					:height="ivBarHeight"
 					x="0"
 					y="0"
@@ -182,8 +189,8 @@ Vue.component('stat-bar', {
 					y="0"
 				/>
 				<rect name="blue bar"
-				:class="overlapOrMainBlueClasses"
-				:width="((baseStat) * cpm)"
+					:class="overlapOrMainBlueClasses"
+					:width="((baseStat) * cpm)"
 					:height="ivBarHeight"
 					x="0"
 					y="0"
@@ -229,21 +236,22 @@ Vue.component('stat-bar', {
 					stroke-width="0.5"
 					stroke-linecap="square"
 				/>
-				<text
-					class="current_stat_label"
-					x="1.5"
-					y="8"
-					stroke="#36f"
-					stroke-width="1"
-				>
-				{{currentStatDisplay}}
-				</text>
-				<text
-					class="current_stat_label"
-					x="1.5"
-					y="8"
-					fill="#fff"
-				>
+			</g>
+			<text
+				class="current_stat_label"
+				x="1.5"
+				y="8"
+				stroke="#36f"
+				stroke-width="1"
+			>
+			{{currentStatDisplay}}
+			</text>
+			<text
+				class="current_stat_label"
+				x="1.5"
+				y="8"
+				fill="#fff"
+			>
 			{{currentStatDisplay}}
 			</text>
 		</svg>
