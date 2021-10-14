@@ -10,7 +10,7 @@ var app = new Vue({
 		infoShown: false,
 		statBarGridOn: false,
 		verboseOn: false,
-		statSummaryOn: true,
+		statSummaryOn: false,
 		pokemonList: [
 			{
 				name: 'Mewtwo',
