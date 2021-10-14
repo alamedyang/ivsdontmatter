@@ -6,9 +6,13 @@
 	max-width: 800px;
 }
 
-ul, p {
+ul, p, .pretend-p {
 	padding-bottom: 8px;
 	padding-top: 4px;
+}
+
+.pretend-p {
+	display: block;
 }
 
 ul {
@@ -184,6 +188,12 @@ h1 {
 .common_levels_button_shadow {
 	fill: #64a;
 }
+.shadow-text {
+	color: #64a;
+}
+.buddy-text {
+	color: #b44;
+}
 .common_levels_button_buddy {
 	fill: #b44;
 	color: #b44;
@@ -220,14 +230,18 @@ h1 {
 	position: absolute;
 	right: 0;
 }
+
+.one_fifth, .four_fifths {
+	vertical-align: top;
+	display: inline-block;
+}
 .one_fifth{
 	width: 19%;
-	display: inline-block;
 }
 .four_fifths{
 	width: 79%;
-	display: inline-block;
 }
+
 .iv_bar_width{
 	width: 48%;
 }

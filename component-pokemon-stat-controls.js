@@ -19,6 +19,8 @@ Vue.component('pokemon-stat-controls', {
 			isWeatherBoosted: false,
 			encounter_context_message: '',
 			functionalHundoInfo: false,
+			shadowInfo: false,
+			buddyInfo: false,
 		};
 	},
 	computed: {
@@ -40,10 +42,14 @@ Vue.component('pokemon-stat-controls', {
 	methods: {
 		clickShadowButton: function (clicky) {
 			clicky.preventDefault();
+			this.shadowInfo = false;
+			this.buddyInfo = false;
 			this.shadow = !this.shadow;
 		},
 		clickBuddyButton: function (clicky) {
 			clicky.preventDefault();
+			this.buddyInfo = false;
+			this.shadowInfo = false;
 			this.buddy = !this.buddy;
 		},
 		clickWeatherBoostButton: function (mouseDownEvent) {
@@ -54,6 +60,12 @@ Vue.component('pokemon-stat-controls', {
 			}else{
 				this.encounter_context_message = 'Normal weather';
 			}
+		},
+		disableInfoBoxes: function (mouseDownEvent) {
+			mouseDownEvent.preventDefault();
+			this.buddyInfo = false;
+			this.shadowInfo = false;
+			this.functionalHundoInfo = false;
 		},
 		setPokemonLevelFromEncounterType: function (rawEncounterContext) {
 			var weatheredEncounterContext = rawEncounterContext;
@@ -78,6 +90,16 @@ Vue.component('pokemon-stat-controls', {
 			event.preventDefault();
 			this.functionalHundoInfo = !this.functionalHundoInfo;
 		},
+		toggleBuddyInfo: function (event) {
+			event.preventDefault();
+			this.shadowInfo = false;
+			this.buddyInfo = !this.buddyInfo;
+		},
+		toggleShadowInfo: function (event) {
+			event.preventDefault();
+			this.buddyInfo = false;
+			this.shadowInfo = !this.shadowInfo;
+		},
 		levelInputResets: function () {
 			this.encounter_context_message = '';
 			this.functionalHundoInfo = false;
@@ -89,15 +111,36 @@ Vue.component('pokemon-stat-controls', {
 	<div>
 		<div class="container_section">
 			<span class="four_fifths">
-				<span>Pokémon:</span>
-				<select
-					v-model="name"
+				<span class="pretend-p newline-blocky">
+					<span>Pokémon:</span>
+					<select
+						v-model="name"
+						@change="disableInfoBoxes"
+					>
+						<option
+							v-for="(pokemon, pokemonName, index) in pokemonMap"
+							:key="pokemonName"
+						>{{pokemonName}}</option>
+					</select>
+				</span>
+				<span
+					v-show="verboseOn"
+					class="newline-blocky"
 				>
-					<option
-						v-for="(pokemon, pokemonName, index) in pokemonMap"
-						:key="pokemonName"
-					>{{pokemonName}}</option>
-				</select>
+					<span class="newline-blocky">
+						<span>Type(s):</span>
+						<span
+							:class="'type-' + basePokemon.types[0].toLocaleLowerCase()"
+						>{{basePokemon.types[0]}}</span><span v-if="basePokemon.types[1]">, </span>
+						<span
+							v-if="basePokemon.types[1]"
+							:class="'type-' + basePokemon.types[1].toLocaleLowerCase()"
+						>{{basePokemon.types[1] ? basePokemon.types[1] : ''}}</span>
+					</span>
+					<span class="newline-blocky pretend-p">
+						Base stats: {{basePokemon.attack}}, {{basePokemon.defense}}, {{basePokemon.stamina}}
+					</span>
+				</span>
 			</span>
 			<span class="one_fifth" name="pokemon toggles">
 				<svg
@@ -130,11 +173,56 @@ Vue.component('pokemon-stat-controls', {
 					</g>
 				</svg>
 			</span>
+			<span v-show="verboseOn">
+				<span class="newline-blocky" v-show="shadow">
+					<span>+</span>
+					<span class="shadow-text">shadow</span>
+					<span>boost</span>
+					<button class="hint secret-button"><em @click="toggleShadowInfo">What is this?</em></button>
+				</span>
+				<span class="newline-blocky" v-show="buddy">
+					<span>+</span>
+					<span class="buddy-text">best buddy</span>
+					<span>boost</span>
+					<button class="hint secret-button"><em @click="toggleBuddyInfo">What is this?</em></button>
+				</span>
+				<span
+					v-show="shadowInfo"
+					class="container_section_inner newline-blocky"
+				>
+					<span class="pretend-p"><strong>Shadow boost:</strong>
+						Shadow Pok&eacute;mon have +20% attack, but will also have -17% defense.
+						For raids, this is an enormous boon. For PVP, it depends.
+					</span>
+					<button
+						@click="toggleShadowInfo"
+						class="secret-button"
+					>
+						<strong class="hint">CLOSE</strong>
+					</button>
+				</span>
+				<span
+					v-show="buddyInfo"
+					class="container_section_inner newline-blocky"
+				>
+					<span class="pretend-p"><strong>Best buddy boost:</strong>
+						A best buddy's level is increased by 1 while it's your buddy.
+						It's therefore possible for a Pok&eacute;mon to be higher level
+						than the level cap.
+					</span>
+					<button
+						@click="toggleBuddyInfo"
+						class="secret-button"
+					>
+						<strong class="hint">CLOSE</strong>
+					</button>
+				</span>
+			</span>
 		</div>
 		<div class="container_section">
 			<div class="inputtydoo">
 				<label>
-					<span>
+					<span class="pretend-p">
 						<span>
 							Level: {{level}}
 						</span>
@@ -299,10 +387,10 @@ Vue.component('pokemon-stat-controls', {
 			</div>
 		</div>
 		<div class="container_section">
-			<label>
+			<span class="pretend-p">
 				<span>IVs </span>
 				<span class="hint">({{IVStarEval(ivs).stars}}*)</span>
-			</label>
+			</span>
 			<div
 				v-for="(iv, key, index) in ivs"
 			>
