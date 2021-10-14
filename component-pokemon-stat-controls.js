@@ -86,7 +86,7 @@ Vue.component('pokemon-stat-controls', {
 	template:
 	/* html */
 	`
-	<div class="controls">
+	<div>
 		<div class="container_section">
 			<span class="four_fifths">
 				<span>Pokémon:</span>
@@ -300,7 +300,8 @@ Vue.component('pokemon-stat-controls', {
 		</div>
 		<div class="container_section">
 			<label>
-				IVs:
+				<span>IVs </span>
+				<span class="hint">({{IVStarEval(ivs).stars}}*)</span>
 			</label>
 			<div
 				v-for="(iv, key, index) in ivs"
@@ -407,8 +408,8 @@ Vue.component('pokemon-stat-controls', {
 			<div v-show="verboseOn">
 				<span>
 					{{attack}}/{{defense}}/{{stamina}} = 
-					{{IVSum(ivs)}}/45 = 
-					{{IVPercentage(ivs)}}%
+					{{IVSum(ivs)}}/45 
+					({{IVPercentage(ivs)}}%)
 				</span>
 				<span class="blocky">
 					<span v-if="IVPercentage(ivs) >= 100">

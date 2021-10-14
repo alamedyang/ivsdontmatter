@@ -16,6 +16,10 @@ Vue.component('stat-explorer-pokemon', {
 			type: Boolean,
 			require: true,
 		},
+		statSummaryOn: {
+			type: Boolean,
+			require: true,
+		},
 		pokemonMap: {
 			type: Object,
 			require: true,
@@ -36,26 +40,28 @@ Vue.component('stat-explorer-pokemon', {
 	/* html */
 	`
 	<div class="stat-explorer-pokemon">
-		<h3 class="making-room-for-image">
+		<h3 class="making-room-for-image making-room-for-x">
 			<span>{{name}}</span>
-			<span class="hint">(CP: {{calculateCP(pokemon)}})</span>
-			<span class="hint">{{IVStarEval(ivs).stars}}*</span>
-			<label class="controls-checkbox hint blocky">
-				<span>Expand:</span>
-				<input
-					type="checkbox"
-					v-model="expanded"
-				/>
-				<span></span>
-			</label>
-			<label class="controls-checkbox hint blocky">
-		</label>
-			<button
-				class="minus"
-				@click="$emit('delete')"
-			>
-				x
-			</button>
+			<span class="hint">CP {{calculateCP(pokemon)}}</span>
+			<br v-show="statSummaryOn"/>
+			<span class="blocky">
+				<span class="hint" v-show="statSummaryOn">
+					({{ivs.attack}}/{{ivs.defense}}/{{ivs.stamina}} {{shadow ? 'Shadow' : ''}} @ Lv{{getPokemonLevel(pokemon)}})
+				</span>
+				<label class="controls-checkbox hint blocky">
+					<span id="expand-button">Edit:</span>
+					<input
+						type="checkbox"
+						v-model="expanded"
+					/>
+				</label>
+				<button
+					class="minus"
+					@click="$emit('delete')"
+				>
+					x
+				</button>
+			</span>
 		</h3>
 		<div class="bar-holder">
 			<div class="bar-image">

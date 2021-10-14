@@ -20,7 +20,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	padding: 0.4em 0;
+	padding: 0.5em 0 0.1em 0;
 }
 
 h1 {
@@ -97,7 +97,7 @@ h1 {
 	fill: #eee;
 }
 .stats_full_range_line {
-	stroke: #eee;
+	stroke: #fff;
 }
 .st0 {
 	fill: #fff;
@@ -116,6 +116,10 @@ h1 {
 	display: inline-block;
 }
 
+.newline-blocky {
+	display: block;
+}
+
 .minihint {
 	color: #999;
 	font-size: 0.5em;
@@ -128,7 +132,7 @@ h1 {
 .stat-bar {
 	background-color: #eee;
 	font-size: 0;
-	margin-bottom: 4px;
+	margin-bottom: 2px;
 }
 .stat-bar-progress,
 .stat-bar-progress-iv,
@@ -144,19 +148,15 @@ h1 {
 	background-color: #fcc;
 }
 
-.controls {
-	padding-bottom: 8px;
-}
-
 .container_section {
 	background-color: #ddd;
 	padding: 8px 12px;
-	margin: 8px 0px;
+	margin: 6px 0px;
 }
 .container_section_inner {
 	background-color: #fff;
 	padding: 8px 12px;
-	margin: 8px;
+	margin: 6px;
 }
 
 .inputtydoo {
@@ -240,6 +240,9 @@ h1 {
 	top: -20px;
 	left: -5px;
 	width: 18%;
+}
+.making-room-for-x {
+	padding-right: 1.5em;
 }
 .making-room-for-image {
 	padding-left: 18%;

@@ -118,7 +118,7 @@ Vue.component('stat-bar', {
 					y1="0"
 					x2="-50"
 					:y2="ivBarHeight"
-					stroke-width="1"
+					stroke-width="1.5"
 					stroke-linecap="butt"
 					opacity=".25"
 					stroke-dasharray="1,0.5"
@@ -129,7 +129,7 @@ Vue.component('stat-bar', {
 					y1="0"
 					x2="0"
 					:y2="ivBarHeight * 1"
-					stroke-width="1"
+					stroke-width="1.5"
 					stroke-linecap="square"
 					opacity=".75"
 				/>

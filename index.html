@@ -78,29 +78,29 @@
 				<strong class="hint">CLOSE</strong>
 			</button>
 		</div>
-		<h2>
-			<span>Pok&eacute;mon</span>
-			<button
-				class="plus"
-				@click="addPokemon"
-			>
-				+
-			</button>
-			<label class="controls-checkbox hint blocky">
+		<h4>
+			<label class="controls-checkbox blocky">
 				<span>Stat Grid:</span>
 				<input
 					type="checkbox"
 					v-model="statBarGridOn"
 				/>
 			</label>
-			<label class="controls-checkbox hint blocky">
-				<span>Verbose:</span>
+			<label class="controls-checkbox blocky">
+				<span id="verbose-mode">Stat Summary:</span>
+				<input
+					type="checkbox"
+					v-model="statSummaryOn"
+				/>
+			</label>
+			<label class="controls-checkbox blocky">
+				<span id="verbose-mode">Details:</span>
 				<input
 					type="checkbox"
 					v-model="verboseOn"
 				/>
 			</label>
-		</h2>
+		</h4>
 		<svg-defs></svg-defs>
 		<div>
 			<div class="pokemon-list">
@@ -112,12 +112,22 @@
 					:pokemon-map="pokemonMap"
 					:pokemon-list="pokemonList"
 					:verbose-on="verboseOn"
+					:stat-summary-on="statSummaryOn"
 					@update:pokemon="replacePokemonByIndex(pokemonIndex, $event)"
 					@delete="removePokemonByIndex(pokemonIndex)"
 				>
 				</stat-explorer-pokemon>
 			</div>
 		</div>
+		<h3 class="making-room-for-image">
+			<span>Add Pok&eacute;mon</span>
+			<button
+				class="plus"
+				@click="addPokemon"
+			>
+				+
+			</button>
+		</h3>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 	<script src="./image_list.js"></script>
