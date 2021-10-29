@@ -5,29 +5,34 @@ Vue.component('pokemon-image-display', {
 			type: Number,
 			required: true,
 		},
-		pokemonName: {
+		assetBundleValue: {
 			type: String,
-			required: true,
+			required: false,
+		},
+		assetBundleSuffix: {
+			type: String,
+			required: false,
+		},
+		shiny: {
+			type: Boolean,
+			required: false,
 		},
 	},
 	computed: {
 		path: function () {
 			var dexNumberAdjusted = (''+this.dexNumber).padStart(3,'0');
 			var variantNumber = '00';
-			if (this.pokemonName.includes('Alola')) {
-				variantNumber = '61';
-			}
-			if (this.pokemonName.includes('Galar')) {
-				variantNumber = '31';
+			if (this.assetBundleValue) {
+				variantNumber = this.assetBundleValue;
 			}
 			var fileName = 'pokemon_icon_' + dexNumberAdjusted + '_' + variantNumber + '.png';
-			if (this.pokemonName.includes('Mewtwo (Armored)')) {
-				fileName = 'pokemon_icon_pm0150_00_pgo_a.png';
+			if (this.assetBundleSuffix) {
+				fileName = 'pokemon_icon_' + this.assetBundleSuffix + '.png';
 			}
-			var path = this.$options.imagePrefix + fileName;
 			if (this.shiny) {
 				fileName = fileName.replace('.png','_shiny.png')
 			}
+			var path = this.$options.imagePrefix + fileName;
 			return path;
 		},
 	},
@@ -36,6 +41,7 @@ Vue.component('pokemon-image-display', {
 	`
 		<img
 			class="pokemon-image-display"
+			:title="path"
 			:src="path"
 		/>
 	`

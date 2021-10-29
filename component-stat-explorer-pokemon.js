@@ -58,16 +58,16 @@ Vue.component('stat-explorer-pokemon', {
 				<button
 					class="minus"
 					@click="$emit('delete')"
-				>
-					x
-				</button>
+				>x</button>
 			</span>
 		</h3>
 		<div class="bar-holder">
 			<div class="bar-image">
 				<pokemon-image-display
-					:dex-number="getBasePokemon(pokemon).number"
-					:pokemon-name="pokemon.name"
+					:dex-number="getSyntheticForm(pokemon).number"
+					:asset-bundle-suffix="getAssetBundleSuffix(pokemon.name,pokemon.form)"
+					:asset-bundle-value="getAssetBundleValue(pokemon.name,pokemon.form)"
+					:shiny="pokemon.shiny"
 				>
 				</pokemon-image-display>
 			</div>
@@ -90,6 +90,7 @@ Vue.component('stat-explorer-pokemon', {
 			:verbose-on="verboseOn"
 			@update:pokemon="$emit('update:pokemon', $event)"
 			@update:ivs="ivs = $event"
+			@open-species-modal="$emit('open-species-modal')"
 		></pokemon-stat-controls>
 	</div>
 	`

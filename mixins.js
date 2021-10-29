@@ -1,7 +1,17 @@
 var sprimkles = {
 	methods: {
-		getBasePokemon: function (pokemon) {
-			return pokemonMap[pokemon.name];
+		getSyntheticForm: function (pokemon) {
+			var name = pokemon.name;
+			var formName = pokemon.form || 'Normal';
+			var base = pokemonMapV2[name] || {forms:{}};
+			var form = base.forms[formName] || {};
+			var synthetic = Object.assign(
+				{},
+				base,
+				form
+			);
+			delete synthetic.forms;
+			return synthetic;
 		},
 		getPokemonLevel: function (pokemon) {
 			var level = pokemon.level;
@@ -17,7 +27,7 @@ var sprimkles = {
 			var currentLevel = this.getPokemonLevel(pokemon);
 			var cpm = this.lookupCPMFromLevel(currentLevel);
 			var staminaIV = pokemon.ivs.stamina;
-			var baseStamina = this.getBasePokemon(pokemon).stamina;
+			var baseStamina = this.getSyntheticForm(pokemon).stamina;
 			var currentHP = Math.floor( (baseStamina + staminaIV) * cpm );
 			var maxHP = Math.floor( (baseStamina + 15) * cpm );
 			if (
@@ -52,8 +62,24 @@ var sprimkles = {
 			var stars = starBreakPoints.find(getStarRating)
 			return stars;
 		},
+		getAssetBundleSuffix: function (selectedSpecies, selectedForm) {
+			if (pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleSuffix) {
+				var assetBundleSuffix =
+				pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleSuffix;
+			}
+			// console.log('assetBundleSuffix: ' + assetBundleSuffix);
+			return assetBundleSuffix;
+		},
+		getAssetBundleValue: function (selectedSpecies, selectedForm) {
+			var assetBundleValue = '00';
+			if (pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleValue) {
+				assetBundleValue = ''+pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleValue;
+			}
+			// console.log('assetBundleValue: ' + assetBundleValue);
+			return assetBundleValue;
+		},
 		calculateCP: function (pokemon) {
-			var basePokemon = this.getBasePokemon(pokemon);
+			var basePokemon = this.getSyntheticForm(pokemon);
 			var level = this.getPokemonLevel(pokemon);
 			var ivs = pokemon.ivs;
 			var cpm = this.lookupCPMFromLevel(level);
@@ -142,6 +168,7 @@ var pokemonMutationMixin = makeGenericPropObjectComputedPropertiesSetter(
 	'pokemon',
 	[
 		'name',
+		'form',
 		'id',
 		'level',
 		'ivs',
@@ -159,3 +186,7 @@ var ivsMutationMixin = makeGenericObjectComputedPropertiesSetter(
 		'stamina',
 	],
 );
+
+var jsonClone = function (object) {
+	return JSON.parse(JSON.stringify(object));
+};

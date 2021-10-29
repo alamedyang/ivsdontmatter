@@ -7,13 +7,22 @@ var app = new Vue({
 	data:{
 		level: 20,
 		pokemonMap,
+		pokemonMapV2,
+		showPokeModal: false,
 		infoShown: false,
 		statBarGridOn: false,
 		verboseOn: false,
 		statSummaryOn: false,
+		selectedPokemonIndex: null,
+		selectedPokemon: {
+			name: "Mewtwo",
+			form: "Normal",
+			shiny: false,
+		},
 		pokemonList: [
 			{
 				name: 'Mewtwo',
+				form: 'Normal',
 				id: Math.random(),
 				level: 20,
 				ivs: {
@@ -24,9 +33,11 @@ var app = new Vue({
 				expanded: true,
 				shadow: false,
 				buddy: false,
+				shiny: false,
 			},
 			{
 				name: 'Gengar',
+				form: 'Normal',
 				id: Math.random(),
 				level: 20,
 				ivs: {
@@ -37,9 +48,11 @@ var app = new Vue({
 				expanded: false,
 				shadow: false,
 				buddy: false,
+				shiny: false,
 			},
 			{
 				name: 'Magikarp',
+				form: 'Normal',
 				id: Math.random(),
 				level: 20,
 				ivs: {
@@ -50,9 +63,11 @@ var app = new Vue({
 				expanded: false,
 				shadow: false,
 				buddy: false,
+				shiny: false,
 			},
 			{
 				name: 'Blissey',
+				form: 'Normal',
 				id: Math.random(),
 				level: 20,
 				ivs: {
@@ -63,6 +78,7 @@ var app = new Vue({
 				expanded: false,
 				shadow: false,
 				buddy: false,
+				shiny: false,
 			},
 		],
 	},
@@ -92,5 +108,27 @@ var app = new Vue({
 			event.preventDefault();
 			this.infoShown = !this.infoShown;
 		},
+		openSpeciesModal: function (pokemonIndex) {
+			var pokemon = this.pokemonList[pokemonIndex];
+			this.selectedPokemonIndex = pokemonIndex;
+			this.selectedPokemon = jsonClone(pokemon);
+			this.showPokeModal = true;
+		},
+		cancelPokeModal: function () {
+			this.showPokeModal = false;
+		},
+		selectPokeModal: function () {
+			// do the thing where we save
+			var pokemonIndex = this.selectedPokemonIndex;
+			var pokemon = this.pokemonList[pokemonIndex];
+			Object.assign(
+				pokemon,
+				this.selectedPokemon
+			);
+			this.showPokeModal = false;
+		},
+		resetSelectedPokemonForm: function () {
+			this.selectedPokemon.form = "Normal";
+		}
 	},
 });

@@ -1,9 +1,22 @@
+html, body {
+	height: 100%;
+}
+
 * {
 	font-family: inherit;
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0 auto;
+}
+
+body {
+	font-family: sans-serif;
+	margin: 0;
+}
+
+.container {
 	max-width: 800px;
+	padding: 16px;
 }
 
 ul, p, .pretend-p {
@@ -29,6 +42,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-weight: 900;
+}
+
+.flat {
+	padding: 0;
 }
 
 .secret-button {
@@ -266,15 +283,35 @@ h1 {
 	height: auto;
 }
 
-body {
-	font-family: sans-serif;
-	margin: 0;
-	padding: 16px;
+.modal-showing {
+	position: relative;
+	overflow: hidden;
+	min-height: 100%;
+	max-height: 100%;
 }
+.modal-brackground-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0, 0.5);
+	max-height: 100%;
+}
+.modal-contents {
+	background-color: #fff;
+	padding: 32px;
+	max-height: 100%;
+	overflow-y: auto;
+	box-shadow: 0 2px 16px rgba(0,0,0, 0.75);
+	border-radius: 16px;
+}
+
 @media (min-width: 480px) {
-	body {
+	.container {
 		padding: 24px;
 	}
+
 	.bar-image{
 		position: absolute;
 		width: 16%;
@@ -284,7 +321,7 @@ body {
 	}
 }
 @media (min-width: 640px) {
-	body {
+	.container {
 		padding: 32px;
 	}
 	.bar-image{

@@ -102,6 +102,203 @@ var levelMap = {
 	"50.5": 0.84279999
 };
 
+var pokemonMapV2 = {
+	'Gengar': {
+		number: 94,
+		forms: {
+			'Normal': {
+				types: [
+					'Ghost',
+					'Poison',
+				],
+				attack: 261,
+				defense: 149,
+				stamina: 155,
+			},
+			'Costume 2020': {
+				types: [
+					'Ghost',
+					'Poison',
+				],
+				attack: 261,
+				defense: 149,
+				stamina: 155,
+				assetBundleValue: 26,
+				isCostume: true,
+			},
+		},
+	},
+	'Mr. Mime': {
+		number: 122,
+		forms: {
+			'Normal': {
+				types: [
+					'Psychic',
+					'Fairy',
+				],
+				attack: 192,
+				defense: 205,
+				stamina: 120,
+			},
+			'Galarian': {
+				types: [
+					'Ice',
+					'Psychic',
+				],
+				attack: 183,
+				defense: 169,
+				stamina: 127,
+				assetBundleValue: 31,
+			},
+		},
+	},
+	'Magikarp': {
+		number: 129,
+		forms: {
+			'Normal': {
+				types: [
+					'Water',
+				],
+				attack: 29,
+				defense: 85,
+				stamina: 85,
+			},
+		},
+	},
+	'Snorlax': {
+		number: 143,
+		forms: {
+			'Normal': {
+				types: [
+					'Normal',
+				],
+				attack: 190,
+				defense: 169,
+				stamina: 330,
+			},
+		},
+	},
+	'Dragonite': {
+		number: 149,
+		forms: {
+			'Normal': {
+				types: [
+					'Dragon',
+					'Flying',
+				],
+				attack: 209,
+				defense: 263,
+				stamina: 198,
+			},
+		},
+	},
+	'Mewtwo': {
+		number: 150,
+		forms: {
+			'Normal': {
+				types: [
+					'Psychic',
+				],
+				attack: 300,
+				defense: 182,
+				stamina: 214,
+			},
+			'Armored': {
+				types: [
+					'Psychic',
+				],
+				attack: 182,
+				defense: 278,
+				stamina: 214,
+				assetBundleSuffix: 'pm0150_00_pgo_a',
+				isCostume: true,
+			},
+		},
+	},
+	'Blissey': {
+		number: 242,
+		forms: {
+			'Normal': {
+				types: [
+					'Normal',
+				],
+				attack: 129,
+				defense: 169,
+				stamina: 496,
+			},
+		},
+	},
+	'Rayquaza': {
+		number: 384,
+		forms: {
+			'Normal': {
+				types: [
+					'Dragon',
+					'Flying',
+				],
+				attack: 284,
+				defense: 170,
+				stamina: 213,
+			},
+		},
+	},
+	'Deoxys': {
+		number: 386,
+		forms: {
+			'Normal': {
+				types: [
+					'Psychic',
+				],
+				attack: 345,
+				defense: 115,
+				stamina: 137,
+				assetBundleValue: 11,
+			},
+			'Attack': {
+				types: [
+					'Psychic',
+				],
+				attack: 414,
+				defense: 46,
+				stamina: 137,
+				assetBundleValue: 12,
+			},
+			'Defense': {
+				types: [
+					'Psychic',
+				],
+				attack: 144,
+				defense: 330,
+				stamina: 137,
+				assetBundleValue: 13,
+			},
+			'Speed': {
+				types: [
+					'Psychic',
+				],
+				attack: 230,
+				defense: 218,
+				stamina: 137,
+				assetBundleValue: 14,
+			},
+		},
+	},
+	'Garchomp': {
+		number: 445,
+		forms: {
+			'Normal': {
+				types: [
+					'Dragon',
+					'Ground',
+				],
+				attack: 261,
+				defense: 193,
+				stamina: 239,
+			},
+		},
+	},
+}
+
 var pokemonMap = {
 	'Mewtwo': {
 		number: 150,

@@ -34,7 +34,7 @@ Vue.component('stat-bar', {
 			return this.pokemon.ivs[this.statName];
 		},
 		basePokemon: function () {
-			return this.getBasePokemon(this.pokemon);
+			return this.getSyntheticForm(this.pokemon);
 		},
 		baseStat: function () {
 			return this.basePokemon[this.statName];

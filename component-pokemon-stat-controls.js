@@ -25,7 +25,7 @@ Vue.component('pokemon-stat-controls', {
 	},
 	computed: {
 		basePokemon: function () {
-			return this.getBasePokemon(this.pokemon);
+			return this.getSyntheticForm(this.pokemon);
 		},
 		weatherBoostIcon: function () {
 			var uniqueIconMap = {};
@@ -111,18 +111,12 @@ Vue.component('pokemon-stat-controls', {
 	<div>
 		<div class="container_section">
 			<span class="four_fifths">
-				<span class="pretend-p newline-blocky">
-					<span>Pokémon:</span>
-					<select
-						v-model="name"
-						@change="disableInfoBoxes"
-					>
-						<option
-							v-for="(pokemon, pokemonName, index) in pokemonMap"
-							:key="pokemonName"
-						>{{pokemonName}}</option>
-					</select>
-				</span>
+				<span>Pokémon: </span>
+				<button
+					@click="$emit('open-species-modal')"
+				>
+					{{pokemon.name}}
+				</button>
 				<span
 					v-show="verboseOn"
 					class="newline-blocky"
