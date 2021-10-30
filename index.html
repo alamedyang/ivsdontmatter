@@ -132,41 +132,6 @@
 		>
 			<div class="container">
 				<div class="modal-contents">
-					<div>
-						<label class="pretend-p blocky">
-							<span>Species:</span>
-							<select
-								v-model="selectedPokemon.name"
-								@change="resetSelectedPokemonForm"
-							>
-								<option
-									v-for="(item, pokemonName, index) in pokemonMapV2"
-									:key="item.number"
-								>{{pokemonName}}</option>
-							</select>
-						</label>
-						<label
-							class="pretend-p blocky controls-checkbox"
-							v-if="Object.keys(pokemonMapV2[selectedPokemon.name].forms).length > 1"
-						>
-							<span>Form:</span>
-							<select
-								v-model="selectedPokemon.form"
-							>
-								<option
-									v-for="(item, formName, index) in pokemonMapV2[selectedPokemon.name].forms"
-									:key="formName"
-								>{{formName}}</option>
-							</select>
-						</label>
-						<label class="controls-checkbox blocky">
-							<span>Shiny:</span>
-							<input
-								type="checkbox"
-								v-model="selectedPokemon.shiny"
-							/>
-						</label>
-					</div>
 					<div class="species_select-image">
 						<pokemon-image-display
 							:dex-number="pokemonMapV2[selectedPokemon.name].number"
@@ -231,7 +196,42 @@
 							:shiny="showShiny"
 						></pokemon-image-display>
 					</div> -->
-					<div class="center">
+					<div>
+						<label class="pretend-p blocky">
+							<span>Species:</span>
+							<select
+								v-model="selectedPokemon.name"
+								@change="resetSelectedPokemonForm"
+							>
+								<option
+									v-for="(item, pokemonName, index) in pokemonMapV2"
+									:key="item.number"
+								>{{pokemonName}}</option>
+							</select>
+						</label>
+						<label
+							class="pretend-p blocky controls-checkbox"
+							v-if="Object.keys(pokemonMapV2[selectedPokemon.name].forms).length > 1"
+						>
+							<span>Form:</span>
+							<select
+								v-model="selectedPokemon.form"
+							>
+								<option
+									v-for="(item, formName, index) in pokemonMapV2[selectedPokemon.name].forms"
+									:key="formName"
+								>{{formName}}</option>
+							</select>
+						</label>
+						<label class="controls-checkbox blocky">
+							<span>Shiny:</span>
+							<input
+								type="checkbox"
+								v-model="selectedPokemon.shiny"
+							/>
+						</label>
+					</div>
+					<div class="spacious-top center">
 						<span class="one_fifth">
 							<svg
 								viewbox="0 0 3 1"

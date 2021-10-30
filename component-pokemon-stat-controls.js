@@ -122,7 +122,9 @@ Vue.component('pokemon-stat-controls', {
 					class="real-button"
 					@click="$emit('open-species-modal')"
 				>
-					{{pokemon.name}}
+					{{pokemon.form !=='Normal' ?
+					pokemon.name + ' (' + pokemon.form + ')' :
+					pokemon.name}}
 				</button>
 				<span class="newline-blocky pretend-p" v-show="shadow && verboseOn">
 					<span>+</span>

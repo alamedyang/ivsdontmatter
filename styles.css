@@ -330,6 +330,10 @@ h1 {
 	text-align: center;
 }
 
+.spacious-top {
+	padding-top: 12px;
+}
+
 .modal-showing {
 	position: relative;
 	overflow: hidden;
@@ -369,6 +373,9 @@ h1 {
 	.modal-contents {
 		padding: 24px;
 	}
+	.spacious-top {
+		padding-top: 20px;
+	}
 }
 @media (min-width: 640px) {
 	.container {
@@ -383,6 +390,9 @@ h1 {
 	}
 	.modal-contents {
 		padding: 32px;
+	}
+	.spacious-top {
+		padding-top: 28px;
 	}
 }
 
