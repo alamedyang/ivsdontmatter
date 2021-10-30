@@ -159,7 +159,15 @@
 								>{{formName}}</option>
 							</select>
 						</label>
-						<label class="blocky controls-checkbox">
+					</div>
+					<div class="species_select-image">
+						<pokemon-image-display
+							:dex-number="pokemonMapV2[selectedPokemon.name].number"
+							:asset-bundle-suffix="getAssetBundleSuffix(selectedPokemon.name,selectedPokemon.form)"
+							:asset-bundle-value="getAssetBundleValue(selectedPokemon.name,selectedPokemon.form)"
+							:shiny="selectedPokemon.shiny"
+						></pokemon-image-display>
+						<label class="pretend-p">
 							<span>Shiny:</span>
 							<input
 								type="checkbox"
@@ -167,17 +175,22 @@
 							/>
 						</label>
 					</div>
-					<pokemon-image-display
-						:dex-number="pokemonMapV2[selectedPokemon.name].number"
-						:asset-bundle-suffix="getAssetBundleSuffix(selectedPokemon.name,selectedPokemon.form)"
-						:asset-bundle-value="getAssetBundleValue(selectedPokemon.name,selectedPokemon.form)"
-						:shiny="selectedPokemon.shiny"
-					></pokemon-image-display>
-					<p>
-						Base Stats:<br />
-						Attack: {{getSyntheticForm(selectedPokemon).attack}}<br />
-						Defense: {{getSyntheticForm(selectedPokemon).defense}}<br />
-						Stamina: {{getSyntheticForm(selectedPokemon).stamina}}
+					<p class="species_select-info">
+						<span class="pretend-p">
+							<span>Type(s):</span>
+							<span
+								:class="'type-' + getSyntheticForm(selectedPokemon).types[0].toLocaleLowerCase()"
+							>{{getSyntheticForm(selectedPokemon).types[0]}}</span><span v-if="getSyntheticForm(selectedPokemon).types[1]">, </span>
+							<span
+								v-if="getSyntheticForm(selectedPokemon).types[1]"
+								:class="'type-' + getSyntheticForm(selectedPokemon).types[1].toLocaleLowerCase()"
+							>{{getSyntheticForm(selectedPokemon).types[1] ? getSyntheticForm(selectedPokemon).types[1] : ''}}</span>
+						</span>
+						<span class="pretend-p">
+							Base Attack: {{getSyntheticForm(selectedPokemon).attack}}<br />
+							Base Defense: {{getSyntheticForm(selectedPokemon).defense}}<br />
+							Base Stamina: {{getSyntheticForm(selectedPokemon).stamina}}
+						</span>
 					</p>
 					<!-- <div
 						v-for="(values,dexNumber) in $options.imageListByDexNumber"
@@ -189,13 +202,33 @@
 							:shiny="showShiny"
 						></pokemon-image-display>
 					</div> -->
-					<div>
-						<button
-							@click="cancelPokeModal"
-						>Cancel</button>
-						<button
-							@click="selectPokeModal"
-						>Select</button>
+					<div class="center">
+						<span class="one_fifth">
+							<svg
+								viewbox="0 0 3 1"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<g name="no button"
+									cursor="pointer"
+									@mousedown="cancelPokeModal"
+								>
+									<use href="#rounded_rect_button_base"
+										class="button-no"
+									/>
+									<use href="#icon_x"/>
+								</g>
+									<g name="enter button"
+										cursor="pointer"
+										@mousedown="selectPokeModal"
+										transform="translate(2,0)"
+									>
+									<use href="#rounded_rect_button_base"
+										class="button-yes"
+									/>
+									<use href="#icon_check"/>
+								</g>
+							</svg>
+						</span>
 					</div>
 				</div>
 			</div>

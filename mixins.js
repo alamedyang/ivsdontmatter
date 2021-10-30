@@ -175,6 +175,7 @@ var pokemonMutationMixin = makeGenericPropObjectComputedPropertiesSetter(
 		'expanded',
 		'shadow',
 		'buddy',
+		'shiny',
 	],
 );
 

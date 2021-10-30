@@ -40,6 +40,12 @@ Vue.component('pokemon-stat-controls', {
 		},
 	},
 	methods: {
+		clickShinyButton: function (clicky) {
+			clicky.preventDefault();
+			this.shadowInfo = false;
+			this.buddyInfo = false;
+			this.shiny = !this.shiny;
+		},
 		clickShadowButton: function (clicky) {
 			clicky.preventDefault();
 			this.shadowInfo = false;
@@ -110,38 +116,48 @@ Vue.component('pokemon-stat-controls', {
 	`
 	<div>
 		<div class="container_section">
-			<span class="four_fifths">
+			<span class="two_thirds">
 				<span>Pokémon: </span>
 				<button
+					class="real-button"
 					@click="$emit('open-species-modal')"
 				>
 					{{pokemon.name}}
 				</button>
-				<span
-					v-show="verboseOn"
-					class="newline-blocky"
-				>
-					<span class="newline-blocky">
-						<span>Type(s):</span>
-						<span
-							:class="'type-' + basePokemon.types[0].toLocaleLowerCase()"
-						>{{basePokemon.types[0]}}</span><span v-if="basePokemon.types[1]">, </span>
-						<span
-							v-if="basePokemon.types[1]"
-							:class="'type-' + basePokemon.types[1].toLocaleLowerCase()"
-						>{{basePokemon.types[1] ? basePokemon.types[1] : ''}}</span>
-					</span>
-					<span class="newline-blocky pretend-p">
-						Base stats: {{basePokemon.attack}}, {{basePokemon.defense}}, {{basePokemon.stamina}}
-					</span>
+				<span class="newline-blocky pretend-p" v-show="shadow && verboseOn">
+					<span>+</span>
+					<span class="shadow-text">shadow</span>
+					<span>boost</span>
+					<button class="hint secret-button"><em @click="toggleShadowInfo">What is this?</em></button>
+				</span>
+				<span class="newline-blocky pretend-p" v-show="buddy && verboseOn">
+					<span>+</span>
+					<span class="buddy-text">best buddy</span>
+					<span>boost</span>
+					<button class="hint secret-button"><em @click="toggleBuddyInfo">What is this?</em></button>
 				</span>
 			</span>
-			<span class="one_fifth" name="pokemon toggles">
+			<span class="one_third" name="pokemon toggles">
 				<svg
-					viewBox="0 0 2.1 1"
-					xmlns="http://www.w3.org/2000/svg"	
+					viewBox="-1.1 0 3.2 1"
+					xmlns="http://www.w3.org/2000/svg"
 				>
+					<g name="shiny toggle"
+						cursor="pointer"
+						@mousedown="clickShinyButton($event)"
+					>
+						<use href="#circle_button_base"
+						:class="{
+							common_levels_button_noselect: !shiny,
+							common_levels_button_shiny: shiny
+						}"
+							transform="translate(-1.1,0)"
+						/>
+						<use href="#icon_shiny"
+						transform="translate(-1.1,0)"/>
+					</g>
 					<g name="shadow toggle"
+						cursor="pointer"
 						@mousedown="clickShadowButton($event)"
 					>
 						<use href="#circle_button_base"
@@ -153,6 +169,7 @@ Vue.component('pokemon-stat-controls', {
 						<use href="#icon_shadow"/>
 					</g>
 					<g name="buddy toggle"
+						cursor="pointer"
 						@mousedown="clickBuddyButton($event)"
 					>
 						<use href="#circle_button_base"
@@ -168,18 +185,6 @@ Vue.component('pokemon-stat-controls', {
 				</svg>
 			</span>
 			<span v-show="verboseOn">
-				<span class="newline-blocky" v-show="shadow">
-					<span>+</span>
-					<span class="shadow-text">shadow</span>
-					<span>boost</span>
-					<button class="hint secret-button"><em @click="toggleShadowInfo">What is this?</em></button>
-				</span>
-				<span class="newline-blocky" v-show="buddy">
-					<span>+</span>
-					<span class="buddy-text">best buddy</span>
-					<span>boost</span>
-					<button class="hint secret-button"><em @click="toggleBuddyInfo">What is this?</em></button>
-				</span>
 				<span
 					v-show="shadowInfo"
 					class="container_section_inner newline-blocky"
@@ -251,6 +256,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#circle_button_base" />
 				</clipPath>
 				<g name="WB button"
+					cursor="pointer"
 					clip-path="url(#aaaaaaaaa)"
 					transform="translate(-1.1,0)"
 					@mousedown="clickWeatherBoostButton"
@@ -301,6 +307,7 @@ Vue.component('pokemon-stat-controls', {
 					/>
 				</g>
 				<g id="encounter_context-shadow-button"
+					cursor="pointer"
 					transform="translate(0,0)"
 					@click="setPokemonLevelFromEncounterType('Shadow')"
 				>
@@ -313,6 +320,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#icon_shadow"/>
 				</g>
 				<g id="encounter_context-research-button"
+					cursor="pointer"
 					transform="translate(1.1,0)"
 					@click="setPokemonLevelFromEncounterType('Research')"
 				>
@@ -322,6 +330,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#icon_research"/>
 				</g>
 				<g id="encounter_context-egg-button"
+					cursor="pointer"
 					transform="translate(2.2,0)"
 					@click="setPokemonLevelFromEncounterType('Egg')"
 				>
@@ -331,6 +340,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#icon_egg"/>
 				</g>
 				<g id="encounter_context-raid-button"
+					cursor="pointer"
 					transform="translate(3.3,0)"
 					@click="setPokemonLevelFromEncounterType('Raid')"
 				>
@@ -343,6 +353,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#icon_raid"/>
 				</g>
 				<g id="encounter_context-wild-button"
+					cursor="pointer"
 					transform="translate(4.4,0)"
 					@click="setPokemonLevelFromEncounterType('Wild Max')"
 				>
@@ -355,6 +366,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#icon_wild"/>
 				</g>
 				<g id="encounter_context-max-button"
+					cursor="pointer"
 					transform="translate(5.5,0)"
 					@click="setPokemonLevelFromEncounterType('Maxed')"
 				>
@@ -364,6 +376,7 @@ Vue.component('pokemon-stat-controls', {
 					<use href="#icon_max"/>
 				</g>
 				<g id="encounter_context-max_xl-button"
+					cursor="pointer"
 					transform="translate(6.6,0)"
 					@click="setPokemonLevelFromEncounterType('Maxed (XL)')"
 				>

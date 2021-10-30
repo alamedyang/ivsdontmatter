@@ -123,6 +123,28 @@ Vue.component('svg-defs', {
 					s2.36,0.15,3.93-0.45c1.57-0.6,3.82-2.39,3.82-2.39l3.07,2.86c0,0,0.97-0.02,1.05-0.54c0.07-0.52,0-5.54,0-5.54l0.9-1.2
 					c0,0,2.02,4.49,2.02,4.79S46.23,54.17,42.6,55.96z"/>
 			</g>
+			<g id="icon_x" transform="scale(0.013888888888889)">
+				<line class="icon_lines-fat" x1="20.9" y1="20.9" x2="51.1" y2="51.1"/>
+				<line class="icon_lines-fat" x1="20.9" y1="51.1" x2="51.1" y2="20.9"/>
+			</g>
+			<g id="icon_check" transform="scale(0.013888888888889)">
+				<polyline class="icon_lines-fat" points="15.6,34.5 29.4,48.3 56.4,21.3 "/>
+			</g>
+			<g id="icon_plus" transform="scale(0.013888888888889)">
+				<line class="icon_lines-fat" x1="18.2" y1="36" x2="53.8" y2="36"/>
+				<line class="icon_lines-fat" x1="36" y1="53.8" x2="36" y2="18.2"/>
+			</g>
+			<g id="icon_edit" transform="scale(0.013888888888889)">
+				<path class="st0" d="M57.8,14.9c-1.8-1.8-4.8-1.8-6.6,0L29.6,36.5l-3,9.6l9.6-3l21.6-21.6C59.7,19.7,59.7,16.7,57.8,14.9z"/>
+				<line class="st0" x1="37.3" y1="42.1" x2="30.7" y2="35.5"/>
+				<line class="st0" x1="57.1" y1="22.3" x2="50.5" y2="15.7"/>
+				<line class="st0" x1="53.6" y1="25.8" x2="47" y2="19.2"/>
+			</g>
+			<g id="icon_shiny" transform="scale(0.013888888888889)">
+				<polygon class="st0" points="49.2,25.6 52.5,32.7 59.7,36 52.5,39.3 49.2,46.5 45.9,39.3 38.7,36 45.9,32.7 	"/>
+				<polygon class="st0" points="26.2,14 29.5,21.2 36.7,24.4 29.5,27.7 26.2,34.9 22.9,27.7 15.7,24.4 22.9,21.2 	"/>
+				<polygon class="st0" points="32,37.1 35.3,44.3 42.5,47.6 35.3,50.8 32,58 28.7,50.8 21.5,47.6 28.7,44.3 	"/>
+			</g>
 			<g id="icon_buddy" transform="scale(0.013888888888889)">
 				<circle class="st0" cx="40" cy="35.18" r="1.49"/>
 				<circle class="st0" cx="31.08" cy="31.23" r="1.49"/>

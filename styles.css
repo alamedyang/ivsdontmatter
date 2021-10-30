@@ -53,6 +53,14 @@ h1 {
 	border: none;
 	cursor: pointer;
 }
+.real-button {
+	padding: 3px 5px;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	border-width: 1px;
+	border-color: #aaa;
+	border-style: solid;
+}
 
 .iv_input_label {
 	font-size: 1.25px;
@@ -215,11 +223,21 @@ h1 {
 	fill: #b44;
 	color: #b44;
 }
+.common_levels_button_shiny {
+	fill: #db0;
+	color: #db0;
+}
 .right_just {
 	width: 20%;
 	display: inline-block;
 	justify-content: right; 
  }
+
+ .icon_lines-fat {
+	stroke: #fff;
+	stroke-width: 5;
+	fill: none;
+}
 
 .plus,
 .minus {
@@ -231,6 +249,13 @@ h1 {
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
+}
+
+.button-no {
+	fill: rgb(206, 40, 40);
+}
+.button-yes {
+	fill: rgb(20, 206, 156);
 }
 
 .minus {
@@ -248,15 +273,34 @@ h1 {
 	right: 0;
 }
 
-.one_fifth, .four_fifths {
+.species_select-image, .species_select-info {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.species_select-image {
+	width: 30%
+}
+
+.species_select-info {
+	width: 68%
+}
+
+.one_third, .two_thirds, .one_fifth, .one_tenth {
 	vertical-align: top;
 	display: inline-block;
+}
+.one_tenth{
+	width: 9%;
 }
 .one_fifth{
 	width: 19%;
 }
-.four_fifths{
-	width: 79%;
+.one_third{
+	width: 32%;
+}
+.two_thirds{
+	width: 65%;
 }
 
 .iv_bar_width{
@@ -281,6 +325,9 @@ h1 {
 .pokemon-image-display {
 	max-width: 100%;
 	height: auto;
+}
+.center {
+	text-align: center;
 }
 
 .modal-showing {
