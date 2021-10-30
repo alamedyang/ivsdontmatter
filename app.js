@@ -93,6 +93,7 @@ var app = new Vue({
 		addPokemon: function () {
 			this.pokemonList.push({
 				name: 'Blissey',
+				form: 'Normal',
 				id: Math.random(),
 				level: 20,
 				ivs: {
@@ -102,6 +103,8 @@ var app = new Vue({
 				},
 				expanded: false,
 				shadow: false,
+				buddy: false,
+				shiny: false,
 			});
 		},
 		toggleShowInfo: function (event) {
