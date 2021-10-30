@@ -159,6 +159,13 @@
 								>{{formName}}</option>
 							</select>
 						</label>
+						<label class="controls-checkbox blocky">
+							<span>Shiny:</span>
+							<input
+								type="checkbox"
+								v-model="selectedPokemon.shiny"
+							/>
+						</label>
 					</div>
 					<div class="species_select-image">
 						<pokemon-image-display
@@ -167,15 +174,11 @@
 							:asset-bundle-value="getAssetBundleValue(selectedPokemon.name,selectedPokemon.form)"
 							:shiny="selectedPokemon.shiny"
 						></pokemon-image-display>
-						<label class="pretend-p">
-							<span>Shiny:</span>
-							<input
-								type="checkbox"
-								v-model="selectedPokemon.shiny"
-							/>
-						</label>
 					</div>
 					<p class="species_select-info">
+						<span class="pretend-p">
+							#{{getSyntheticForm(selectedPokemon).number}}
+						</span>
 						<span class="pretend-p">
 							<span>Type(s):</span>
 							<span
@@ -191,6 +194,32 @@
 							Base Defense: {{getSyntheticForm(selectedPokemon).defense}}<br />
 							Base Stamina: {{getSyntheticForm(selectedPokemon).stamina}}
 						</span>
+						<svg
+							viewbox="0 0 500 78"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<rect name="attack base"
+								:width="getSyntheticForm(selectedPokemon).attack"
+								height="20"
+								x="0"
+								y="0"
+								fill="#47f"
+							/>
+							<rect name="defense base"
+								:width="getSyntheticForm(selectedPokemon).defense"
+								height="20"
+								x="0"
+								y="26"
+								fill="#47f"
+							/>
+							<rect name="stamina base"
+								:width="getSyntheticForm(selectedPokemon).stamina"
+								height="20"
+								x="0"
+								y="52"
+								fill="#47f"
+							/>
+						</svg>
 					</p>
 					<!-- <div
 						v-for="(values,dexNumber) in $options.imageListByDexNumber"

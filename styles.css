@@ -279,11 +279,11 @@ h1 {
 }
 
 .species_select-image {
-	width: 30%
+	width: 40%;
 }
 
 .species_select-info {
-	width: 68%
+	width: 58%;
 }
 
 .one_third, .two_thirds, .one_fifth, .one_tenth {
@@ -347,7 +347,7 @@ h1 {
 }
 .modal-contents {
 	background-color: #fff;
-	padding: 32px;
+	padding: 16px;
 	max-height: 100%;
 	overflow-y: auto;
 	box-shadow: 0 2px 16px rgba(0,0,0, 0.75);
@@ -366,6 +366,9 @@ h1 {
 	.making-room-for-image {
 		padding-left: 16%;
 	}
+	.modal-contents {
+		padding: 24px;
+	}
 }
 @media (min-width: 640px) {
 	.container {
@@ -377,6 +380,9 @@ h1 {
 	}
 	.making-room-for-image {
 		padding-left: 14%;
+	}
+	.modal-contents {
+		padding: 32px;
 	}
 }
 
