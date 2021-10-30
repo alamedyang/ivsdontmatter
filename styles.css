@@ -216,6 +216,21 @@ h1 {
 .shadow-text {
 	color: #64a;
 }
+
+.pokemon_image_shadow_flame {
+	fill: rgb(165, 114, 216);
+}
+
+.pokemon_image_shiny {
+	fill: rgb(39, 53, 70);
+}
+.pokemon_image_icon_outline {
+	stroke: #fff;
+	stroke-width: 4px;
+	stroke-linejoin: round;
+	stroke-opacity: 0.9;
+}
+
 .buddy-text {
 	color: #b44;
 }
@@ -411,4 +426,25 @@ h1 {
 	}
 }
 
+.outline{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+.dunno{fill:url(#SVGID_1_);}
+.just{fill:url(#SVGID_2_);}
+.incase{fill:url(#SVGID_3_);}
+.st4{fill:url(#SVGID_4_);}
+.st5{fill:url(#SVGID_5_);}
+.st6{fill:url(#SVGID_6_);}
+.st7{fill:url(#SVGID_7_);}
+.st8{fill:url(#SVGID_8_);}
+.st9{fill:url(#SVGID_9_);}
+.st10{fill:url(#SVGID_10_);}
+.st11{fill:url(#SVGID_11_);}
+.st12{fill:url(#SVGID_12_);}
+.st13{fill:url(#SVGID_13_);}
+.st14{fill:url(#SVGID_14_);}
+.st15{fill:url(#SVGID_15_);}
+.st16{fill:url(#SVGID_16_);}
+.st17{fill:url(#SVGID_17_);}
+.st18{fill:url(#SVGID_18_);}
+.st19{fill:url(#SVGID_19_);}
+.st20{fill:url(#SVGID_20_);}
 

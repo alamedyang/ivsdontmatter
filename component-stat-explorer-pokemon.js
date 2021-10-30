@@ -105,6 +105,7 @@ Vue.component('stat-explorer-pokemon', {
 					:asset-bundle-value="getAssetBundleValue(pokemon.name,pokemon.form)"
 					:shiny="pokemon.shiny"
 					:shadow="pokemon.shadow"
+					:buddy="pokemon.buddy"
 				>
 				</pokemon-image-display>
 			</div>

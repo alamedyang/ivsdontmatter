@@ -165,6 +165,20 @@ var pokemonMapV2 = {
 			},
 		},
 	},
+	'Gyarados': {
+		number: 130,
+		forms: {
+			'Normal': {
+				types: [
+					'Water',
+					'Flying',
+				],
+				attack: 237,
+				defense: 186,
+				stamina: 216,
+			},
+		},
+	},
 	'Snorlax': {
 		number: 143,
 		forms: {
@@ -175,6 +189,20 @@ var pokemonMapV2 = {
 				attack: 190,
 				defense: 169,
 				stamina: 330,
+			},
+		},
+	},
+	'Moltres': {
+		number: 146,
+		forms: {
+			'Normal': {
+				types: [
+					'Fire',
+					'Flying',
+				],
+				attack: 251,
+				defense: 181,
+				stamina: 207,
 			},
 		},
 	},

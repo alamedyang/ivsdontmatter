@@ -158,6 +158,7 @@ Vue.component('pokemon-stat-controls', {
 							transform="translate(-1.1,0)"
 						/>
 						<use href="#icon_shiny"
+						class="st0"
 						transform="translate(-1.1,0)"/>
 					</g>
 					<g name="shadow toggle"
