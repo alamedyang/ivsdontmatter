@@ -74,6 +74,19 @@ Vue.component('stat-bar', {
 			};
 			return result;
 		},
+		abbrevStatName: function () {
+			var abbrev = this.statName;
+			if (this.statName === 'stamina') {
+				var abbrev = 'HP';
+			};
+			if (this.statName === 'attack') {
+				var abbrev = 'Att';
+			};
+			if (this.statName === 'defense') {
+				var abbrev = 'Def';
+			};
+			return abbrev;
+		},
 		overlapOrMainPinkClasses: function () {
 			var attack_bonus = this.statName === 'attack' && this.pokemon.shadow;
 			var defense_bonus = this.statName === 'defense' && this.pokemon.shadow;

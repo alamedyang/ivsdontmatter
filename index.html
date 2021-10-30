@@ -118,13 +118,25 @@
 				</div>
 			</div>
 			<h3 class="making-room-for-image">
-				<span>Add Pok&eacute;mon</span>
-				<button
-					class="plus"
-					@click="addPokemon"
+				<span class="middle">Add Pok&eacute;mon</span>
+				<span name="add pokemon button"
+					class="small_button middle"
 				>
-					+
-				</button>
+					<svg
+						viewBox="0 0 1 1"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g name="edit buton"
+							cursor="pointer"
+							@click="addPokemon"
+						>
+							<use href="#rounded_rect_button_base"
+								class="button-yes"
+							/>
+							<use href="#icon_plus"/>
+						</g>
+					</svg>
+				</span>
 			</h3>
 		</div>
 		<div class="modal-brackground-overlay"
@@ -155,9 +167,9 @@
 							>{{getSyntheticForm(selectedPokemon).types[1] ? getSyntheticForm(selectedPokemon).types[1] : ''}}</span>
 						</span>
 						<span class="pretend-p">
-							Base Attack: {{getSyntheticForm(selectedPokemon).attack}}<br />
-							Base Defense: {{getSyntheticForm(selectedPokemon).defense}}<br />
-							Base Stamina: {{getSyntheticForm(selectedPokemon).stamina}}
+							Base attack: {{getSyntheticForm(selectedPokemon).attack}}<br />
+							Base defense: {{getSyntheticForm(selectedPokemon).defense}}<br />
+							Base stamina: {{getSyntheticForm(selectedPokemon).stamina}}
 						</span>
 						<svg
 							viewbox="0 0 500 78"

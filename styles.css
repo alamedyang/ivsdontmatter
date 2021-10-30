@@ -255,7 +255,11 @@ h1 {
 	fill: rgb(206, 40, 40);
 }
 .button-yes {
-	fill: rgb(20, 206, 156);
+	fill: rgb(20, 155, 130);
+}
+
+.middle {
+	vertical-align: middle;
 }
 
 .minus {
@@ -268,7 +272,7 @@ h1 {
 	position: relative;
 }
 
-.stat-explorer-pokemon .minus {
+.stat-explorer-pokemon .minus, .rightmost-button {
 	position: absolute;
 	right: 0;
 }
@@ -301,6 +305,17 @@ h1 {
 }
 .two_thirds{
 	width: 65%;
+}
+
+.small_button {
+	height: 1.3em;
+	width: 1.3em;
+	display: inline-block;
+
+}
+
+.small_button_div {
+	line-height: 1.3em;
 }
 
 .iv_bar_width{

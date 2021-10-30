@@ -126,17 +126,19 @@ Vue.component('pokemon-stat-controls', {
 					pokemon.name + ' (' + pokemon.form + ')' :
 					pokemon.name}}
 				</button>
-				<span class="newline-blocky pretend-p" v-show="shadow && verboseOn">
-					<span>+</span>
-					<span class="shadow-text">shadow</span>
-					<span>boost</span>
-					<button class="hint secret-button"><em @click="toggleShadowInfo">What is this?</em></button>
-				</span>
-				<span class="newline-blocky pretend-p" v-show="buddy && verboseOn">
-					<span>+</span>
-					<span class="buddy-text">best buddy</span>
-					<span>boost</span>
-					<button class="hint secret-button"><em @click="toggleBuddyInfo">What is this?</em></button>
+				<span class="pretend-p">
+					<span class="newline-blocky" v-show="shadow && verboseOn">
+						<span>+</span>
+						<span class="shadow-text">shadow</span>
+						<span>boost</span>
+						<button class="hint secret-button"><em @click="toggleShadowInfo">What is this?</em></button>
+					</span>
+					<span class="newline-blocky" v-show="buddy && verboseOn">
+						<span>+</span>
+						<span class="buddy-text">best buddy</span>
+						<span>boost</span>
+						<button class="hint secret-button"><em @click="toggleBuddyInfo">What is this?</em></button>
+					</span>
 				</span>
 			</span>
 			<span class="one_third" name="pokemon toggles">

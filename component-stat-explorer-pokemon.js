@@ -35,12 +35,16 @@ Vue.component('stat-explorer-pokemon', {
 		}
 	},
 	methods: {
+		toggleExpandControls: function (event) {
+			event.preventDefault();
+			this.expanded = !this.expanded;
+		},
 	},
 	template: 
 	/* html */
 	`
 	<div class="stat-explorer-pokemon">
-		<h3 class="making-room-for-image making-room-for-x">
+		<h3 class="making-room-for-image making-room-for-x small_button_div">
 			<span>{{name}}</span>
 			<span class="hint">CP {{calculateCP(pokemon)}}</span>
 			<br v-show="statSummaryOn"/>
@@ -48,17 +52,49 @@ Vue.component('stat-explorer-pokemon', {
 				<span class="hint" v-show="statSummaryOn">
 					({{ivs.attack}}/{{ivs.defense}}/{{ivs.stamina}} {{shadow ? 'Shadow' : ''}} @ Lv{{getPokemonLevel(pokemon)}})
 				</span>
-				<label class="controls-checkbox hint blocky">
-					<span id="expand-button">Edit:</span>
-					<input
-						type="checkbox"
-						v-model="expanded"
-					/>
-				</label>
-				<button
-					class="minus"
+			</span>
+			<span class="rightmost-button">
+				<span name="edit pokemon button"
+					class="small_button"
+					@hover=""
+				>
+					<svg
+						viewBox="0 0 1 1"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g name="edit buton"
+							cursor="pointer"
+							@click="toggleExpandControls"
+						>
+							<use href="#rounded_rect_button_base"
+							:class="{
+								common_levels_button_noselect: !expanded,
+								common_levels_button_select: expanded
+							}"		
+							/>
+							<use href="#icon_edit"/>
+						</g>
+					</svg>
+				</span>
+				<span name="remove pokemon button"
+					class="small_button"
 					@click="$emit('delete')"
-				>x</button>
+				>
+					<svg
+						viewBox="0 0 1 1"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g name="x button"
+							cursor="pointer"
+							@mousedown="clickShadowButton($event)"
+						>
+							<use href="#rounded_rect_button_base"
+								class="button-no"
+							/>
+							<use href="#icon_x"/>
+						</g>
+					</svg>
+				</span>
 			</span>
 		</h3>
 		<div class="bar-holder">
