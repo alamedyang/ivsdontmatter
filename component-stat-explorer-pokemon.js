@@ -50,7 +50,7 @@ Vue.component('stat-explorer-pokemon', {
 			<br v-show="statSummaryOn"/>
 			<span class="blocky">
 				<span class="hint" v-show="statSummaryOn">
-					({{ivs.attack}}/{{ivs.defense}}/{{ivs.stamina}} {{shadow ? 'Shadow' : ''}} @ Lv{{getPokemonLevel(pokemon)}})
+					({{ivs.attack}}/{{ivs.defense}}/{{ivs.stamina}} @ Lv{{getPokemonLevel(pokemon)}})
 				</span>
 			</span>
 			<span class="rightmost-button">
@@ -104,6 +104,7 @@ Vue.component('stat-explorer-pokemon', {
 					:asset-bundle-suffix="getAssetBundleSuffix(pokemon.name,pokemon.form)"
 					:asset-bundle-value="getAssetBundleValue(pokemon.name,pokemon.form)"
 					:shiny="pokemon.shiny"
+					:shadow="pokemon.shadow"
 				>
 				</pokemon-image-display>
 			</div>

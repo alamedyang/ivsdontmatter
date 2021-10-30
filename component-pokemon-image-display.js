@@ -17,6 +17,10 @@ Vue.component('pokemon-image-display', {
 			type: Boolean,
 			required: false,
 		},
+		shadow: {
+			type: Boolean,
+			required: false,
+		}
 	},
 	computed: {
 		path: function () {
@@ -39,10 +43,25 @@ Vue.component('pokemon-image-display', {
 	template: 
 	/* html */
 	`
-		<img
-			class="pokemon-image-display"
-			:title="path"
-			:src="path"
-		/>
+		<svg
+			viewBox="0 0 1 1"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<image
+				class="pokemon-image-display"
+				:href="path"
+				width="1"
+				height="1"
+			/>
+			<use
+				v-show="this.shadow"
+				href="#rocket_overlay_circle"
+			/>
+			<use
+				v-show="this.shadow"
+				href="#rocket_overlay_flame"
+				class="common_levels_button_shadow"
+			/>
+		</svg>
 	`
 });
