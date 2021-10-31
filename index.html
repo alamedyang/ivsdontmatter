@@ -139,141 +139,14 @@
 				</span>
 			</h3>
 		</div>
-		<div class="modal-brackground-overlay"
+		<form-selector
 			v-if="showPokeModal"
+			:pokemon="selectedPokemon"
+			:pokemon-map-v2="pokemonMapV2"
+			@close-species-modal="cancelPokeModal"
+			@confirm-species-modal="selectPokeModal"
 		>
-			<div class="container">
-				<div class="modal-contents">
-					<div class="species_select-image">
-						<pokemon-image-display
-							:dex-number="pokemonMapV2[selectedPokemon.name].number"
-							:asset-bundle-suffix="getAssetBundleSuffix(selectedPokemon.name,selectedPokemon.form)"
-							:asset-bundle-value="getAssetBundleValue(selectedPokemon.name,selectedPokemon.form)"
-							:shiny="selectedPokemon.shiny"
-						></pokemon-image-display>
-					</div>
-					<p class="species_select-info">
-						<span class="pretend-p">
-							#{{getSyntheticForm(selectedPokemon).number}}
-						</span>
-						<span class="pretend-p">
-							<span>Type(s):</span>
-							<span
-								:class="'type-' + getSyntheticForm(selectedPokemon).types[0].toLocaleLowerCase()"
-							>{{getSyntheticForm(selectedPokemon).types[0]}}</span><span v-if="getSyntheticForm(selectedPokemon).types[1]">, </span>
-							<span
-								v-if="getSyntheticForm(selectedPokemon).types[1]"
-								:class="'type-' + getSyntheticForm(selectedPokemon).types[1].toLocaleLowerCase()"
-							>{{getSyntheticForm(selectedPokemon).types[1] ? getSyntheticForm(selectedPokemon).types[1] : ''}}</span>
-						</span>
-						<span class="pretend-p">
-							Base attack: {{getSyntheticForm(selectedPokemon).attack}}<br />
-							Base defense: {{getSyntheticForm(selectedPokemon).defense}}<br />
-							Base stamina: {{getSyntheticForm(selectedPokemon).stamina}}
-						</span>
-						<svg
-							viewbox="0 0 500 78"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<rect name="attack base"
-								:width="getSyntheticForm(selectedPokemon).attack"
-								height="20"
-								x="0"
-								y="0"
-								fill="#47f"
-							/>
-							<rect name="defense base"
-								:width="getSyntheticForm(selectedPokemon).defense"
-								height="20"
-								x="0"
-								y="26"
-								fill="#47f"
-							/>
-							<rect name="stamina base"
-								:width="getSyntheticForm(selectedPokemon).stamina"
-								height="20"
-								x="0"
-								y="52"
-								fill="#47f"
-							/>
-						</svg>
-					</p>
-					<!-- <div
-						v-for="(values,dexNumber) in $options.imageListByDexNumber"
-						:key="dexNumber"
-					>
-						<pokemon-image-display
-							v-for="image in values"
-							:pokemon-image="image"
-							:shiny="showShiny"
-						></pokemon-image-display>
-					</div> -->
-					<div>
-						<label class="pretend-p blocky">
-							<span>Species:</span>
-							<select
-								v-model="selectedPokemon.name"
-								@change="resetSelectedPokemonForm"
-							>
-								<option
-									v-for="(item, pokemonName, index) in pokemonMapV2"
-									:key="item.number"
-								>{{pokemonName}}</option>
-							</select>
-						</label>
-						<label
-							class="pretend-p blocky controls-checkbox"
-							v-if="Object.keys(pokemonMapV2[selectedPokemon.name].forms).length > 1"
-						>
-							<span>Form:</span>
-							<select
-								v-model="selectedPokemon.form"
-							>
-								<option
-									v-for="(item, formName, index) in pokemonMapV2[selectedPokemon.name].forms"
-									:key="formName"
-								>{{formName}}</option>
-							</select>
-						</label>
-						<label class="controls-checkbox blocky">
-							<span>Shiny:</span>
-							<input
-								type="checkbox"
-								v-model="selectedPokemon.shiny"
-							/>
-						</label>
-					</div>
-					<div class="spacious-top center">
-						<span class="one_fifth">
-							<svg
-								viewbox="0 0 3 1"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<g name="no button"
-									cursor="pointer"
-									@mousedown="cancelPokeModal"
-								>
-									<use href="#rounded_rect_button_base"
-										class="button-no"
-									/>
-									<use href="#icon_x"/>
-								</g>
-									<g name="enter button"
-										cursor="pointer"
-										@mousedown="selectPokeModal"
-										transform="translate(2,0)"
-									>
-									<use href="#rounded_rect_button_base"
-										class="button-yes"
-									/>
-									<use href="#icon_check"/>
-								</g>
-							</svg>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		</form-selector>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 	<script src="./image_list.js"></script>
@@ -281,6 +154,7 @@
 	<script src="./mixins.js"></script>
 	<script src="./component-svg-defs.js"></script>
 	<script src="./component-stat-bar.js"></script>
+	<script src="./component-form-selector.js"></script>
 	<script src="./component-pokemon-stat-controls.js"></script>
 	<script src="./component-stat-explorer-pokemon.js"></script>
 	<script src="./component-pokemon-image-display.js"></script>

@@ -86,7 +86,6 @@ Vue.component('stat-explorer-pokemon', {
 					>
 						<g name="x button"
 							cursor="pointer"
-							@mousedown="clickShadowButton($event)"
 						>
 							<use href="#rounded_rect_button_base"
 								class="button-no"
