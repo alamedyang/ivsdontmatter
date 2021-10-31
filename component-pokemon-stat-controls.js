@@ -224,7 +224,7 @@ Vue.component('pokemon-stat-controls', {
 			</span>
 		</div>
 		<div class="container_section">
-			<div class="inputtydoo">
+			<div class="force_input_full_width_container">
 				<label>
 					<span class="pretend-p">
 						<span>
@@ -232,7 +232,7 @@ Vue.component('pokemon-stat-controls', {
 						</span>
 						<span
 							v-if="buddy"
-							class="common_levels_button_buddy"
+							class="buddy-text"
 						>
 						<strong>
 							+ 1

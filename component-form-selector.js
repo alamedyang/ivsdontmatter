@@ -81,7 +81,7 @@ Vue.component('form-selector',{
 				</svg>
 			</p>
 			<div>
-				<label class="pretend-p blocky">
+				<label class="input_padding_right blocky">
 					<span>Species:</span>
 					<select
 						v-model="pokemon.name"
@@ -94,7 +94,7 @@ Vue.component('form-selector',{
 					</select>
 				</label>
 				<label
-					class="pretend-p blocky controls-checkbox"
+					class="input_padding_right blocky"
 					v-if="Object.keys(pokemonMapV2[pokemon.name].forms).length > 1"
 				>
 					<span>Form:</span>
@@ -107,7 +107,7 @@ Vue.component('form-selector',{
 						>{{formName}}</option>
 					</select>
 				</label>
-				<label class="controls-checkbox blocky">
+				<label class="input_padding_right blocky">
 					<span>Shiny:</span>
 					<input
 						type="checkbox"

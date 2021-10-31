@@ -1,0 +1,170 @@
+/* general colors */
+
+.button-no {
+	fill: rgb(206, 40, 40);
+}
+.button-yes {
+	fill: rgb(20, 155, 130);
+}
+
+.icon_lines-fat {
+	stroke: #fff;
+	stroke-width: 5;
+	fill: none;
+}
+
+/* best buddy badge */
+
+.outline{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+.dunno{fill:url(#SVGID_1_);}
+.just{fill:url(#SVGID_2_);}
+.incase{fill:url(#SVGID_3_);}
+.st4{fill:url(#SVGID_4_);}
+.st5{fill:url(#SVGID_5_);}
+.st6{fill:url(#SVGID_6_);}
+.st7{fill:url(#SVGID_7_);}
+.st8{fill:url(#SVGID_8_);}
+.st9{fill:url(#SVGID_9_);}
+.st10{fill:url(#SVGID_10_);}
+.st11{fill:url(#SVGID_11_);}
+.st12{fill:url(#SVGID_12_);}
+.st13{fill:url(#SVGID_13_);}
+.st14{fill:url(#SVGID_14_);}
+.st15{fill:url(#SVGID_15_);}
+.st16{fill:url(#SVGID_16_);}
+.st17{fill:url(#SVGID_17_);}
+.st18{fill:url(#SVGID_18_);}
+.st19{fill:url(#SVGID_19_);}
+.st20{fill:url(#SVGID_20_);}
+
+/* image display component */
+
+.pokemon_image_shadow_flame {
+	fill: rgb(165, 114, 216);
+}
+.pokemon_image_shiny {
+	fill: rgb(39, 53, 70);
+}
+.pokemon_image_icon_outline {
+	stroke: #fff;
+	stroke-width: 4px;
+	stroke-linejoin: round;
+	stroke-opacity: 0.9;
+}
+
+/* stat explorer controls */
+
+.st0 {
+	fill: #fff;
+}
+.common_levels_button_noselect {
+	fill: #aaa;
+}
+.common_levels_button_gray {
+	fill: #666;
+}
+.common_levels_button_select {
+	fill: #259;
+}
+.common_levels_button_shadow {
+	fill: #64a;
+}
+.common_levels_button_buddy {
+	fill: #b44;
+}
+.common_levels_button_shiny {
+	fill: #db0;
+}
+
+/* IV bar stuff */
+
+.iv_input_label {
+	font-size: 1.25px;
+}
+.current_stat_label {
+	font-size: 9px;
+}
+
+.iv_input_gray {
+	stroke: #ddd;
+	stroke-width: 1;
+}
+.iv_input_white_bg {
+	stroke: #fff;
+	stroke-width: 1.25;
+}
+.iv_input_orange {
+	stroke: #e92;
+	stroke-width: 1;
+}
+.iv_input_red {
+	stroke: #c44;
+	stroke-width: 1;
+}
+.iv_input_divider {
+	stroke: #fff;
+	stroke-width: 0.1;
+}
+.stats_base_ghost {
+	fill: #bce;
+}
+.stats_iv_ghost {
+	fill: #dbb;
+}
+.stats_iv_max_ghost {
+	fill: #edd;
+}
+.stats_base_main {
+	fill: #36f;
+}
+.stats_iv_main {
+	fill: #d00;
+}
+.stats_iv_main_line {
+	stroke: #d00;
+}
+.stats_iv_max_main {
+	fill: #fbb;
+}
+.stats_base_overlap {
+	fill: #36f;
+}
+.stats_iv_overlap {
+	fill: #46c;
+}
+.stats_iv_max_overlap {
+	fill: #57f;
+}
+.stats_full_range {
+	fill: #eee;
+}
+.stats_full_range_line {
+	stroke: #fff;
+}
+
+.stat-bar {
+	background-color: #eee;
+	font-size: 0;
+	margin-bottom: 2px;
+}
+
+/* non-color stuff */
+
+.small_button {
+	height: 1.3em;
+	width: 1.3em;
+	display: inline-block;
+}
+.small_button_div {
+	line-height: 1.3em;
+}
+
+.iv_bar_width{
+	width: 48%;
+}
+
+.pokemon-image-display {
+	max-width: 100%;
+	height: auto;
+}
+

@@ -1,22 +1,15 @@
 html, body {
 	height: 100%;
 }
-
 * {
 	font-family: inherit;
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0 auto;
 }
-
 body {
 	font-family: sans-serif;
 	margin: 0;
-}
-
-.container {
-	max-width: 800px;
-	padding: 16px;
 }
 
 ul, p, .pretend-p {
@@ -62,79 +55,15 @@ h1 {
 	border-style: solid;
 }
 
-.iv_input_label {
-	font-size: 1.25px;
-}
-.current_stat_label {
-	font-size: 9px;
-}
-
-.iv_input_gray {
-	stroke: #ddd;
-	stroke-width: 1;
-}
-.iv_input_white_bg {
-	stroke: #fff;
-	stroke-width: 1.25;
-}
-.iv_input_orange {
-	stroke: #e92;
-	stroke-width: 1;
-}
-.iv_input_orange_fill {
-	fill: #e92;
-}
-.iv_input_red {
-	stroke: #c44;
-	stroke-width: 1;
-}
-.iv_input_divider {
-	stroke: #fff;
-	stroke-width: 0.1;
-}
-.stats_base_ghost {
-	fill: #bce;
-}
-.stats_iv_ghost {
-	fill: #dbb;
-}
-.stats_iv_max_ghost {
-	fill: #edd;
-}
-.stats_base_main {
-	fill: #36f;
-}
-.stats_iv_main {
-	fill: #d00;
-}
-.stats_iv_main_line {
-	stroke: #d00;
-}
-.stats_iv_max_main {
-	fill: #fbb;
-}
-.stats_base_overlap {
-	fill: #36f;
-}
-.stats_iv_overlap {
-	fill: #46c;
-}
-.stats_iv_max_overlap {
-	fill: #57f;
-}
-.stats_full_range {
-	fill: #eee;
-}
-.stats_full_range_line {
-	stroke: #fff;
-}
-.st0 {
-	fill: #fff;
-}
 
 .hint {
 	color: #999;
 	font-size: 0.8em;
+}
+
+.minihint {
+	color: #999;
+	font-size: 0.5em;
 }
 
 .title-flex {
@@ -144,37 +73,15 @@ h1 {
 .blocky {
 	display: inline-block;
 }
-
 .newline-blocky {
 	display: block;
 }
 
-.minihint {
-	color: #999;
-	font-size: 0.5em;
+.middle {
+	vertical-align: middle;
 }
-
-.iv-label {
-	width: 40%;
-}
-
-.stat-bar {
-	background-color: #eee;
-	font-size: 0;
-	margin-bottom: 2px;
-}
-.stat-bar-progress,
-.stat-bar-progress-iv,
-.stat-bar-progress-iv-max {
-	display: inline-block;
-	height: 16px;
-	background-color: #47f;
-}
-.stat-bar-progress-iv {
-	background-color: #d00;
-}
-.stat-bar-progress-iv-max {
-	background-color: #fcc;
+.center {
+	text-align: center;
 }
 
 .container_section {
@@ -188,106 +95,27 @@ h1 {
 	margin: 6px;
 }
 
-.inputtydoo {
-	padding-bottom: 0px;
-}
-
-.inputtydoo label > input {
+.force_input_full_width_container label > input {
 	display: block;
 	width: 100%;
 }
 
-.controls-checkbox {
-	padding-left: 8px;
+.input_padding_right {
+	padding-right: 8px;
 }
 
-.common_levels_button_gray {
-	fill: #666;
-}
-.common_levels_button_noselect {
-	fill: #aaa;
-}
-.common_levels_button_select {
-	fill: #259;
-}
-.common_levels_button_shadow {
-	fill: #64a;
-}
 .shadow-text {
 	color: #64a;
 }
-
-.pokemon_image_shadow_flame {
-	fill: rgb(165, 114, 216);
-}
-
-.pokemon_image_shiny {
-	fill: rgb(39, 53, 70);
-}
-.pokemon_image_icon_outline {
-	stroke: #fff;
-	stroke-width: 4px;
-	stroke-linejoin: round;
-	stroke-opacity: 0.9;
-}
-
 .buddy-text {
 	color: #b44;
 }
-.common_levels_button_buddy {
-	fill: #b44;
-	color: #b44;
-}
-.common_levels_button_shiny {
-	fill: #db0;
-	color: #db0;
-}
-.right_just {
-	width: 20%;
-	display: inline-block;
-	justify-content: right; 
- }
-
- .icon_lines-fat {
-	stroke: #fff;
-	stroke-width: 5;
-	fill: none;
-}
-
-.plus,
-.minus {
-	/* margin-left: 4px; */
-	padding: 2px 4px;
-	line-height: 0.75em;
-	font-size: inherit;
-	background-color: rgb(88, 173, 88);
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.button-no {
-	fill: rgb(206, 40, 40);
-}
-.button-yes {
-	fill: rgb(20, 155, 130);
-}
-
-.middle {
-	vertical-align: middle;
-}
-
-.minus {
-	color: #fff;
-	background-color: rgb(206, 40, 40);
-}
-
 
 .stat-explorer-pokemon {
 	position: relative;
 }
 
-.stat-explorer-pokemon .minus, .rightmost-button {
+.rightmost-button {
 	position: absolute;
 	right: 0;
 }
@@ -296,11 +124,9 @@ h1 {
 	display: inline-block;
 	vertical-align: middle;
 }
-
 .species_select-image {
 	width: 40%;
 }
-
 .species_select-info {
 	width: 58%;
 }
@@ -322,48 +148,9 @@ h1 {
 	width: 65%;
 }
 
-.small_button {
-	height: 1.3em;
-	width: 1.3em;
-	display: inline-block;
-
-}
-
-.small_button_div {
-	line-height: 1.3em;
-}
-
-.iv_bar_width{
-	width: 48%;
-}
-
-.bar-holder {
-	position: relative;
-}
-.bar-image{
-	position: absolute;
-	top: -20px;
-	left: -5px;
-	width: 18%;
-}
 .making-room-for-x {
 	padding-right: 1.5em;
 }
-.making-room-for-image {
-	padding-left: 18%;
-}
-.pokemon-image-display {
-	max-width: 100%;
-	height: auto;
-}
-.center {
-	text-align: center;
-}
-
-.spacious-top {
-	padding-top: 12px;
-}
-
 .modal-showing {
 	position: relative;
 	overflow: hidden;
@@ -387,64 +174,37 @@ h1 {
 	box-shadow: 0 2px 16px rgba(0,0,0, 0.75);
 	border-radius: 16px;
 }
-
+.container {
+	max-width: 800px;
+	padding: 16px;
+}
+.spacious-top {
+	padding-top: 12px;
+}
+.bar-holder {
+	position: relative;
+}
+.bar-image{
+	position: absolute;
+	top: -20px;
+	left: -5px;
+	width: 18%;
+}
+.making-room-for-image {
+	padding-left: 18%;
+}
 @media (min-width: 480px) {
-	.container {
-		padding: 24px;
-	}
-
-	.bar-image{
-		position: absolute;
-		width: 16%;
-	}
-	.making-room-for-image {
-		padding-left: 16%;
-	}
-	.modal-contents {
-		padding: 24px;
-	}
-	.spacious-top {
-		padding-top: 20px;
-	}
+	.modal-contents {padding: 24px;}
+	.container {padding: 24px;}
+	.spacious-top {padding-top: 20px;}
+	.bar-image{width: 16%;}
+	.making-room-for-image {padding-left: 16%;}
 }
 @media (min-width: 640px) {
-	.container {
-		padding: 32px;
-	}
-	.bar-image{
-		position: absolute;
-		width: 14%;
-	}
-	.making-room-for-image {
-		padding-left: 14%;
-	}
-	.modal-contents {
-		padding: 32px;
-	}
-	.spacious-top {
-		padding-top: 28px;
-	}
+	.modal-contents {padding: 32px;}
+	.container {padding: 32px;}
+	.spacious-top {padding-top: 28px;}
+	.bar-image{width: 14%;}
+	.making-room-for-image {padding-left: 14%;}
 }
-
-.outline{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-.dunno{fill:url(#SVGID_1_);}
-.just{fill:url(#SVGID_2_);}
-.incase{fill:url(#SVGID_3_);}
-.st4{fill:url(#SVGID_4_);}
-.st5{fill:url(#SVGID_5_);}
-.st6{fill:url(#SVGID_6_);}
-.st7{fill:url(#SVGID_7_);}
-.st8{fill:url(#SVGID_8_);}
-.st9{fill:url(#SVGID_9_);}
-.st10{fill:url(#SVGID_10_);}
-.st11{fill:url(#SVGID_11_);}
-.st12{fill:url(#SVGID_12_);}
-.st13{fill:url(#SVGID_13_);}
-.st14{fill:url(#SVGID_14_);}
-.st15{fill:url(#SVGID_15_);}
-.st16{fill:url(#SVGID_16_);}
-.st17{fill:url(#SVGID_17_);}
-.st18{fill:url(#SVGID_18_);}
-.st19{fill:url(#SVGID_19_);}
-.st20{fill:url(#SVGID_20_);}
 
