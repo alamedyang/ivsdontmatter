@@ -25,9 +25,32 @@ ul {
 	margin-left: 24px;
 }
 
-a {
-	color: #aaa;
+.menu-selection{
+	border-bottom: 0.2rem solid rgb(22, 53, 145);
+	width: fit-content;
+	color: #000;
+	text-decoration: none;
 }
+
+.menu-item{
+	display:block;
+	float:left;
+	padding:0 1.2rem 0 0 ;
+	color: #000;
+	cursor: pointer;
+}
+
+.menu-item:hover{
+	color: rgb(22, 53, 145);
+}
+
+.menu {
+	list-style-type: none;
+	height: 2em;
+	margin: auto;
+	font-size: 1.2em;
+	text-decoration: none;
+	}
 
 h1, h2, h3, h4, h5, h6 {
 	padding: 0.5em 0 0.1em 0;
@@ -37,8 +60,8 @@ h1 {
 	font-weight: 900;
 }
 
-.flat {
-	padding: 0;
+.flat_top {
+	padding-top: 0px;
 }
 
 .secret-button {
@@ -54,7 +77,6 @@ h1 {
 	border-color: #aaa;
 	border-style: solid;
 }
-
 
 .hint {
 	color: #999;

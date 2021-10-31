@@ -18,9 +18,6 @@ Vue.component('form-selector',{
 		resetCurrentPokemonForm: function () {
 			this.pokemon.form = "Normal";
 		},
-		selectCurrentPokemon: function () {
-			
-		},
 	},
 	template: /*html*/`
 <div class="modal-brackground-overlay">

@@ -22,7 +22,9 @@ Vue.component('stat-bar', {
 	},
 	computed: {
 		blisseyScale: function () {
-			return (496 + 15) * 0.85;
+			//return (496 + 15) * 0.85; // (this equals 434.35)
+			//Turns out BB Shadow hundo XL Maxed Attack Deoxys is the true ceiling at 435.2!
+			return 436;
 		},
 		widthScale: function () {
 			return 0.7;

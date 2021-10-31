@@ -17,15 +17,32 @@
 		}"
 	>
 		<div class="container">
-			<h1 class="title-flex">
+			<h1 class="title-flex flat_top">
 				<span>IVs Don't Matter </span>
 				<button
 					class="minihint blocky secret-button"
 					@click="toggleShowInfo"
 				>
 					<em>What is this?</em>
-			</button>
+				</button>
 			</h1>
+			<!-- <ul class="menu">
+				<li class="menu-item">
+					<a class=" menu-selection" href="#">
+						Stat Explorer
+					</a>
+				</li>
+				<li>
+					<span class="menu-item">
+						Game Data
+					</span>
+				</li>
+				<li>
+					<span class="menu-item">
+						Info
+					</span>
+				</li>
+			</ul> -->
 			<div
 				v-show="infoShown"
 				class="container_section"
@@ -77,13 +94,6 @@
 				</button>
 			</div>
 			<h4>
-				<label class="input_padding_right blocky">
-					<span>Stat Grid:</span>
-					<input
-						type="checkbox"
-						v-model="statBarGridOn"
-					/>
-				</label>
 				<label class="input_padding_right blocky">
 					<span id="verbose-mode">Stat Summary:</span>
 					<input

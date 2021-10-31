@@ -2265,15 +2265,4 @@ processedFormsFromImages.forEach(function (item) {
 	imageListByDexNumber[item.dexNumber].push(item);
 });
 
-console.log(imageListByDexNumber);
-
-
-
-
-
-
-
-
-
-
-
+// console.log(imageListByDexNumber);
