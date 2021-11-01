@@ -20,10 +20,6 @@ Vue.component('stat-explorer-pokemon', {
 			type: Boolean,
 			require: true,
 		},
-		pokemonMap: {
-			type: Object,
-			require: true,
-		},
 		pokemonList: {
 			type: Array,
 			require: true,
@@ -123,7 +119,6 @@ Vue.component('stat-explorer-pokemon', {
 		<pokemon-stat-controls
 			v-if="expanded"
 			:pokemon="pokemon"
-			:pokemon-map="pokemonMap"
 			:verbose-on="verboseOn"
 			@update:pokemon="$emit('update:pokemon', $event)"
 			@update:ivs="ivs = $event"

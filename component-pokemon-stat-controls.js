@@ -5,10 +5,6 @@ Vue.component('pokemon-stat-controls', {
 		ivsMutationMixin,
 	],
 	props: {
-		pokemonMap: {
-			type: Object,
-			required: true,
-		},
 		verboseOn: {
 			type: Boolean,
 			required: true,

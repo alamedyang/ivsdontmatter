@@ -6,7 +6,6 @@ var app = new Vue({
 	],
 	data:{
 		level: 20,
-		pokemonMap,
 		pokemonMapV2,
 		showPokeModal: false,
 		infoShown: false,
