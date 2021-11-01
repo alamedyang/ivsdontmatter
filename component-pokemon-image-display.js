@@ -3,7 +3,7 @@ Vue.component('pokemon-image-display', {
 	props: {
 		dexNumber: {
 			type: Number,
-			required: true,
+			required: false,
 		},
 		assetBundleValue: {
 			type: String,
@@ -29,20 +29,27 @@ Vue.component('pokemon-image-display', {
 			type: Boolean,
 			required: false,
 		},
+		path: {
+			type: String,
+			required: false,
+		},
 	},
 	computed: {
-		path: function () {
-			var dexNumberAdjusted = (''+this.dexNumber).padStart(3,'0');
-			var variantNumber = '00';
-			if (this.assetBundleValue) {
-				variantNumber = this.assetBundleValue;
-			}
-			var fileName = 'pokemon_icon_' + dexNumberAdjusted + '_' + variantNumber + '.png';
-			if (this.assetBundleSuffix) {
-				fileName = 'pokemon_icon_' + this.assetBundleSuffix + '.png';
-			}
-			if (this.shiny) {
-				fileName = fileName.replace('.png','_shiny.png')
+		computedPath: function () {
+			var fileName = this.path;
+			if (!fileName) {
+				var dexNumberAdjusted = (''+this.dexNumber).padStart(3,'0');
+				var variantNumber = '00';
+				if (this.assetBundleValue) {
+					variantNumber = this.assetBundleValue;
+				}
+				var fileName = 'pokemon_icon_' + dexNumberAdjusted + '_' + variantNumber + '.png';
+				if (this.assetBundleSuffix) {
+					fileName = 'pokemon_icon_' + this.assetBundleSuffix + '.png';
+				}
+				if (this.shiny) {
+					fileName = fileName.replace('.png','_shiny.png')
+				}
 			}
 			var path = this.$options.imagePrefix + fileName;
 			return path;
@@ -63,7 +70,7 @@ Vue.component('pokemon-image-display', {
 			/>
 			<image
 				class="pokemon-image-display"
-				:href="path"
+				:href="computedPath"
 				width="1"
 				height="1"
 			/>

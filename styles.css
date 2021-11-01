@@ -21,8 +21,16 @@ ul, p, .pretend-p {
 	display: block;
 }
 
+.pointer {
+	cursor: pointer;
+}
+
 ul {
 	margin-left: 24px;
+}
+
+.modal-open {
+	overflow-y: hidden;
 }
 
 .menu-selection{
@@ -35,7 +43,7 @@ ul {
 .menu-item{
 	display:block;
 	float:left;
-	padding:0 1.2rem 0 0 ;
+	margin:0 1.2rem 0 0 ;
 	color: #000;
 	cursor: pointer;
 }
@@ -180,7 +188,7 @@ h1 {
 	max-height: 100%;
 }
 .modal-brackground-overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
