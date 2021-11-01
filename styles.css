@@ -44,21 +44,10 @@ ul {
 	display:block;
 	float:left;
 	margin:0 1.2rem 0 0 ;
+	font-weight: 1200;
 	color: #000;
 	cursor: pointer;
 }
-
-.menu-item:hover{
-	color: rgb(22, 53, 145);
-}
-
-.menu {
-	list-style-type: none;
-	height: 2em;
-	margin: auto;
-	font-size: 1.2em;
-	text-decoration: none;
-	}
 
 h1, h2, h3, h4, h5, h6 {
 	padding: 0.5em 0 0.1em 0;
@@ -70,6 +59,34 @@ h1 {
 
 .flat_top {
 	padding-top: 0px;
+}
+
+nav {
+	padding-top: 4px;
+	padding-bottom: 16px;
+}
+
+.nav-button:hover{
+	color: rgb(22, 53, 145);
+}
+
+.menu {
+	list-style-type: none;
+	height: 2em;
+	margin: auto;
+	font-size: 1.2em;
+	text-decoration: none;
+	}
+
+.nav-button {
+	margin:0 1.2rem 0 0 ;
+	font-weight: 1200;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+.nav-button.active {
+	border-bottom: 0.2rem solid rgb(22, 53, 145);
 }
 
 .secret-button {
@@ -85,12 +102,22 @@ h1 {
 	border-color: #aaa;
 	border-style: solid;
 }
+.selected {
+	background-color: #333;
+	color: #fff;
+}
 
+.larger {
+	font-size: 1.25em;
+	font-weight: bold;
+}
+.bighint {
+	color: #999;
+}
 .hint {
 	color: #999;
 	font-size: 0.8em;
 }
-
 .minihint {
 	color: #999;
 	font-size: 0.5em;
@@ -107,6 +134,9 @@ h1 {
 	display: block;
 }
 
+.relative {
+	position: relative;
+}
 .middle {
 	vertical-align: middle;
 }
@@ -148,6 +178,7 @@ h1 {
 .rightmost-button {
 	position: absolute;
 	right: 0;
+	bottom: -0.1em;
 }
 
 .species_select-image, .species_select-info {
@@ -208,6 +239,9 @@ h1 {
 	max-width: 800px;
 	padding: 16px;
 }
+.sorta-spacious-top {
+	padding-top: 12px;
+}
 .spacious-top {
 	padding-top: 12px;
 }
@@ -223,6 +257,7 @@ h1 {
 .making-room-for-image {
 	padding-left: 18%;
 }
+
 @media (min-width: 480px) {
 	.modal-contents {padding: 24px;}
 	.container {padding: 24px;}
@@ -237,4 +272,3 @@ h1 {
 	.bar-image{width: 14%;}
 	.making-room-for-image {padding-left: 14%;}
 }
-

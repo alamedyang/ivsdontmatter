@@ -40,12 +40,18 @@ Vue.component('stat-explorer-pokemon', {
 	/* html */
 	`
 	<div class="stat-explorer-pokemon">
-		<h3 class="making-room-for-image making-room-for-x small_button_div">
-			<span>{{name}}</span>
-			<span class="hint">CP {{calculateCP(pokemon)}}</span>
+		<div class="
+				making-room-for-image
+				making-room-for-x
+				small_button_div
+				sorta-spacious-top
+				relative
+			">
+			<span class="larger">{{name}}</span>
+			<span class="bighint">CP {{calculateCP(pokemon)}}</span>
 			<br v-show="statSummaryOn"/>
 			<span class="blocky">
-				<span class="hint" v-show="statSummaryOn">
+				<span class="bighint" v-show="statSummaryOn">
 					({{ivs.attack}}/{{ivs.defense}}/{{ivs.stamina}} @ Lv{{getPokemonLevel(pokemon)}})
 				</span>
 			</span>
@@ -91,7 +97,7 @@ Vue.component('stat-explorer-pokemon', {
 					</svg>
 				</span>
 			</span>
-		</h3>
+		</div>
 		<div class="bar-holder">
 			<div class="bar-image">
 				<pokemon-image-display

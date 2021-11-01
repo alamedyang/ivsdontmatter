@@ -137,63 +137,62 @@ Vue.component('stat-explorer-app', {
 	},
 	template: /*html*/`
 <div>
+	<p class="sorta-spacious-top">
+		<span><strong>OPTIONS:</strong> </span>
+		<label class="input_padding_right blocky">
+			<span id="verbose-mode">Stat Summary:</span>
+			<input
+				type="checkbox"
+				v-model="statSummaryOn"
+			/>
+		</label>
+		<label class="blocky">
+			<span id="verbose-mode">Extra Details:</span>
+			<input
+				type="checkbox"
+				v-model="verboseOn"
+			/>
+		</label>
+	</p>
+	<svg-defs></svg-defs>
 	<div>
-		<div>
-			<label class="input_padding_right blocky">
-				<span id="verbose-mode">Stat Summary:</span>
-				<input
-					type="checkbox"
-					v-model="statSummaryOn"
-				/>
-			</label>
-			<label class="input_padding_right blocky">
-				<span id="verbose-mode">Extra Details:</span>
-				<input
-					type="checkbox"
-					v-model="verboseOn"
-				/>
-			</label>
-		</div>
-		<svg-defs></svg-defs>
-		<div>
-			<div class="pokemon-list">
-				<stat-explorer-pokemon
-					v-for="(pokemon, pokemonIndex) in pokemonList"
-					:key="pokemon.id"
-					:pokemon="pokemon"
-					:stat-bar-grid-on="statBarGridOn"
-					:pokemon-list="pokemonList"
-					:verbose-on="verboseOn"
-					:stat-summary-on="statSummaryOn"
-					@update:pokemon="replacePokemonByIndex(pokemonIndex, $event)"
-					@open-species-modal="openSpeciesModal(pokemonIndex)"
-					@delete="removePokemonByIndex(pokemonIndex)"
-				>
-				</stat-explorer-pokemon>
-			</div>
-		</div>
-		<h3 class="making-room-for-image">
-			<span class="middle">Add Pok&eacute;mon</span>
-			<span name="add pokemon button"
-				class="small_button middle"
+		<div class="pokemon-list">
+			<stat-explorer-pokemon
+				v-for="(pokemon, pokemonIndex) in pokemonList"
+				:key="pokemon.id"
+				:pokemon="pokemon"
+				:stat-bar-grid-on="statBarGridOn"
+				:pokemon-list="pokemonList"
+				:verbose-on="verboseOn"
+				:stat-summary-on="statSummaryOn"
+				@update:pokemon="replacePokemonByIndex(pokemonIndex, $event)"
+				@open-species-modal="openSpeciesModal(pokemonIndex)"
+				@delete="removePokemonByIndex(pokemonIndex)"
 			>
-				<svg
-					viewBox="0 0 1 1"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<g name="edit buton"
-						cursor="pointer"
-						@click="addPokemon"
-					>
-						<use href="#rounded_rect_button_base"
-							class="button-yes"
-						/>
-						<use href="#icon_plus"/>
-					</g>
-				</svg>
-			</span>
-		</h3>
+			</stat-explorer-pokemon>
+		</div>
 	</div>
+	<h3 class="making-room-for-image">
+		<span class="middle">Add Pok&eacute;mon</span>
+		<span name="add pokemon button"
+			class="small_button middle"
+		>
+			<svg
+				viewBox="0 0 1 1"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<g name="edit buton"
+					cursor="pointer"
+					@click="addPokemon"
+				>
+					<use href="#rounded_rect_button_base"
+						class="button-yes"
+					/>
+					<use href="#icon_plus"/>
+				</g>
+			</svg>
+		</span>
+	</h3>
 	<form-selector
 		v-if="showPokeModal"
 		:pokemon="selectedPokemon"
