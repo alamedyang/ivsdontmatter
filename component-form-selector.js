@@ -38,11 +38,11 @@ Vue.component('form-selector',{
 				<span class="pretend-p">
 					<span>Type(s):</span>
 					<span
-						:class="'type-' + syntheticPokemon.types[0].toLocaleLowerCase()"
-					>{{syntheticPokemon.types[0]}}</span><span v-if="syntheticPokemon.types[1]">, </span>
+						:class="'type-bubble type-' + syntheticPokemon.types[0].toLocaleLowerCase()"
+					>{{syntheticPokemon.types[0]}}</span><span v-if="syntheticPokemon.types[1]"> </span>
 					<span
 						v-if="syntheticPokemon.types[1]"
-						:class="'type-' + syntheticPokemon.types[1].toLocaleLowerCase()"
+						:class="'type-bubble type-' + syntheticPokemon.types[1].toLocaleLowerCase()"
 					>{{syntheticPokemon.types[1] ? syntheticPokemon.types[1] : ''}}</span>
 				</span>
 				<span class="pretend-p">

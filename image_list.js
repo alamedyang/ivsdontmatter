@@ -2215,54 +2215,62 @@ pokemon_icon_pm0613_00_pgo_winter2020.png`;
 var processedFormsFromImages = [];
 var imageListByDexNumber = {};
 var imageArray = rawImageList.split('\n');
+var totalImages = imageArray;
 imageArray = imageArray.filter(function(line){
 	return !line.includes('shiny');
 });
+
 imageArray.forEach(function (line) {
 	var croppedLine = line
 		.replace('pokemon_icon_','')
 		.replace('.png','');
 	var segments = croppedLine.split('_');
 	var item;
+
 	if (segments[0].includes('pm')) {
-		var firstWord = segments[0];
-		var secondWord = segments[1];
+		var firstWord = segments[0]; // to dexNumber
+		var secondWord = segments[1]; // to assetBundleValue
 		var beforeAllTheRest = firstWord + '_' + secondWord + '_';
-		var allTheRest = croppedLine.replace(beforeAllTheRest,'');
+		var allTheRest = croppedLine.replace(beforeAllTheRest,''); // to assetBundleSuffix
+		var sortingName = segments[0] + '-' + allTheRest + '-' + (segments[1] || '00');
 		item={
-			path: line,
+			fileName: line,
 			dexNumber: parseInt(firstWord.replace('pm',''),10),
-			variantNumber: parseInt(segments[1],10),
-			additionalVariantNumber: allTheRest || null,
+			assetBundleValue: parseInt(segments[1],10),
+			assetBundleSuffix: allTheRest || null,
+			sortingName: sortingName
 		};
 	} else {
+		var sortingName = segments[0] + '-' + (segments[2] || '00') + '-' + (segments[1] || '00');
 		item={
-			path: line,
+			fileName: line,
 			dexNumber: parseInt(segments[0],10),
-			variantNumber: parseInt(segments[1],10),
-			additionalVariantNumber: parseInt(segments[2],10) || null,
+			assetBundleValue: parseInt(segments[1],10),
+			assetBundleValueExtra: parseInt(segments[2],10) || null,
+			sortingName: sortingName
 		};
 	}
 	processedFormsFromImages.push(item);
 });
 
-var sortByDexNumber = function (a, b) {
-	return a.dexNumber - b.dexNumber;
-};
-var sortByVariantNumber = function (a, b) {
-	return a.variantNumber - b.variantNumber;
-};
-var sortByAdditionalVariantNumber = function (a, b) {
-	return a.additionalVariantNumber - b.additionalVariantNumber;
+var sortBySortingName = function (a, b) {
+	var sortie = 0;
+	if (a.sortingName < b.sortingName) {
+		sortie = -1;
+	}
+	if (a.sortingName > b.sortingName) {
+		sortie = 1;
+	}
+	return sortie;
+	// I still don't get this
 };
 
-processedFormsFromImages.sort(sortByVariantNumber);
-processedFormsFromImages.sort(sortByAdditionalVariantNumber);
-processedFormsFromImages.sort(sortByDexNumber);
+processedFormsFromImages.sort(sortBySortingName);
 
 processedFormsFromImages.forEach(function (item) {
 	imageListByDexNumber[item.dexNumber] = imageListByDexNumber[item.dexNumber] || [];
 	imageListByDexNumber[item.dexNumber].push(item);
 });
 
+// console.log(processedFormsFromImages);
 // console.log(imageListByDexNumber);

@@ -5,7 +5,7 @@ html, body {
 	font-family: inherit;
 	box-sizing: border-box;
 	padding: 0;
-	margin: 0 auto;
+	margin: 0;
 }
 body {
 	font-family: sans-serif;
@@ -15,6 +15,76 @@ body {
 ul, p, .pretend-p {
 	padding-bottom: 8px;
 	padding-top: 4px;
+}
+
+.no-select {
+	user-select: none;
+}
+
+.normal-table {
+	table-layout: fixed;
+	/* border: 2px solid #555; */
+	border-collapse: collapse;
+	margin: 8px 0px;
+}
+.normal-table th {
+	background-color: #bbb;
+}
+.normal-table th,
+.normal-table td {
+	padding: 4px;
+	border: #999 solid 1px;
+}
+.normal-table tr:nth-child(odd) {
+	background-color: #fff;
+}
+.normal-table tr:nth-child(even) {
+	background-color: #ddd;
+}
+.normal-table tr.odd {
+	background-color: #fff;
+}
+.normal-table tr.even {
+	background-color: #ddd;
+}
+
+.normal-table .column-stats {
+	column-width: 2rem;
+	text-align: center;
+}
+.smaller {
+	font-size: .8em;
+}
+.image-table {
+	table-layout: fixed;
+	/* border: 2px solid #555; */
+	border-collapse: collapse;
+	text-align: center;
+	margin: 8px 0px
+}
+.image-table th,
+.image-table td {
+	padding: 4px;
+	border: 1px solid #999;
+}
+.image-table th {
+	background-color: #ccc;
+}
+.image-table td {
+	font-size: 0.7em;
+	width: 80px;
+}
+.pink {
+	background-color: pink;
+}
+/* tbody td:nth-child(odd) {
+	background-color: #ccc;
+}
+tbody td:nth-child(even) {
+	background-color: #eee;
+} */
+.no_shiny {
+	border: 3px solid red;
 }
 
 .pretend-p {
@@ -77,7 +147,10 @@ nav {
 	font-size: 1.2em;
 	text-decoration: none;
 	}
-
+.big_nav {
+	font-size: 1.3em;
+	font-weight: 600;
+}
 .nav-button {
 	margin:0 1.2rem 0 0 ;
 	font-weight: 1200;
@@ -142,6 +215,9 @@ nav {
 }
 .center {
 	text-align: center;
+}
+.right {
+	text-align: right;
 }
 
 .container_section {
@@ -238,6 +314,7 @@ nav {
 .container {
 	max-width: 800px;
 	padding: 16px;
+	margin: 0 auto;
 }
 .sorta-spacious-top {
 	padding-top: 12px;

@@ -5,11 +5,20 @@ var app = new Vue({
 			currentApp: "stat-explorer",
 			showPokeModal: false,
 			infoShown: false,
-			menuItems: {
+			headerClickCount: 0,
+		};
+	},
+	computed: {
+		menuItems: function () {
+			var result = {
 				'stat-explorer': 'STAT EXPLORER',
 				'info': 'INFO',
+			};
+			if (this.headerClickCount > 4) {
+				result['data-viewer'] = 'DATA VIEWER'
 			}
-		};
+			return result;
+		},
 	},
 	methods: {
 		toggleShowInfo: function (event) {
@@ -31,7 +40,9 @@ var app = new Vue({
 	},
 	template: /*html*/`
 		<div class="container">
-			<h1 class="title-flex flat_top">
+			<h1 class="title-flex flat_top no-select"
+				@click="headerClickCount++"
+			>
 				<span>IVs Don't Matter </span>
 			</h1>
 			<nav>
@@ -55,6 +66,10 @@ var app = new Vue({
 				v-show="currentApp==='info'"
 			>
 			</info-words>
+			<data-viewer
+				v-show="currentApp==='data-viewer'"
+			>
+			</data-viewer>
 		</div>
 	`
 });

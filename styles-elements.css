@@ -1,10 +1,11 @@
-.type-none,.type-water,.type-steel,.type-rock,.type-psychic,.type-poison,.type-normal,.type-ice,.type-ground,.type-grass,.type-ghost,.type-flying,.type-fire,.type-fighting,.type-fairy,.type-electric,.type-dragon,.type-dark,.type-bug {
-	color: #333;
-	font-size: 0.9rem;
-	border-radius: 0.5rem;
-	padding: 0.15rem 0.15rem 0.20rem;
-	width: 2.8rem;
+.type-bubble {
+	font-size: 0.9em;
+	border-radius: 0.75em;
+	padding: 0.25em 0.6em;
 	text-align: center;
+}
+td .type-bubble {
+	display: block;
 }
 .type-bug {
 	background-color: rgba(148,194,46,.7)
