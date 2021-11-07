@@ -19,6 +19,7 @@ Vue.component('processed-pokemon-data', {
 	},
 	template: /*html*/`
 <div>
+	<p>Processed Pokémon data. ('PokemonMapV2')</p>
 	<p>NOTE: Example data. Actual game master import coming soon.</p>
 	<table class="normal-table smaller">
 		<thead>

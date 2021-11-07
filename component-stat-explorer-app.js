@@ -19,7 +19,7 @@ Vue.component('stat-explorer-app', {
 					name: 'Mewtwo',
 					form: 'Normal',
 					id: Math.random(),
-					level: 20,
+					level: 30,
 					ivs: {
 						attack: 10,
 						defense: 10,
@@ -34,7 +34,7 @@ Vue.component('stat-explorer-app', {
 					name: 'Gengar',
 					form: 'Normal',
 					id: Math.random(),
-					level: 20,
+					level: 30,
 					ivs: {
 						attack: 10,
 						defense: 15,
@@ -46,10 +46,25 @@ Vue.component('stat-explorer-app', {
 					shiny: false,
 				},
 				{
+					name: 'Deoxys',
+					form: 'Attack',
+					id: Math.random(),
+					level: 30,
+					ivs: {
+						attack: 15,
+						defense: 15,
+						stamina: 15,
+					},
+					expanded: false,
+					shadow: false,
+					buddy: false,
+					shiny: false,
+				},
+				{
 					name: 'Magikarp',
 					form: 'Normal',
 					id: Math.random(),
-					level: 20,
+					level: 30,
 					ivs: {
 						attack: 6,
 						defense: 3,
@@ -61,10 +76,10 @@ Vue.component('stat-explorer-app', {
 					shiny: false,
 				},
 				{
-					name: 'Blissey',
+					name: 'Gyarados',
 					form: 'Normal',
 					id: Math.random(),
-					level: 20,
+					level: 30,
 					ivs: {
 						attack: 12,
 						defense: 10,
@@ -73,7 +88,7 @@ Vue.component('stat-explorer-app', {
 					expanded: false,
 					shadow: false,
 					buddy: false,
-					shiny: false,
+					shiny: true,
 				},
 			],
 			selectedPokemon: {
@@ -97,11 +112,11 @@ Vue.component('stat-explorer-app', {
 				name: 'Blissey',
 				form: 'Normal',
 				id: Math.random(),
-				level: 20,
+				level: 30,
 				ivs: {
-					attack: 12,
-					defense: 10,
-					stamina: 13,
+					attack: 15,
+					defense: 15,
+					stamina: 15,
 				},
 				expanded: false,
 				shadow: false,
@@ -138,6 +153,8 @@ Vue.component('stat-explorer-app', {
 	template: /*html*/`
 <div>
 	<p class="sorta-spacious-top">
+		Drag the sliders and press the buttons to explore how a Pokémon's IVs affect its in-game stats.</p>
+	<p>
 		<span><strong>OPTIONS:</strong> </span>
 		<label class="input_padding_right blocky">
 			<span id="verbose-mode">Stat Summary:</span>

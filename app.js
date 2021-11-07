@@ -16,6 +16,7 @@ var app = new Vue({
 			};
 			if (this.headerClickCount > 4) {
 				result['data-viewer'] = 'DATA VIEWER'
+				result['workshop-test'] = 'WORKSHOP'
 			}
 			return result;
 		},
@@ -40,7 +41,7 @@ var app = new Vue({
 	},
 	template: /*html*/`
 		<div class="container">
-			<h1 class="title-flex flat_top no-select"
+			<h1 class="title-flex flat_all no-select"
 				@click="headerClickCount++"
 			>
 				<span>IVs Don't Matter </span>
@@ -70,6 +71,10 @@ var app = new Vue({
 				v-show="currentApp==='data-viewer'"
 			>
 			</data-viewer>
+			<workshop-test
+				v-show="currentApp==='workshop-test'"
+			>
+			</workshop-test>
 		</div>
 	`
 });

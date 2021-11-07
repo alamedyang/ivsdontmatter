@@ -12,9 +12,18 @@ body {
 	margin: 0;
 }
 
-ul, p, .pretend-p {
+p, .pretend-p {
 	padding-bottom: 8px;
 	padding-top: 4px;
+}
+
+ul, ol {
+	margin-left: 24px;
+	padding: 4px 0px;
+}
+
+li {
+	padding: 0px 0px 8px 0px;
 }
 
 .no-select {
@@ -95,10 +104,6 @@ tbody td:nth-child(even) {
 	cursor: pointer;
 }
 
-ul {
-	margin-left: 24px;
-}
-
 .modal-open {
 	overflow-y: hidden;
 }
@@ -120,7 +125,7 @@ ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	padding: 0.5em 0 0.1em 0;
+	padding: 0.7em 0 0.3em 0;
 }
 
 h1 {
@@ -131,6 +136,10 @@ h1 {
 	padding-top: 0px;
 }
 
+.flat_all {
+	padding: 0px;
+}
+
 nav {
 	padding-top: 4px;
 	padding-bottom: 16px;
@@ -138,6 +147,10 @@ nav {
 
 .nav-button:hover{
 	color: rgb(22, 53, 145);
+}
+
+.answer {
+	padding-left: 16px;
 }
 
 .menu {
@@ -162,15 +175,20 @@ nav {
 	border-bottom: 0.2rem solid rgb(22, 53, 145);
 }
 
+
+.secret-button,
+.real-button {
+	cursor: pointer;
+	font-weight: inherit;
+	font-size: inherit;
+}
 .secret-button {
 	background-color: transparent;
 	border: none;
-	cursor: pointer;
 }
 .real-button {
 	padding: 3px 5px;
 	border-radius: 0.5rem;
-	cursor: pointer;
 	border-width: 1px;
 	border-color: #aaa;
 	border-style: solid;
@@ -219,15 +237,20 @@ nav {
 .right {
 	text-align: right;
 }
+.left {
+	text-align: left;
+}
+
+.container_section, .container_section_inner {
+	padding: 8px 12px;
+}
 
 .container_section {
 	background-color: #ddd;
-	padding: 8px 12px;
 	margin: 6px 0px;
 }
 .container_section_inner {
 	background-color: #fff;
-	padding: 8px 12px;
 	margin: 6px;
 }
 
@@ -317,7 +340,7 @@ nav {
 	margin: 0 auto;
 }
 .sorta-spacious-top {
-	padding-top: 12px;
+	padding-top: 8px;
 }
 .spacious-top {
 	padding-top: 12px;
@@ -341,6 +364,7 @@ nav {
 	.spacious-top {padding-top: 20px;}
 	.bar-image{width: 16%;}
 	.making-room-for-image {padding-left: 16%;}
+	.container_section, .container_section_inner {padding: 8px 12px;}
 }
 @media (min-width: 640px) {
 	.modal-contents {padding: 32px;}
@@ -348,4 +372,5 @@ nav {
 	.spacious-top {padding-top: 28px;}
 	.bar-image{width: 14%;}
 	.making-room-for-image {padding-left: 14%;}
+	.container_section, .container_section_inner {padding: 12px 16px;}
 }

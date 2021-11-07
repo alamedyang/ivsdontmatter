@@ -94,34 +94,36 @@ Vue.component('full-image-list', {
 	>
 		<div
 			v-for="species in imageListByDexNumber"
-		><table class="image-table">
-			<thead>
-				<th>{{species[0].dexNumber}}</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td
-						v-for="form in species"
-						class="image-table-cell"
-						:class="{
-							no_shiny: determineShinyExistance(form.fileName),
-							pink: isFemale(form.assetBundleValue),
-						}"
-					>
-						<span
-							class="blocky"
+		>
+			<table class="image-table">
+				<thead>
+					<th>{{species[0].dexNumber}}</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td
+							v-for="form in species"
+							class="image-table-cell"
+							:class="{
+								no_shiny: determineShinyExistance(form.fileName),
+								pink: isFemale(form.assetBundleValue),
+							}"
 						>
-							{{form.assetBundleValue}}
-						</span><br/>
-						<span class="blocky">
-							{{form.assetBundleValueExtra ? 'var: ' + form.assetBundleValueExtra : ''}}
-						</span><br/>
-						<span class="blocky">
-							{{form.assetBundleSuffix}}
-						</span>
-					</td>
-				</tr>
-			</tbody></table>
+							<span
+								class="blocky"
+							>
+								{{form.assetBundleValue}}
+							</span><br/>
+							<span class="blocky">
+								{{form.assetBundleValueExtra ? 'var: ' + form.assetBundleValueExtra : ''}}
+							</span><br/>
+							<span class="blocky">
+								{{form.assetBundleSuffix}}
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
