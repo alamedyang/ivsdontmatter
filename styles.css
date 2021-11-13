@@ -174,7 +174,9 @@ nav {
 .nav-button.active {
 	border-bottom: 0.2rem solid rgb(22, 53, 145);
 }
-
+.error {
+	color: red;
+}
 
 .secret-button,
 .real-button {
