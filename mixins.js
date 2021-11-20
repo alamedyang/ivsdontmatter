@@ -1,9 +1,26 @@
+// This mixin is so that "outside" JavaScript can do stuff and edit the GM "base" data while allowing all components that rely on it to not have to do anything weird.
+var gameDataMixin = {
+	data: function () {
+		return {
+			gameData: gameData,
+		};
+	},
+	computed: {
+		pokemonMapV2: function () {
+			return this.gameData.pokeMap;
+		},
+	},
+};
+
 var sprimkles = {
+	mixins: [
+		gameDataMixin,
+	],
 	methods: {
 		getSyntheticForm: function (pokemon) {
 			var name = pokemon.name;
 			var formName = pokemon.form || 'Normal';
-			var base = pokemonMapV2[name] || {forms:{}};
+			var base = this.gameData.pokeMap[name] || {forms:{}};
 			var form = base.forms[formName] || {};
 			var synthetic = Object.assign(
 				{},
@@ -63,17 +80,17 @@ var sprimkles = {
 			return stars;
 		},
 		getAssetBundleSuffix: function (selectedSpecies, selectedForm) {
-			if (pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleSuffix) {
+			if (this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleSuffix) {
 				var assetBundleSuffix =
-				pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleSuffix;
+				this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleSuffix;
 			}
 			// console.log('assetBundleSuffix: ' + assetBundleSuffix);
 			return assetBundleSuffix;
 		},
 		getAssetBundleValue: function (selectedSpecies, selectedForm) {
 			var assetBundleValue = '00';
-			if (pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleValue) {
-				assetBundleValue = ''+pokemonMapV2[selectedSpecies].forms[selectedForm].assetBundleValue;
+			if (this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleValue) {
+				assetBundleValue = ''+this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleValue;
 			}
 			// console.log('assetBundleValue: ' + assetBundleValue);
 			return assetBundleValue;

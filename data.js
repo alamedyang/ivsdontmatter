@@ -401,3 +401,6 @@ var starBreakPoints = [
 	}
 ];
 
+var gameData = {
+	pokeMap: pokemonMapV2
+};

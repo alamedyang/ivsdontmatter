@@ -2,11 +2,6 @@ Vue.component('processed-pokemon-data', {
 	mixins: [
 		sprimkles,
 	],
-	data: function () {
-		return {
-			pokemonMapV2,
-		};
-	},
 	methods: {
 		findElementTypeCSSClass: function (type) {
 			var result = 'type-bubble type-';

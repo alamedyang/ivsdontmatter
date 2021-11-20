@@ -3,11 +3,6 @@ Vue.component('form-selector',{
 		sprimkles,
 		pokemonMutationMixin,
 	],
-	data: function () {
-		return {
-			pokemonMapV2
-		};
-	},
 	props: {},
 	computed: {
 		syntheticPokemon: function () {

@@ -4,7 +4,6 @@ var app = new Vue({
 		return {
 			currentApp: "stat-explorer",
 			showPokeModal: false,
-			infoShown: false,
 			headerClickCount: 0,
 		};
 	},
@@ -22,10 +21,6 @@ var app = new Vue({
 		},
 	},
 	methods: {
-		toggleShowInfo: function (event) {
-			event.preventDefault();
-			this.infoShown = !this.infoShown;
-		},
 		setPokeModalState: function (value) {
 			this.showPokeModal = value;
 		},
