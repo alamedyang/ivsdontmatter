@@ -6,6 +6,7 @@ Vue.component('data-viewer', {
 			dataMenuItems: {
 				'pokemon-data': 'Pokémon Data',
 				'image-data': 'Image Data',
+				'data-admin': 'Data Admin',
 			},
 		};
 	},
@@ -36,6 +37,10 @@ Vue.component('data-viewer', {
 		@confirm-load-images="loadImageList=true"
 	>
 	</full-image-list>
+	<data-admin
+		v-show="currentData==='data-admin'"
+	>
+	</data-admin>
 </div>
 	`
 });

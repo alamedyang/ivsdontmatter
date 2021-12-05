@@ -30,6 +30,10 @@ li {
 	user-select: none;
 }
 
+.successbox {
+	background-color: #4d48;
+}
+
 .normal-table {
 	table-layout: fixed;
 	/* border: 2px solid #555; */

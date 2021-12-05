@@ -2,6 +2,12 @@ Vue.component('processed-pokemon-data', {
 	mixins: [
 		sprimkles,
 	],
+	data: function () {
+		return {
+			pokemonDataForChart: pokemonMapV2,
+			source: 'pokemonMapV2'
+		};
+	},
 	methods: {
 		findElementTypeCSSClass: function (type) {
 			var result = 'type-bubble type-';
@@ -11,11 +17,19 @@ Vue.component('processed-pokemon-data', {
 		getFormQuantity: function (form) {
 			return Object.keys(form).length;
 		},
+		switchToRealGMData: function () {
+			this.pokemonDataForChart = pokemonMapV3;
+			this.source = 'pokemonMapV3';
+		}
 	},
 	template: /*html*/`
 <div>
-	<p>Processed Pokémon data. ('PokemonMapV2')</p>
-	<p>NOTE: Example data. Actual game master import coming soon.</p>
+	<p>Processed Pokémon data. ('{{source}}')</p>
+	<p v-if="source==='pokemonMapV2'">Example data! <button
+		class="real-button"
+		@click="switchToRealGMData()"
+	>Show real game master? (Process first in "Data Admin")</button></p>
+	<p>NOTE: Some forms are not present in the GM as "forms" — such Pokémon will have associated images, but no GM data. See the "Image Data" tab for known images.</p>
 	<table class="normal-table smaller">
 		<thead>
 			<th>#</th>
@@ -32,7 +46,7 @@ Vue.component('processed-pokemon-data', {
 		</thead>
 		<tbody>
 			<template
-				v-for="(pokemon, pokemonName, pokeIndex) in pokemonMapV2"
+				v-for="(pokemon, pokemonName, pokeIndex) in pokemonDataForChart"
 			>
 				<tr
 					v-for="(form, formName, index) in pokemon.forms"

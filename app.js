@@ -5,6 +5,7 @@ var app = new Vue({
 			currentApp: "stat-explorer",
 			showPokeModal: false,
 			headerClickCount: 0,
+			currentLanguage: 'English',
 		};
 	},
 	computed: {
