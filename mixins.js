@@ -200,3 +200,7 @@ var ivsMutationMixin = makeGenericObjectComputedPropertiesSetter(
 var jsonClone = function (object) {
 	return JSON.parse(JSON.stringify(object));
 };
+
+var makeRandomIdString = function () {
+	return Math.floor(Math.random() * 1e15).toString(36).slice(0, 10);
+}

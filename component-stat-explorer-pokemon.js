@@ -49,7 +49,7 @@ Vue.component('stat-explorer-pokemon', {
 			">
 			<span class="larger">{{name}}</span>
 			<span class="bighint">CP {{calculateCP(pokemon)}}</span>
-			<br v-show="statSummaryOn"/>
+			<br v-if="statSummaryOn"/>
 			<span class="blocky">
 				<span class="bighint" v-show="statSummaryOn">
 					({{ivs.attack}}/{{ivs.defense}}/{{ivs.stamina}} @ Lv{{getPokemonLevel(pokemon)}})

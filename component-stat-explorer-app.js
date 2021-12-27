@@ -18,7 +18,7 @@ Vue.component('stat-explorer-app', {
 				{
 					name: 'Mewtwo',
 					form: 'Normal',
-					id: Math.random(),
+					id: makeRandomIdString(),
 					level: 30,
 					ivs: {
 						attack: 10,
@@ -33,7 +33,7 @@ Vue.component('stat-explorer-app', {
 				{
 					name: 'Gengar',
 					form: 'Normal',
-					id: Math.random(),
+					id: makeRandomIdString(),
 					level: 30,
 					ivs: {
 						attack: 10,
@@ -48,7 +48,7 @@ Vue.component('stat-explorer-app', {
 				{
 					name: 'Deoxys',
 					form: 'Attack',
-					id: Math.random(),
+					id: makeRandomIdString(),
 					level: 30,
 					ivs: {
 						attack: 15,
@@ -63,7 +63,7 @@ Vue.component('stat-explorer-app', {
 				{
 					name: 'Magikarp',
 					form: 'Normal',
-					id: Math.random(),
+					id: makeRandomIdString(),
 					level: 30,
 					ivs: {
 						attack: 6,
@@ -78,7 +78,7 @@ Vue.component('stat-explorer-app', {
 				{
 					name: 'Gyarados',
 					form: 'Normal',
-					id: Math.random(),
+					id: makeRandomIdString(),
 					level: 30,
 					ivs: {
 						attack: 12,
@@ -111,7 +111,7 @@ Vue.component('stat-explorer-app', {
 			this.pokemonList.push({
 				name: 'Blissey',
 				form: 'Normal',
-				id: Math.random(),
+				id: makeRandomIdString(),
 				level: 30,
 				ivs: {
 					attack: 15,
