@@ -42,13 +42,12 @@ var sprimkles = {
 			var baseStamina = this.getSyntheticForm(pokemon).stamina;
 			var currentHP = Math.floor( (baseStamina + staminaIV) * cpm );
 			var maxHP = Math.floor( (baseStamina + 15) * cpm );
-			if (
+			var result = ( // returns a compound boolean expression - whether ALL are truthy!
 				(staminaIV !== 15 && currentHP === maxHP)
 				&& pokemon.ivs.attack === 15
 				&& pokemon.ivs.defense === 15
-			) {
-				return true;
-			}
+			);
+			return result;
 		},
 		IVSum: function (ivs) {
 			var sum =
@@ -58,8 +57,7 @@ var sprimkles = {
 			return sum;
 		},
 		IVPercentage: function (ivs) {
-			var percentage =
-				this.IVSum(ivs) / 0.45;
+			var percentage = this.IVSum(ivs) / 0.45;
 			percentage = Math.round(percentage * 10) / 10;
 			return percentage;
 		},
@@ -86,7 +84,7 @@ var sprimkles = {
 			var form = species.forms[selectedForm] || {};
 			var assetBundleValue = form.assetBundleValue
 			if (assetBundleValue) {
-				result = ''+assetBundleValue;
+				result = '' + assetBundleValue;
 			}
 			// console.log('assetBundleValue: ' + assetBundleValue);
 			return result;
@@ -110,14 +108,6 @@ var sprimkles = {
 				((attack * Math.sqrt(defense) * Math.sqrt(stamina) * Math.pow(cpm, 2))/10),
 				10
 			));
-		},
-		getPokemonListIndexFromId: function (id) {
-			var index = this.pokemonList.findIndex(
-				function (pokemonListObjects) {
-					return pokemonListObjects.id === id;
-				}
-			)
-			return index;
 		},
 		findElementTypeCSSClass: function (type) {
 			var shortType = (type || '').toLocaleLowerCase().replace('pokemon_type_','')
