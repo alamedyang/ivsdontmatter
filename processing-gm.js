@@ -150,6 +150,11 @@ var availableLocalizations = {
 	"Spanish": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_spanish.json",
 	"Thai": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_thai.json",
 };
+var localizationKeys = {};
+Object.keys(availableLocalizations).forEach(function (key) {
+	var scrunched = 'local' + key.replace(/\W/g, '');
+	localizationKeys[scrunched] = key;
+})
 
 var processLocalV2 = function (
 	previousLocalization,

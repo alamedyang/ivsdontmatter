@@ -1,7 +1,7 @@
 Vue.component('data-viewer', {
 	data: function () {
 		return {
-			currentData: 'data-localization',
+			currentData: 'data-admin',
 			loadImageList: false,
 			dataMenuItems: {
 				'pokemon-data': 'Pokémon Data',

@@ -2,71 +2,16 @@
 
 Vue.component('data-admin', {
 	data: function () {
-		var result = {
-			assets: {
-				timestamp: {
-					path: "https://raw.githubusercontent.com/PokeMiners/game_masters/master/latest/timestamp.txt",
-					fetchStatus: 'not attempted',
-					fetchSucceeded: null,
-					loadedData: null,
-					loaded: null,
-					cached: null,
-				},
-				gameMaster: {
-					path: "https://raw.githubusercontent.com/PokeMiners/game_masters/master/latest/latest.json",
-					fetchStatus: 'not attempted',
-					fetchSucceeded: null,
-					loadedData: null,
-					loaded: null,
-					cached: null,
-					processAttempted: false,
-					processFinished: false,
-				},
-				// localEnglish: {
-				// 	path: "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_english.json",
-				// 	fetchStatus: 'not attempted',
-				// 	fetchSucceeded: null,
-				// 	loadedData: null,
-				// 	loaded: null,
-				// 	cached: null,
-				// 	processAttempted: false,
-				// 	processFinished: false,
-				// }, // now done more procedurally
-			},
-			copiedAvailableLocalizations: availableLocalizations,
-			shownDataStatus: "Remote not yet checked.",
+		return {
 			evaluatingTimestamps: false,
 			newDataFetched: false,
 			cachedTimestamp: localStorage.getItem('timestamp') || '0',
 		};
-		Object.getOwnPropertyNames(result.copiedAvailableLocalizations).forEach(function(language) {
-			var localName = 'local' + language.replace(' ','');
-			var path = result.copiedAvailableLocalizations[language];
-			console.log('localName: ' + localName);
-			console.log('path: ' + path);
-			result.assets[localName] = {
-				path: path,
-				fetchStatus: 'not attempted',
-				fetchSucceeded: null,
-				loadedData: null,
-				loaded: null,
-				cached: null,
-				processAttempted: false,
-				processFinished: false,
-			};
-		})
-		Object.keys(result.assets).forEach(function(key) {
-			var cachedString = localStorage.getItem(key);
-			if (cachedString) {
-				var asset = result.assets[key];
-				asset.loaded = true;
-				asset.cached = true;
-				asset.loadedData = JSON.parse(cachedString);
-			}
-		})
-		return result;
 	},
 	computed: {
+		assets: function () {
+			return this.$store.state.assets;
+		},
 		timestampsRelationship: function () {
 			var cachedTime = parseInt(this.cachedTimestamp, 10) || 0;;
 			var fetchedTime = parseInt(this.assets.timestamp.loadedData, 10) || 0;;
@@ -85,6 +30,10 @@ Vue.component('data-admin', {
 		},
 	},
 	methods: {
+		...Vuex.mapActions([
+			'patchAsset',
+			'fetchRemoteAsset',
+		]),
 		makeIntoDate: function (int) {
 			var number = parseInt(int, 10) || 0;
 			var result = 'the dawn of time';
@@ -119,7 +68,7 @@ Vue.component('data-admin', {
 				);
 				data.processFinished = true;
 			} else {
-				console.log('No loaded ' + language + 'localization data found. Try to load from cache (local storage) or fetch from remote first.');
+				console.log('No loaded ' + language + ' localization data found. Try to load from cache (local storage) or fetch from remote first.');
 			}
 		},
 		processData: function () {
@@ -134,14 +83,30 @@ Vue.component('data-admin', {
 			this.processLocalLanguage('Russian');
 			this.processLocalLanguage('Thai');
 			this.processLocalLanguage('Spanish');
-			this.assets.gameMaster.processAttempted = true;
+			this.patchAsset({
+				name: 'gameMaster',
+				value: {
+					processAttempted: true,
+				}
+			});
 			if (this.assets.gameMaster.loadedData) {
 				var processedV3 = processGameMaster(this.assets.gameMaster.loadedData);
 				this.$store.dispatch(
 					'updatePokeMap',
 					processedV3
 				);
-				this.assets.gameMaster.processFinished = true;
+				this.patchAsset({
+					name: 'gameMaster',
+					value: {
+						processAttempted: true,
+					}
+				});	
+				this.patchAsset({
+					name: 'gameMaster',
+					value: {
+						processFinished: true,
+					}
+				});
 			} else {
 				console.log('No loaded GM found. Try to load from cache (local storage) or fetch from remote first.');
 			}
@@ -149,9 +114,13 @@ Vue.component('data-admin', {
 		clearAllCachedData: function () {
 			var self = this;
 			Object.keys(self.assets).forEach(function (key){
-				var asset = self.assets[key];
 				localStorage.removeItem(key);
-				asset.cached = false;
+				self.patchAsset({
+					name: key,
+					value: {
+						cached: false,
+					}
+				});
 			});
 			this.cachedTimestamp = 0;
 		},
@@ -159,28 +128,20 @@ Vue.component('data-admin', {
 			var self = this;
 			Object.keys(self.assets).forEach(function (key){
 				var asset = self.assets[key];
-				var text = asset.loadedData;
-				if (text !== null) {
-					localStorage.setItem(key, JSON.stringify(text));
-					asset.cached = true;
+				var data = asset.loadedData;
+				if (data !== null) {
+					localStorage.setItem(key, JSON.stringify(data));
+					self.patchAsset({
+						name: key,
+						value: {
+							cached: true,
+						}
+					});
 				} else {
 					console.log('Asset "' + key + '" not loaded; not cached.')
 				}
 			});
 			self.cachedTimestamp = self.assets.timestamp.loadedData;
-		},
-		loadAllCachedData: function () {
-			var self = this;
-			Object.keys(self.assets).forEach(function (key){
-				var asset = self.assets[key];
-				if (localStorage.getItem(key) !== null){
-					asset.loadedData = localStorage.getItem(key);
-					asset.loaded = true;
-				} else {
-					console.log('Asset "' + key + '" not found in cache.')
-				}
-			});
-			self.cachedTimestamp = localStorage.getItem('timestamp') || '0';
 		},
 		fetchAllRemoteDataExceptTimestamp: function () {
 			var self = this;
@@ -195,41 +156,12 @@ Vue.component('data-admin', {
 				.then(function () {
 					self.evaluatingTimestamps = false;
 					self.newDataFetched = true;
-					self.cacheAllLoadedData();
+					// self.cacheAllLoadedData();
 				})
-				.catch(function () {
+				.catch(function (error) {
 					console.error('Something broke loading remote assets.');
+					console.error(error);
 				});
-		},
-		fetchRemoteAsset: function (assetName) {
-			var self = this;
-			var asset = self.assets[assetName];
-			var path = asset.path;
-			asset.fetchStatus = 'attempting';
-			asset.fetchSucceeded = null;
-			var fetchPromise = fetch(path);
-			var responseHandler = function (response) {
-				asset.fetchStatus = response.ok;
-				if (!response.ok) {
-					asset.fetchSucceeded = false;
-					throw new Error('Unable to find remote asset "' + assetName + '"');
-				}
-				return response.json();
-			};
-			var textAcquired = function (data) {
-				asset.loadedData = data;
-				asset.loaded = true;
-				asset.fetchSucceeded = true;
-				return asset;
-			};
-			var ifFetchFailed = function (error) {
-				console.error(error);
-				asset.fetchStatus = 'failed';
-			};
-			return fetchPromise
-				.then(responseHandler)
-				.then(textAcquired)
-				.catch(ifFetchFailed);
 		},
 	},
 	template: /*html*/`
@@ -243,10 +175,6 @@ Vue.component('data-admin', {
 			class="real-button"
 			@click="cacheAllLoadedData"
 		>Cache loaded data</button>
-		<button
-			class="real-button"
-			@click="loadAllCachedData"
-		>Load cached data</button>
 	</div>
 	<div class="container_section">
 		<table class="normal-table">
@@ -254,7 +182,6 @@ Vue.component('data-admin', {
 				<th>Asset Name</th>
 				<th>Fetch Remote</th>
 				<th>Fetch Status</th>
-				<th>Fetch Succeeded</th>
 				<th>Loaded</th>
 				<th>Cached</th>
 			</thead>
@@ -269,14 +196,10 @@ Vue.component('data-admin', {
 					>Fetch</button></td>
 					<td
 						:class="{
-							successbox: assetState.fetchSucceeded
+							successbox: assetState.fetchStatus === 'success',
+							errorbox: assetState.fetchStatus === 'failed',
 						}"
 					>{{assetState.fetchStatus}}</td>
-					<td
-						:class="{
-							successbox: assetState.fetchSucceeded
-						}"
-					>{{assetState.fetchSucceeded}}</td>
 					<td
 						:class="{
 							successbox: assetState.loaded
@@ -316,10 +239,10 @@ Vue.component('data-admin', {
 				<p>
 					<span><strong>Most recent game data:</strong></span><br/>
 					<span
-						v-if="!assets.timestamp.fetchSucceeded"
+						v-if="!assets.timestamp.fetchStatus"
 					>not checked</span>
 					<span
-						v-if="assets.timestamp.fetchSucceeded"
+						v-if="assets.timestamp.fetchStatus"
 					>{{makeIntoDate(assets.timestamp.loadedData)}}</span>
 				</p>
 				<p>The fetched game data is {{timestampsRelationship}}!</p>

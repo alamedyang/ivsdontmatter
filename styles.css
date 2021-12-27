@@ -33,6 +33,9 @@ li {
 .successbox {
 	background-color: #4d48;
 }
+.errorbox {
+	background-color: rgba(221, 68, 68, 0.53);
+}
 
 .normal-table {
 	table-layout: fixed;
