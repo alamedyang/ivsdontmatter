@@ -1,11 +1,12 @@
 Vue.component('data-viewer', {
 	data: function () {
 		return {
-			currentData: 'pokemon-data',
+			currentData: 'data-localization',
 			loadImageList: false,
 			dataMenuItems: {
 				'pokemon-data': 'Pokémon Data',
 				'image-data': 'Image Data',
+				'data-localization': 'Localization',
 				'data-admin': 'Data Admin',
 			},
 		};
@@ -37,6 +38,10 @@ Vue.component('data-viewer', {
 		@confirm-load-images="loadImageList=true"
 	>
 	</full-image-list>
+	<data-localization
+		v-show="currentData==='data-localization'"
+	>
+	</data-localization>
 	<data-admin
 		v-show="currentData==='data-admin'"
 	>

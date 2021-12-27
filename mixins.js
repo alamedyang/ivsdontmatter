@@ -3,6 +3,7 @@ var gameDataMixin = {
 	data: function () {
 		return {
 			gameData: gameData,
+			localization: fallbackLocalization,
 		};
 	},
 	computed: {
@@ -122,6 +123,12 @@ var sprimkles = {
 				}
 			)
 			return index;
+		},
+		findElementTypeCSSClass: function (type) {
+			var shortType = (type || '').toLocaleLowerCase().replace('pokemon_type_','')
+			var result = 'type-bubble type-';
+			result = result + shortType;
+			return result;
 		},
 	}
 };

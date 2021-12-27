@@ -51,6 +51,8 @@ var processGameMaster = function (data) {
 	// 	// "rawCPM", rawCPM,
 	// 	// "upgradeData", upgradeData
 	// 	);
+	gameData.pokeMap={};
+	gameData.pokeMap=pokemonMapV3;
 };
 
 // IMPORTANT
@@ -63,6 +65,7 @@ var processGameMaster = function (data) {
 
 var localizationPokes = {
 	'English': {},
+	'Japanese': {},
 	'English Mega': {}, // unfinished
 };
 var localizationTypes = {
@@ -97,7 +100,7 @@ var processLocal = function (languageData, _languageName) {
 		}
 	}
 	// console.log(languageName + ' Pokémon names have been processed. Results:', localizationPokes.English);
-	var originTypes = array.findIndex(function(value){
+	var originTypes = array.findIndex(function(value){ // find first thing that is type info in the local.
 		return value.includes('pokemon_type_');
 	});
 	var types = localizationTypes[languageName] || {};
@@ -116,6 +119,90 @@ var processLocal = function (languageData, _languageName) {
 	}
 	// console.log(languageName + ' element type names have been processed. Results:',localizationTypes.English)
 };
+
+//---------------------------------------------//
+/*   LOCALIZATION V2 (English is default)      */
+//---------------------------------------------//
+
+var localization = {
+	pokemon: {
+		1: {
+			English: "Bulbasaur",
+			Japanese: "フシギダネ",
+		}, // etc
+	},
+	types: {
+		"pokemon_type_bug": {
+			English: "Bug",
+			Japanese: "むし",
+		}, // etc
+	}
+}
+
+var availableLocalizations = {
+	"English":"https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_english.json",
+	"Brazilian Portuguese": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_brazilianportuguese.json",
+	"Traditional Chinese": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_chinesetraditional.json",
+	"French": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_french.json",
+	"German": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_german.json",
+	"Italian": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_italian.json",
+	"Japanese": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_japanese.json",
+	"Korean": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_korean.json",
+	"Russian": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_russian.json",
+	"Spanish": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_spanish.json",
+	"Thai": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_thai.json",
+};
+
+var processLocalV2 = function (languageData, _languageName) {
+	// UPDATE THE BELOW
+	var languageName = _languageName || 'English';
+	var array = languageData.data;
+	var origin = array.indexOf('pokemon_name_0000');
+	var language = localizationPokes[languageName] || {};
+	var languageMega = localizationPokes[languageName + ' Mega'] || {};
+	for (let index = (origin + 2); index < array.length; index += 2) {
+		if (!array[index].includes('pokemon_name_')){
+			break
+		}
+		var number = array[index].replace('pokemon_name_','');
+		var name = array[index+1];
+		if (number.includes('_')) {
+			Object.assign(
+				languageMega,
+				{
+					[number]: name
+				}
+			);
+		} else {
+			Object.assign(
+				language,
+				{
+					[parseInt(number, 10)]: name
+				}
+			);
+		}
+	}
+	// UPDATE THE ABOVE
+	// console.log(languageName + ' Pokémon names have been processed. Results:', localizationPokes.English);
+	var languageName = _languageName || 'English';
+	console.log(_languageName, languageData.data);
+	var array = languageData.data;
+	var originTypes = array.findIndex(function(value){
+		return value.includes('pokemon_type_');
+	});
+	var types = localization.types
+	for (let index = (originTypes); index < array.length; index += 2) {
+		if (!array[index].includes('pokemon_type_')){
+			break
+		}
+		var typeLongName = array[index];
+		var typeName = array[index+1];
+		var typeObject = types[typeLongName] || {}
+		typeObject[languageName] = typeName;
+		types[typeLongName] = typeObject
+		console.log(localization.types);
+	}
+}
 
 //---------------------------------------------//
 /*   ELEMENT TYPES                             */
@@ -147,8 +234,10 @@ var typeOrder = [
 var getTypeNameFromLongName = function (_longName, _languageName) {
 	var languageName = _languageName || 'English';
 	var longName = _longName.toLocaleLowerCase();
-	var localTypes = localizationTypes[languageName];
-	var result = localTypes[longName];
+	// var localTypes = localizationTypes[languageName];
+	var localTypes = localization.types[longName]
+	// var result = localTypes[longName] || longName.replace('pokemon_type_','');
+	var result = localTypes[languageName] || longName.replace('pokemon_type_','');
 	return result;
 };
 

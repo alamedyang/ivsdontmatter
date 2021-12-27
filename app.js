@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#app',
 	data: function () {
 		return {
-			currentApp: "stat-explorer",
+			currentApp: "data-viewer",
 			showPokeModal: false,
 			headerClickCount: 0,
 			currentLanguage: 'English',

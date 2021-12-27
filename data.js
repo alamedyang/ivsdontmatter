@@ -404,3 +404,80 @@ var starBreakPoints = [
 var gameData = {
 	pokeMap: pokemonMapV2
 };
+
+var fallbackLocalization = {
+	types: {
+		"pokemon_type_bug": {
+			English: "Bug",
+			Japanese: "むし",
+		},
+		"pokemon_type_dark": {
+			English: "Dark",
+			Japanese: "あく",
+		},
+		"pokemon_type_dragon": {
+			English: "Dragon",
+			Japanese: "ドラゴン",
+		},
+		"pokemon_type_electric": {
+			English: "Electric",
+			Japanese: "でんき",
+		},
+		"pokemon_type_fairy": {
+			English: "Fairy",
+			Japanese: "フェアリー",
+		},
+		"pokemon_type_fighting": {
+			English: "Fighting",
+			Japanese: "かくとう",
+		},
+		"pokemon_type_fire": {
+			English: "Fire",
+			Japanese: "ほのお",
+		},
+		"pokemon_type_flying": {
+			English: "Flying",
+			Japanese: "ひこう",
+		},
+		"pokemon_type_ghost": {
+			English: "Ghost",
+			Japanese: "ゴースト",
+		},
+		"pokemon_type_grass": {
+			English: "Grass",
+			Japanese: "くさ",
+		},
+		"pokemon_type_ground": {
+			English: "Ground",
+			Japanese: "じめん",
+		},
+		"pokemon_type_ice": {
+			English: "Ice",
+			Japanese: "こおり",
+		},
+		"pokemon_type_normal": {
+			English: "Normal",
+			Japanese: "ノーマル",
+		},
+		"pokemon_type_poison": {
+			English: "Poison",
+			Japanese: "どく",
+		},
+		"pokemon_type_psychic": {
+			English: "Psychic",
+			Japanese: "エスパー",
+		},
+		"pokemon_type_rock": {
+			English: "Rock",
+			Japanese: "いわ",
+		},
+		"pokemon_type_steel": {
+			English: "Steel",
+			Japanese: "はがね",
+		},
+		"pokemon_type_water": {
+			English: "Water",
+			Japanese: "みず",
+		},
+	}
+};

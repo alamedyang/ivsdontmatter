@@ -22,35 +22,39 @@ Vue.component('data-admin', {
 					processAttempted: false,
 					processFinished: false,
 				},
-				localEnglish: {
-					path: "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_english.json",
-					fetchStatus: 'not attempted',
-					fetchSucceeded: null,
-					loadedData: null,
-					loaded: null,
-					cached: null,
-					processAttempted: false,
-					processFinished: false,
-				},
+				// localEnglish: {
+				// 	path: "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_english.json",
+				// 	fetchStatus: 'not attempted',
+				// 	fetchSucceeded: null,
+				// 	loadedData: null,
+				// 	loaded: null,
+				// 	cached: null,
+				// 	processAttempted: false,
+				// 	processFinished: false,
+				// }, // now done more procedurally
 			},
-			availableLocalizations: {
-				"English":"https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_english.json",
-				"Brazilian Portuguese": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_brazilianportuguese.json",
-				"Traditional Chinese": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_chinesetraditional.json",
-				"French": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_french.json",
-				"German": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_german.json",
-				"Italian": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_italian.json",
-				"Japanese": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_japanese.json",
-				"Korean": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_korean.json",
-				"Russian": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_russian.json",
-				"Spanish": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_spanish.json",
-				"Thai": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_thai.json",
-			},
+			copiedAvailableLocalizations: availableLocalizations,
 			shownDataStatus: "Remote not yet checked.",
 			evaluatingTimestamps: false,
 			newDataFetched: false,
 			cachedTimestamp: localStorage.getItem('timestamp') || '0',
 		};
+		Object.getOwnPropertyNames(result.copiedAvailableLocalizations).forEach(function(language) {
+			var localName = 'local' + language.replace(' ','');
+			var path = result.copiedAvailableLocalizations[language];
+			console.log('localName: ' + localName);
+			console.log('path: ' + path);
+			result.assets[localName] = {
+				path: path,
+				fetchStatus: 'not attempted',
+				fetchSucceeded: null,
+				loadedData: null,
+				loaded: null,
+				cached: null,
+				processAttempted: false,
+				processFinished: false,
+			};
+		})
 		Object.keys(result.assets).forEach(function(key) {
 			var cachedString = localStorage.getItem(key);
 			if (cachedString) {
@@ -99,14 +103,29 @@ Vue.component('data-admin', {
 					console.error('Something went wrong during timestamp evaluation!');
 				});
 		},
-		processData: function () {
-			this.assets.localEnglish.processAttempted = true;
-			if (this.assets.localEnglish.loadedData) {
-				processLocal(this.assets.localEnglish.loadedData, 'English');
-				this.assets.localEnglish.processFinished = true;
+		processLocalLanguage: function (language) {
+			var localLanguage = 'local' + language.replace(' ','');
+			var data = this.assets[localLanguage];
+			data.processAttempted = true;
+			if (data.loadedData) {
+				processLocalV2(data.loadedData, language);
+				data.processFinished = true;
 			} else {
-				console.log('No loaded English localization data found. Try to load from cache (local storage) or fetch from remote first.');
+				console.log('No loaded ' + language + 'localization data found. Try to load from cache (local storage) or fetch from remote first.');
 			}
+		},
+		processData: function () {
+			this.processLocalLanguage('English');
+			this.processLocalLanguage('Japanese');
+			this.processLocalLanguage('French');
+			this.processLocalLanguage('German');
+			this.processLocalLanguage('Italian');
+			this.processLocalLanguage('TraditionalChinese');
+			this.processLocalLanguage('BrazilianPortuguese');
+			this.processLocalLanguage('Korean');
+			this.processLocalLanguage('Russian');
+			this.processLocalLanguage('Thai');
+			this.processLocalLanguage('Spanish');
 			this.assets.gameMaster.processAttempted = true;
 			if (this.assets.gameMaster.loadedData) {
 				processGameMaster(this.assets.gameMaster.loadedData);
@@ -167,7 +186,7 @@ Vue.component('data-admin', {
 					self.cacheAllLoadedData();
 				})
 				.catch(function () {
-					console.error('Something broke loading remote assets');
+					console.error('Something broke loading remote assets.');
 				});
 		},
 		fetchRemoteAsset: function (assetName) {

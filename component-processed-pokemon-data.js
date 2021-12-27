@@ -9,11 +9,6 @@ Vue.component('processed-pokemon-data', {
 		};
 	},
 	methods: {
-		findElementTypeCSSClass: function (type) {
-			var result = 'type-bubble type-';
-			result = result + type.toLocaleLowerCase();
-			return result;
-		},
 		getFormQuantity: function (form) {
 			return Object.keys(form).length;
 		},

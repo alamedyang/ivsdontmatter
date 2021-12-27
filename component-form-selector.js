@@ -11,7 +11,13 @@ Vue.component('form-selector',{
 	},
 	methods: {
 		resetCurrentPokemonForm: function () {
-			this.pokemon.form = "Normal";
+			var formList = this.pokemonMapV2[this.pokemon.name].forms;
+			var firstForm = formList[0];
+			if (Object.keys(formList).includes('Normal')) {
+				this.pokemon.form = "Normal";
+			} else {
+				this.pokemon.form = firstForm;
+			}
 		},
 	},
 	template: /*html*/`
