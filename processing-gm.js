@@ -1,9 +1,8 @@
 // Super messy and crazy but I'm kinda done looking through the raw GM and trying to parse all this...
 // Refactor someday plz
 
-var pokemonMapV3 = {};
-
 var processGameMaster = function (data) {
+	var pokemonMapV3 = {};
 	data.forEach(function (item) {
 		var usefulData = item.data;
 		if (usefulData.templateId.includes('FORMS_V')) {
@@ -39,7 +38,7 @@ var processGameMaster = function (data) {
 	// console.log('processedPokemonBaseStats finished! Results:',processedPokemonBaseStats);
 	processRawFormData();
 	// console.log('processedForms finished! Results:',processedForms);
-	combineFormsAndRawStats();
+	combineFormsAndRawStats(pokemonMapV3);
 	// console.log('pokemonMapV3 finished! Results:',pokemonMapV3);
 	// console.log(
 	// 	"rawForms", rawForms,
@@ -51,8 +50,7 @@ var processGameMaster = function (data) {
 	// 	// "rawCPM", rawCPM,
 	// 	// "upgradeData", upgradeData
 	// 	);
-	gameData.pokeMap={};
-	gameData.pokeMap=pokemonMapV3;
+	return pokemonMapV3;
 };
 
 // IMPORTANT
@@ -153,8 +151,13 @@ var availableLocalizations = {
 	"Thai": "https://raw.githubusercontent.com/PokeMiners/pogo_assets/master/Texts/Latest%20APK/JSON/i18n_thai.json",
 };
 
-var processLocalV2 = function (languageData, _languageName) {
+var processLocalV2 = function (
+	previousLocalization,
+	languageData,
+	_languageName,
+) {
 	// UPDATE THE BELOW
+	var localization = jsonClone(previousLocalization);
 	var languageName = _languageName || 'English';
 	var array = languageData.data;
 	var origin = array.indexOf('pokemon_name_0000');
@@ -202,6 +205,7 @@ var processLocalV2 = function (languageData, _languageName) {
 		types[typeLongName] = typeObject
 		console.log(localization.types);
 	}
+	return localization
 }
 
 //---------------------------------------------//
@@ -235,7 +239,7 @@ var getTypeNameFromLongName = function (_longName, _languageName) {
 	var languageName = _languageName || 'English';
 	var longName = _longName.toLocaleLowerCase();
 	// var localTypes = localizationTypes[languageName];
-	var localTypes = localization.types[longName]
+	var localTypes = fallbackLocalization.types[longName]
 	// var result = localTypes[longName] || longName.replace('pokemon_type_','');
 	var result = localTypes[languageName] || longName.replace('pokemon_type_','');
 	return result;
@@ -408,7 +412,7 @@ var getBaseStatsFromLongFormName = function (longFormName) {
 		processedPokemonBaseStats[formToLookUp + '_NORMAL'];
 };
 
-var combineFormsAndRawStats = function () {
+var combineFormsAndRawStats = function (pokemonMapV3) {
 	Object.keys(processedForms).forEach(function (key) { // key = "Charizard"
 		var species = processedForms[key];
 		// number : 6,

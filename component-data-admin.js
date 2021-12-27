@@ -108,7 +108,15 @@ Vue.component('data-admin', {
 			var data = this.assets[localLanguage];
 			data.processAttempted = true;
 			if (data.loadedData) {
-				processLocalV2(data.loadedData, language);
+				var newLocalizationData = processLocalV2(
+					this.$store.state.localization,
+					data.loadedData,
+					language,
+				);
+				this.$store.dispatch(
+					'updateLocalization',
+					newLocalizationData
+				);
 				data.processFinished = true;
 			} else {
 				console.log('No loaded ' + language + 'localization data found. Try to load from cache (local storage) or fetch from remote first.');
@@ -128,7 +136,11 @@ Vue.component('data-admin', {
 			this.processLocalLanguage('Spanish');
 			this.assets.gameMaster.processAttempted = true;
 			if (this.assets.gameMaster.loadedData) {
-				processGameMaster(this.assets.gameMaster.loadedData);
+				var processedV3 = processGameMaster(this.assets.gameMaster.loadedData);
+				this.$store.dispatch(
+					'updatePokeMap',
+					processedV3
+				);
 				this.assets.gameMaster.processFinished = true;
 			} else {
 				console.log('No loaded GM found. Try to load from cache (local storage) or fetch from remote first.');

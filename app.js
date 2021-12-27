@@ -1,5 +1,6 @@
 var app = new Vue({
 	el: '#app',
+	store: store,
 	data: function () {
 		return {
 			currentApp: "data-viewer",

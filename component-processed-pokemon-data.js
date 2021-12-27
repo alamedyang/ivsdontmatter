@@ -2,28 +2,19 @@ Vue.component('processed-pokemon-data', {
 	mixins: [
 		sprimkles,
 	],
-	data: function () {
-		return {
-			pokemonDataForChart: pokemonMapV2,
-			source: 'pokemonMapV2'
-		};
-	},
 	methods: {
 		getFormQuantity: function (form) {
 			return Object.keys(form).length;
-		},
-		switchToRealGMData: function () {
-			this.pokemonDataForChart = pokemonMapV3;
-			this.source = 'pokemonMapV3';
 		}
+	},
+	computed: {
+		...Vuex.mapState([
+			'pokeMapSource',
+		]),
 	},
 	template: /*html*/`
 <div>
-	<p>Processed Pokémon data. ('{{source}}')</p>
-	<p v-if="source==='pokemonMapV2'">Example data! <button
-		class="real-button"
-		@click="switchToRealGMData()"
-	>Show real game master? (Process first in "Data Admin")</button></p>
+	<p>Processed Pokémon data. ('{{pokeMapSource}}')</p>
 	<p>NOTE: Some forms are not present in the GM as "forms" — such Pokémon will have associated images, but no GM data. See the "Image Data" tab for known images.</p>
 	<table class="normal-table smaller">
 		<thead>
@@ -41,7 +32,7 @@ Vue.component('processed-pokemon-data', {
 		</thead>
 		<tbody>
 			<template
-				v-for="(pokemon, pokemonName, pokeIndex) in pokemonDataForChart"
+				v-for="(pokemon, pokemonName, pokeIndex) in pokeMap"
 			>
 				<tr
 					v-for="(form, formName, index) in pokemon.forms"

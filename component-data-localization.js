@@ -2,27 +2,9 @@ Vue.component('data-localization', {
 	mixins: [
 		sprimkles,
 	],
-	data: function () {
-		return {
-			localization: fallbackLocalization,
-		};
-	},
-	methods: {
-		getTypeNameFromLongName: function (_longName, _languageName) {
-			var languageName = _languageName || 'English';
-			var longName = _longName.toLocaleLowerCase();
-			var targetType = localization.types[longName];
-			var result = targetType[languageName];
-			return result;
-		},
-		switchToRealData: function () {
-			this.localization = localization;
-		}
-	},
 	template: /*html*/`
 <div>
 	<div>
-	<button class="real-button" @click="switchToRealData()">REAL DATA</button>
 	<table class="normal-table">
 		<thead>
 			<th>Pokémon Types</th>

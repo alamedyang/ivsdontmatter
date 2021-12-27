@@ -11,7 +11,7 @@ Vue.component('form-selector',{
 	},
 	methods: {
 		resetCurrentPokemonForm: function () {
-			var formList = this.pokemonMapV2[this.pokemon.name].forms;
+			var formList = this.pokeMap[this.pokemon.name].forms;
 			var firstForm = formList[0];
 			if (Object.keys(formList).includes('Normal')) {
 				this.pokemon.form = "Normal";
@@ -26,7 +26,7 @@ Vue.component('form-selector',{
 		<div class="modal-contents">
 			<div class="species_select-image">
 				<pokemon-image-display
-					:dex-number="pokemonMapV2[pokemon.name].number"
+					:dex-number="pokeMap[pokemon.name].number"
 					:asset-bundle-suffix="getAssetBundleSuffix(pokemon.name,pokemon.form)"
 					:asset-bundle-value="getAssetBundleValue(pokemon.name,pokemon.form)"
 					:shiny="pokemon.shiny"
@@ -86,21 +86,21 @@ Vue.component('form-selector',{
 						@change="resetCurrentPokemonForm"
 					>
 						<option
-							v-for="(item, pokemonName, index) in pokemonMapV2"
+							v-for="(item, pokemonName, index) in pokeMap"
 							:key="item.number"
 						>{{pokemonName}}</option>
 					</select>
 				</label>
 				<label
 					class="input_padding_right blocky"
-					v-if="Object.keys(pokemonMapV2[pokemon.name].forms).length > 1"
+					v-if="Object.keys(pokeMap[pokemon.name].forms).length > 1"
 				>
 					<span>Form:</span>
 					<select
 						v-model="pokemon.form"
 					>
 						<option
-							v-for="(item, formName, index) in pokemonMapV2[pokemon.name].forms"
+							v-for="(item, formName, index) in pokeMap[pokemon.name].forms"
 							:key="formName"
 						>{{formName}}</option>
 					</select>

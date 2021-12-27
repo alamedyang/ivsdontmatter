@@ -1,27 +1,21 @@
 // This mixin is so that "outside" JavaScript can do stuff and edit the GM "base" data while allowing all components that rely on it to not have to do anything weird.
-var gameDataMixin = {
-	data: function () {
-		return {
-			gameData: gameData,
-			localization: fallbackLocalization,
-		};
-	},
-	computed: {
-		pokemonMapV2: function () {
-			return this.gameData.pokeMap;
-		},
-	},
-};
-
 var sprimkles = {
-	mixins: [
-		gameDataMixin,
-	],
+	computed: {
+		// pokeMap: function () {
+		// 	return this.$store.state.pokeMap;
+		// },
+		// OR...
+		// these both do the same thing
+		...Vuex.mapState([
+			'pokeMap',
+			'localization',
+		])
+	},
 	methods: {
 		getSyntheticForm: function (pokemon) {
 			var name = pokemon.name;
 			var formName = pokemon.form || 'Normal';
-			var base = this.gameData.pokeMap[name] || {forms:{}};
+			var base = this.pokeMap[name] || {forms:{}};
 			var form = base.forms[formName] || {};
 			var synthetic = Object.assign(
 				{},
@@ -81,20 +75,21 @@ var sprimkles = {
 			return stars;
 		},
 		getAssetBundleSuffix: function (selectedSpecies, selectedForm) {
-			if (this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleSuffix) {
-				var assetBundleSuffix =
-				this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleSuffix;
-			}
-			// console.log('assetBundleSuffix: ' + assetBundleSuffix);
-			return assetBundleSuffix;
+			var species = this.pokeMap[selectedSpecies] || {};
+			var form = species.forms[selectedForm] || {};
+			var result = form.assetBundleSuffix;
+			return result;
 		},
 		getAssetBundleValue: function (selectedSpecies, selectedForm) {
-			var assetBundleValue = '00';
-			if (this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleValue) {
-				assetBundleValue = ''+this.gameData.pokeMap[selectedSpecies].forms[selectedForm].assetBundleValue;
+			var result = '00';
+			var species = this.pokeMap[selectedSpecies] || {};
+			var form = species.forms[selectedForm] || {};
+			var assetBundleValue = form.assetBundleValue
+			if (assetBundleValue) {
+				result = ''+assetBundleValue;
 			}
 			// console.log('assetBundleValue: ' + assetBundleValue);
-			return assetBundleValue;
+			return result;
 		},
 		calculateCP: function (pokemon) {
 			var basePokemon = this.getSyntheticForm(pokemon);

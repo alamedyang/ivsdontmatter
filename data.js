@@ -401,10 +401,6 @@ var starBreakPoints = [
 	}
 ];
 
-var gameData = {
-	pokeMap: pokemonMapV2
-};
-
 var fallbackLocalization = {
 	types: {
 		"pokemon_type_bug": {
